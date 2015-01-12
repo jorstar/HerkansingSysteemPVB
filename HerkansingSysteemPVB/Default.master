@@ -2,16 +2,23 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
-
+    <title><%: Page.Title %> | Herkansingen Systeem</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
-    <form runat="server">
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+    <form id="form1" runat="server">
+        <div id="header"></div>
+        <div id="menu"></div>
+    <div id="content">
+
+        <div id="title"><asp:Label ID="lblTitleHere" runat="server" Text="Titel hier"></asp:Label></div>
+
+        <div id="mainPageContent"><asp:ContentPlaceHolder ID="paginaContent" runat="server"></asp:ContentPlaceHolder></div>
+
+    </div>
     </form>
 </body>
 </html>
