@@ -1,16 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="alleHerkansingenStudent.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="paginaContent" runat="server">
-    <table style="text-align:center; width: 100%;">
+    <table style="text-align: center; width: 100%;">
         <tr>
             <td>
 
-                <table style="width: 900px; margin: 50px auto 50px auto; ">
+                <table style="width: 900px; margin: 50px auto 50px auto;">
                     <tr>
                         <td colspan="2">
                             <asp:GridView ID="GridView1" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
@@ -29,15 +28,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td >
+                        <td>
                             <br />
                         </td>
-                        
+
                         <td rowspan="2">
                             <table style="height: 100%; width: 100%;">
                                 <tr>
-                                    <td>
-                                        Selecteer een toets om voor aan te melden: <br />
+                                    <td>Selecteer een toets om voor aan te melden:
+                                        <br />
                                         <asp:DropDownList ID="DropDownList2" Width="169px" runat="server"></asp:DropDownList>
                                     </td>
                                 </tr>
@@ -56,4 +55,8 @@
                         </td>
                     </tr>
                 </table>
+            </td>
+        </tr>
+    </table>
+    
 </asp:Content>
