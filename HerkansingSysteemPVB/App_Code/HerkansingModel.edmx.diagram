@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="herkansingDBModel.Herkansing" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="herkansingDBModel.Inschrijving" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="herkansingDBModel.Lokaal" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="herkansingDBModel.Student" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="herkansingDBModel.Toets" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="herkansingDBModel.Vak" Width="1.5" PointX="1.5" PointY="10.875" IsExpanded="true" />
         <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Docent" ManuallyRouted="false" />
@@ -18,8 +17,9 @@
         <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Lokaal" ManuallyRouted="false" />
         <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Toets" ManuallyRouted="false" />
         <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Herkansing" ManuallyRouted="false" />
-        <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Student1" ManuallyRouted="false" />
         <AssociationConnector Association="herkansingDBModel.FK_Toets_Vak" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="herkansingDBModel.Sudent" Width="1.5" PointX="7.375" PointY="1" />
+        <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Sudent" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

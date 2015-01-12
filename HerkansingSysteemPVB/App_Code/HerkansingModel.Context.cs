@@ -28,7 +28,7 @@ public partial class herkansingDBEntities : DbContext
     public DbSet<Herkansing> Herkansing { get; set; }
     public DbSet<Inschrijving> Inschrijving { get; set; }
     public DbSet<Lokaal> Lokaal { get; set; }
-    public DbSet<Student> Student { get; set; }
     public DbSet<Toets> Toets { get; set; }
     public DbSet<Vak> Vak { get; set; }
+    public DbSet<Sudent> Sudent { get; set; }
 }

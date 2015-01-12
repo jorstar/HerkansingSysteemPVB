@@ -70,7 +70,7 @@ public partial class Inschrijving
     public bool Bevestigd { get; set; }
 
     public virtual Herkansing Herkansing { get; set; }
-    public virtual Student Student { get; set; }
+    public virtual Sudent Sudent { get; set; }
 }
 
 public partial class Lokaal
@@ -85,21 +85,21 @@ public partial class Lokaal
     public virtual ICollection<Herkansing> Herkansing { get; set; }
 }
 
-public partial class Student
+public partial class Sudent
 {
-    public Student()
+    public Sudent()
     {
         this.Inschrijving = new HashSet<Inschrijving>();
     }
 
-    public string StudentID { get; set; }
-    public string Roepnaam { get; set; }
-    public string Tussenvoegsel { get; set; }
-    public string Achternaam { get; set; }
-    public string Klas { get; set; }
-    public string Opleiding { get; set; }
-    public string Email { get; set; }
-    public string Wachtwoord { get; set; }
+    public string LRL_NR { get; set; }
+    public string KLAS { get; set; }
+    public string ROEPNAAM { get; set; }
+    public string TUSSENV { get; set; }
+    public string ACHTERNAM { get; set; }
+    public string OPLEIDING { get; set; }
+    public string EMAIL { get; set; }
+    public System.DateTime GEBOORTEDATUM { get; set; }
 
     public virtual ICollection<Inschrijving> Inschrijving { get; set; }
 }
