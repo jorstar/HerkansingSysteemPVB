@@ -8,7 +8,6 @@
     <table style="text-align: center; width: 100%;">
         <tr>
             <td>
-
                 <table style="width: 900px; margin: 50px auto 50px auto;">
                     <tr>
                         <td colspan="2">
@@ -58,5 +57,4 @@
             </td>
         </tr>
     </table>
-    
 </asp:Content>

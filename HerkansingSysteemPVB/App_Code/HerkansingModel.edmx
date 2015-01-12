@@ -173,6 +173,9 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="GetAllVaks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="VerkrijgAlleHerkansingenStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentID" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="herkansingDBModelStoreContainer">
           <EntitySet Name="Beheerder" EntityType="Self.Beheerder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Docent" EntityType="Self.Docent" Schema="dbo" store:Type="Tables" />
@@ -407,6 +410,9 @@
             <End Role="Inschrijving" EntitySet="Inschrijving" />
           </AssociationSet>
           <FunctionImport Name="GetAllVaks" ReturnType="Collection(herkansingDBModel.GetAllVaks_Result)" />
+          <FunctionImport Name="VerkrijgAlleHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgAlleHerkansingenStudent_Result)">
+          <Parameter Name="studentID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Student">
           <Key>
@@ -438,6 +444,14 @@
         <ComplexType Name="GetAllVaks_Result">
           <Property Type="Int32" Name="VakID" Nullable="false" />
           <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
+        </ComplexType>
+        <ComplexType Name="VerkrijgAlleHerkansingenStudent_Result">
+          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
+          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
+          <Property Type="Int32" Name="Toets" Nullable="true" />
+          <Property Type="Int32" Name="Tijdsduur" Nullable="true" />
+          <Property Type="String" Name="ToetsNaam" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ToetsDescriptie" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -543,6 +557,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerkrijgAlleHerkansingenStudent" FunctionName="herkansingDBModel.Store.VerkrijgAlleHerkansingenStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgAlleHerkansingenStudent_Result">
+                <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
+                <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
+                <ScalarProperty Name="Toets" ColumnName="Toets" />
+                <ScalarProperty Name="Tijdsduur" ColumnName="Tijdsduur" />
+                <ScalarProperty Name="ToetsNaam" ColumnName="ToetsNaam" />
+                <ScalarProperty Name="ToetsDescriptie" ColumnName="ToetsDescriptie" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -557,7 +583,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
