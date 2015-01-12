@@ -70,7 +70,7 @@ public partial class Inschrijving
     public bool Bevestigd { get; set; }
 
     public virtual Herkansing Herkansing { get; set; }
-    public virtual Sudent Sudent { get; set; }
+    public virtual Student Student { get; set; }
 }
 
 public partial class Lokaal
@@ -81,13 +81,14 @@ public partial class Lokaal
     }
 
     public string LokaalNr { get; set; }
+    public int AantalPlaatsen { get; set; }
 
     public virtual ICollection<Herkansing> Herkansing { get; set; }
 }
 
-public partial class Sudent
+public partial class Student
 {
-    public Sudent()
+    public Student()
     {
         this.Inschrijving = new HashSet<Inschrijving>();
     }

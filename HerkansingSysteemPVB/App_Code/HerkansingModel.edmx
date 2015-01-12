@@ -23,7 +23,7 @@
           <Property Name="Roepnaam" Type="nvarchar" MaxLength="100" />
           <Property Name="Tussenvoegsel" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Achternaam" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Wachtwoord" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Herkansing">
@@ -47,7 +47,7 @@
           </Key>
           <Property Name="StudentID" Type="nchar" MaxLength="7" Nullable="false" />
           <Property Name="HerkansingID" Type="int" Nullable="false" />
-          <Property Name="BevestigingsID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BevestigingsID" Type="nvarchar(max)" />
           <Property Name="Bevestigd" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Lokaal">
@@ -55,8 +55,9 @@
             <PropertyRef Name="LokaalNr" />
           </Key>
           <Property Name="LokaalNr" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="AantalPlaatsen" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Sudent">
+        <EntityType Name="Student">
           <Key>
             <PropertyRef Name="LRL_NR" />
           </Key>
@@ -83,7 +84,7 @@
           <Key>
             <PropertyRef Name="VakID" />
           </Key>
-          <Property Name="VakID" Type="int" Nullable="false" />
+          <Property Name="VakID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VakNaam" Type="nvarchar" MaxLength="35" Nullable="false" />
           <Property Name="VakDescriptie" Type="nvarchar(max)" />
         </EntityType>
@@ -148,10 +149,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Inschrijving_Sudent">
-          <End Role="Sudent" Type="Self.Sudent" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
           <End Role="Inschrijving" Type="Self.Inschrijving" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sudent">
+            <Principal Role="Student">
               <PropertyRef Name="LRL_NR" />
             </Principal>
             <Dependent Role="Inschrijving">
@@ -177,7 +178,7 @@
           <EntitySet Name="Herkansing" EntityType="Self.Herkansing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inschrijving" EntityType="Self.Inschrijving" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lokaal" EntityType="Self.Lokaal" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Sudent" EntityType="Self.Sudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Toets" EntityType="Self.Toets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vak" EntityType="Self.Vak" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Herkansing_Docent" Association="Self.FK_Herkansing_Docent">
@@ -201,7 +202,7 @@
             <End Role="Inschrijving" EntitySet="Inschrijving" />
           </AssociationSet>
           <AssociationSet Name="FK_Inschrijving_Sudent" Association="Self.FK_Inschrijving_Sudent">
-            <End Role="Sudent" EntitySet="Sudent" />
+            <End Role="Student" EntitySet="Student" />
             <End Role="Inschrijving" EntitySet="Inschrijving" />
           </AssociationSet>
           <AssociationSet Name="FK_Toets_Vak" Association="Self.FK_Toets_Vak">
@@ -231,7 +232,7 @@
           <Property Name="Roepnaam" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Tussenvoegsel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Achternaam" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Wachtwoord" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Herkansing" Relationship="Self.FK_Herkansing_Docent" FromRole="Docent" ToRole="Herkansing" />
           <NavigationProperty Name="Herkansing1" Relationship="Self.FK_Herkansing_Docent1" FromRole="Docent" ToRole="Herkansing" />
@@ -262,10 +263,10 @@
           </Key>
           <Property Name="StudentID" Type="String" MaxLength="7" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="HerkansingID" Type="Int32" Nullable="false" />
-          <Property Name="BevestigingsID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BevestigingsID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Bevestigd" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Herkansing" Relationship="Self.FK_Inschrijving_Herkansing" FromRole="Inschrijving" ToRole="Herkansing" />
-          <NavigationProperty Name="Sudent" Relationship="herkansingDBModel.FK_Inschrijving_Sudent" FromRole="Inschrijving" ToRole="Sudent" />
+          <NavigationProperty Name="Student" Relationship="herkansingDBModel.FK_Inschrijving_Sudent1" FromRole="Inschrijving" ToRole="Student" />
         </EntityType>
         <EntityType Name="Lokaal">
           <Key>
@@ -273,6 +274,7 @@
           </Key>
           <Property Name="LokaalNr" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Herkansing" Relationship="Self.FK_Herkansing_Lokaal" FromRole="Lokaal" ToRole="Herkansing" />
+          <Property Name="AantalPlaatsen" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Toets">
           <Key>
@@ -398,13 +400,13 @@
             <End Role="Vak" EntitySet="Vak" />
             <End Role="Toets" EntitySet="Toets" />
           </AssociationSet>
-          <EntitySet Name="Sudent" EntityType="herkansingDBModel.Sudent" />
-          <AssociationSet Name="FK_Inschrijving_Sudent" Association="herkansingDBModel.FK_Inschrijving_Sudent">
-            <End Role="Sudent" EntitySet="Sudent" />
+          <EntitySet Name="Student" EntityType="herkansingDBModel.Student" />
+          <AssociationSet Name="FK_Inschrijving_Sudent1" Association="herkansingDBModel.FK_Inschrijving_Sudent1">
+            <End Role="Student" EntitySet="Student" />
             <End Role="Inschrijving" EntitySet="Inschrijving" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Sudent">
+        <EntityType Name="Student">
           <Key>
             <PropertyRef Name="LRL_NR" />
           </Key>
@@ -416,14 +418,14 @@
           <Property Name="OPLEIDING" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="GEBOORTEDATUM" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Inschrijving" Relationship="herkansingDBModel.FK_Inschrijving_Sudent" FromRole="Sudent" ToRole="Inschrijving" />
           <Property Name="WACHTWOORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Inschrijving" Relationship="herkansingDBModel.FK_Inschrijving_Sudent1" FromRole="Student" ToRole="Inschrijving" />
         </EntityType>
-        <Association Name="FK_Inschrijving_Sudent">
-          <End Type="herkansingDBModel.Sudent" Role="Sudent" Multiplicity="1" />
+        <Association Name="FK_Inschrijving_Sudent1">
+          <End Type="herkansingDBModel.Student" Role="Student" Multiplicity="1" />
           <End Type="herkansingDBModel.Inschrijving" Role="Inschrijving" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sudent">
+            <Principal Role="Student">
               <PropertyRef Name="LRL_NR" />
             </Principal>
             <Dependent Role="Inschrijving">
@@ -488,6 +490,7 @@
           <EntitySetMapping Name="Lokaal">
             <EntityTypeMapping TypeName="herkansingDBModel.Lokaal">
               <MappingFragment StoreEntitySet="Lokaal">
+                <ScalarProperty Name="AantalPlaatsen" ColumnName="AantalPlaatsen" />
                 <ScalarProperty Name="LokaalNr" ColumnName="LokaalNr" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -511,9 +514,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Sudent">
-            <EntityTypeMapping TypeName="herkansingDBModel.Sudent">
-              <MappingFragment StoreEntitySet="Sudent">
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="herkansingDBModel.Student">
+              <MappingFragment StoreEntitySet="Student">
                 <ScalarProperty Name="WACHTWOORD" ColumnName="WACHTWOORD" />
                 <ScalarProperty Name="GEBOORTEDATUM" ColumnName="GEBOORTEDATUM" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />

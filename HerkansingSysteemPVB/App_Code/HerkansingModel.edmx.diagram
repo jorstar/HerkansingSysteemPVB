@@ -18,8 +18,8 @@
         <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Toets" ManuallyRouted="false" />
         <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Herkansing" ManuallyRouted="false" />
         <AssociationConnector Association="herkansingDBModel.FK_Toets_Vak" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="herkansingDBModel.Sudent" Width="1.5" PointX="7.375" PointY="1" />
-        <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Sudent" />
+        <EntityTypeShape EntityType="herkansingDBModel.Student" Width="1.5" PointX="8.375" PointY="5" />
+        <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Sudent1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
