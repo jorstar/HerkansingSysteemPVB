@@ -1,7 +1,7 @@
-﻿login {
-     width:100%;
+﻿#login {
+     width: 100%;
+  text-align: center;
 }
-tablelogin {
-    width: 50%;
-    margin: 0 auto;
+#tablelogin {
+    display: inline-block;
 }

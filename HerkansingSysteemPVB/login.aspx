@@ -5,14 +5,14 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="paginaContent" runat="server">
-<div id="login">
+    <div id="login">
     <table id="tablelogin">
         <tr>
             <td>
                 Gebruikersnaam:
             </td>
             <td>
-                <asp:TextBox ID="tbGebruikersnaam" placeholder="Gebruikersnaam" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tbGebruikersnaam" placeholder="Gebruikersnaam" runat="server" CssClass="inputs"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -20,7 +20,7 @@
                 Wachtwoord:
             </td>
             <td>
-                <asp:TextBox ID="tbWachtwoord" placeholder="Wachtwoord" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="tbWachtwoord" placeholder="Wachtwoord" runat="server" TextMode="Password" CssClass="inputs"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -28,7 +28,7 @@
 
             </td>
             <td>
-                <asp:Button ID="btnLogin" runat="server" Text="Login" />
+                <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="fancyButton" OnClick="btnLogin_Click" />
             </td>
         </tr>
     </table>
