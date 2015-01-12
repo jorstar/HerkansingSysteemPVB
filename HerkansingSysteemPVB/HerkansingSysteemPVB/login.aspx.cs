@@ -7,12 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace HerkansingSysteemPVB
 {
-    public partial class _default : System.Web.UI.MasterPage
+    public partial class WebForm1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            lblTitleHere.Text = Convert.ToString(Session["titel"]);
+            Session["titel"] = "Login";
 
         }
     }

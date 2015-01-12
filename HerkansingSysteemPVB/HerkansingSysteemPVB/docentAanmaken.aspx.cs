@@ -7,12 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace HerkansingSysteemPVB
 {
-    public partial class _default : System.Web.UI.MasterPage
+    public partial class WebForm10 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["titel"] = "Een Docent aanmaken";
 
-            lblTitleHere.Text = Convert.ToString(Session["titel"]);
 
         }
     }

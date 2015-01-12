@@ -1,19 +1,23 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="HerkansingSysteemPVB.Default" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="default.master.cs" Inherits="HerkansingSysteemPVB._default" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <link href="css/defaultMaster.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
+        <div id="header"></div>
+        <div id="menu"></div>
+    <div id="content">
+
+        <div id="title"><asp:Label ID="lblTitleHere" runat="server" Text="Titel hier"></asp:Label></div>
+
+        <div id="mainPageContent"><asp:ContentPlaceHolder ID="paginaContent" runat="server"></asp:ContentPlaceHolder></div>
+
     </div>
     </form>
 </body>
