@@ -15,34 +15,18 @@
         <tr>
             <td>
 
-                <table style="width: 600px; margin: 50px auto 50px auto">
+                <table style="width: 600px; margin: 50px auto 50px auto" class="fancyTable">
                     <tr>
                         <td>Toets:</td>
                         <td>
-                            <asp:DropDownList ID="DropDownList2" Width="169px" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="DropDownList2" Width="169px" runat="server" CssClass="inputs"></asp:DropDownList>
                             <td></td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style1">Vak:</td>
-                        <td class="auto-style1">
-                            <asp:DropDownList ID="DropDownList1" Width="169px" runat="server"></asp:DropDownList>
-                        </td>
-                        <td class="auto-style1"></td>
                     </tr>
                     <tr>
                         <td>Datum:</td>
                         <td>
                             <div style="width: 220px; margin: 0px auto 0px auto">
-                                <asp:Calendar ID="Calendar1" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
-                                    <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
-                                    <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
-                                    <OtherMonthDayStyle ForeColor="#999999" />
-                                    <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-                                    <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
-                                    <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
-                                    <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
-                                    <WeekendDayStyle BackColor="#CCCCFF" />
-                                </asp:Calendar>
+                                <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
                             </div>
                         </td>
                         <td></td>
@@ -50,9 +34,9 @@
                     <tr>
                         <td>Tijd:</td>
                         <td>
-                            <asp:TextBox ID="TextBox1" runat="server" Width="35px" MaxLength="2" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="TextBox1" runat="server" Width="35px" MaxLength="2" TextMode="Number" CssClass="inputs"></asp:TextBox>
                             :
-                            <asp:TextBox ID="TextBox2" runat="server" Width="35px" MaxLength="2"></asp:TextBox>
+                            <asp:TextBox ID="TextBox2" runat="server" Width="35px" MaxLength="2" CssClass="inputs"></asp:TextBox>
                         </td>
                         <td></td>
                     </tr>
@@ -60,7 +44,7 @@
                         <td>Lengte herkansing
                         </td>
                         <td>
-                            <asp:TextBox ID="TextBox3" Width="169px" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:TextBox ID="TextBox3" Width="169px" runat="server" TextMode="Number" CssClass="inputs"></asp:TextBox>
                         </td>
                         <td></td>
                     </tr>
@@ -71,7 +55,7 @@
                             </p>
                         </td>
                         <td>
-                            <asp:DropDownList ID="DropDownList3" Width="169px" runat="server">
+                            <asp:DropDownList ID="DropDownList3" Width="169px" runat="server" CssClass="inputs">
                             </asp:DropDownList>
                         </td>
                         <td></td>
@@ -91,7 +75,7 @@
                     <tr>
                         <td>Selecteer klas/opleiding</td>
                         <td>
-                            <asp:DropDownList ID="DropDownList4" Width="169px" runat="server">
+                            <asp:DropDownList ID="DropDownList4" Width="169px" runat="server" CssClass="inputs">
                             </asp:DropDownList>
                         </td>
                         <td></td>
@@ -99,7 +83,7 @@
                     <tr>
                         <td>Aantal plaatsen (20 max)</td>
                         <td>
-                            <asp:TextBox ID="TextBox4" Width="169px" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="TextBox4" Width="169px" runat="server" CssClass="inputs"></asp:TextBox>
                         </td>
                         <td></td>
 
@@ -107,7 +91,7 @@
                     <tr>
                         <td>Lokaal selecteren</td>
                         <td>
-                            <asp:DropDownList ID="DropDownList5" Width="169px" runat="server"></asp:DropDownList></td>
+                            <asp:DropDownList ID="DropDownList5" Width="169px" runat="server" CssClass="inputs"></asp:DropDownList></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -117,13 +101,13 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <asp:Button ID="Button1" runat="server" Text="Bevestig" /></td>
+                            <asp:Button ID="Button1" runat="server" Text="Bevestig" CssClass="fancyButton" /></td>
                     </tr>
                 </table>
 
             </td>
             <td>
-                <table style="width: 300px; margin: 50px auto 50px auto">
+                <table style="width: 300px; margin: 50px auto 50px auto" class="fancyTable">
                     <tr>
                         <td style="font-size: 20px; border-bottom: 2px solid black;">Geselecteerde toets informatie</td>
                     </tr>
