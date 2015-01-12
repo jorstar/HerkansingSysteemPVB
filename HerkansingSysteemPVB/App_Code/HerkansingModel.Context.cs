@@ -10,6 +10,9 @@
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Objects;
+using System.Data.Objects.DataClasses;
+using System.Linq;
 
 public partial class herkansingDBEntities : DbContext
 {
@@ -31,4 +34,9 @@ public partial class herkansingDBEntities : DbContext
     public DbSet<Toets> Toets { get; set; }
     public DbSet<Vak> Vak { get; set; }
     public DbSet<Student> Student { get; set; }
+
+    public virtual ObjectResult<GetAllVaks_Result> GetAllVaks()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllVaks_Result>("GetAllVaks");
+    }
 }

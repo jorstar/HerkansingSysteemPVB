@@ -135,3 +135,9 @@ public partial class Vak
 
     public virtual ICollection<Toets> Toets { get; set; }
 }
+
+public partial class GetAllVaks_Result
+{
+    public int VakID { get; set; }
+    public string VakNaam { get; set; }
+}

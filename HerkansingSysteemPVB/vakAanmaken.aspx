@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <asp:Button ID="Button1" CssClass="fancyButton" runat="server" Text="Bevestig" /></td>
+                            <asp:Button ID="btnBevestig" CssClass="fancyButton" runat="server" Text="Bevestig" OnClick="btnBevestig_Click" /></td>
                     </tr>
                     <tr>
                         <td> <br /></td>
