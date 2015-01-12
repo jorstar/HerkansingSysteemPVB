@@ -100,6 +100,7 @@ public partial class Sudent
     public string OPLEIDING { get; set; }
     public string EMAIL { get; set; }
     public System.DateTime GEBOORTEDATUM { get; set; }
+    public string WACHTWOORD { get; set; }
 
     public virtual ICollection<Inschrijving> Inschrijving { get; set; }
 }
@@ -129,6 +130,7 @@ public partial class Vak
 
     public int VakID { get; set; }
     public string VakNaam { get; set; }
+    public string VakDescriptie { get; set; }
 
     public virtual ICollection<Toets> Toets { get; set; }
 }
