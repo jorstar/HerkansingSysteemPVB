@@ -1,13 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="vakAanmaken.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="Vak aanmaken" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="vakAanmaken.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-    <style type="text/css">
-        .auto-style1 {
-            width: 1191px;
-        }
-    </style>
-
+   
 </asp:Content>
 
 
@@ -16,9 +10,10 @@
                             </asp:ScriptManager>
     <table style="text-align:center; width: 100%;">
         <tr>
-            <td class="auto-style1">
+            <td>
 
                 <table style="width: 600px; margin: 50px auto 50px auto" class="VakAanmakenTable">
+                    <tr><td><br /></td></tr>
                     <tr>
                         <td>Vak naam:</td>
                         <td>
@@ -31,16 +26,27 @@
                         <td><br /></td>
                     </tr>
                     <tr>
-                        <td colspan="3">
-                            <asp:Button ID="Button1" CssClass="fancyButton" runat="server" Text="Bevestig" /></td>
+                        <td>Vak beschrijving:</td>
+                        <td>
+                            <asp:TextBox placeholder="Vak beschrijving" ID="txtVakBeschrijving" CssClass="inputs" runat="server" Width="250px" Height="50px" TextMode="MultiLine"></asp:TextBox></td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Vak beschrijving is een verplicht veld!" ControlToValidate="txtVakBeschrijving" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td><br /></td>
                     </tr>
                     <tr>
+                        <td colspan="3">
+                            <asp:Button ID="Button1" CssClass="fancyButton" runat="server" Text="Bevestig" /></td>
+                    </tr>
+                    <tr>
+                        <td> <br /></td>
+                    </tr>
+                    <tr>
                         <td style="width:33%"></td>
-                        <td style="width:33%">
-                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
+                        <td style="width:33%; text-align: left;">
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
                         </td>
                         <td style="width:33%"></td>
                     </tr>
