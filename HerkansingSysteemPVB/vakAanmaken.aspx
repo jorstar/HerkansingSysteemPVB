@@ -12,7 +12,7 @@
         <tr>
             <td>
 
-                <table style="width: 600px; margin: 50px auto 50px auto" class="VakAanmakenTable">
+                <table style="width: 600px; margin: 50px auto 50px auto" class="fancyTable">
                     <tr><td><br /></td></tr>
                     <tr>
                         <td>Vak naam:</td>

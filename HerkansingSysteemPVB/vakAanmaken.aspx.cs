@@ -13,7 +13,8 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void btnBevestig_Click(object sender, EventArgs e)
     {
-        if (txtVakNaam.Text != "" && txtVakBeschrijving.Text != "")
+
+        if (Page.IsValid)
         {
             herkansingDBEntities entity = new herkansingDBEntities();
 
