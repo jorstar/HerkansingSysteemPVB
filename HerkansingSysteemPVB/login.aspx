@@ -1,48 +1,36 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="login.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-    <style type="text/css">
-        .auto-style1 {
-            height: 22px;
-        }
-    </style>
-
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="paginaContent" runat="server">
-
-    <table style="text-align:center; width: 100%;">
+<div id="login">
+    <table id="tablelogin">
+        <tr>
+            <td>
+                Gebruikersnaam:
+            </td>
+            <td>
+                <asp:TextBox ID="tbGebruikersnaam" placeholder="Gebruikersnaam" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Wachtwoord:
+            </td>
+            <td>
+                <asp:TextBox ID="tbWachtwoord" placeholder="Wachtwoord" runat="server" TextMode="Password"></asp:TextBox>
+            </td>
+        </tr>
         <tr>
             <td>
 
-                <table style="width: 500px; margin: 50px auto 50px auto">
-                    <tr>
-                        <td>Gebruikers Naam:</td>
-                        <td>
-                            <asp:TextBox ID="TextBox1" runat="server" Width="146px"></asp:TextBox>
-                        </td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td class="auto-style1">Wachtwoord:
-                        <td class="auto-style1">
-                            <asp:TextBox ID="TextBox2" runat="server" Width="146px"></asp:TextBox>
-                        </td>
-                        <td class="auto-style1"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <asp:Button ID="Button1" runat="server" Text="Button" />
-                        </td>
-                        <td></td>
-                    </tr>
-                </table>
-
+            </td>
+            <td>
+                <asp:Button ID="btnLogin" runat="server" Text="Login" />
             </td>
         </tr>
     </table>
-
+</div>
 </asp:Content>
