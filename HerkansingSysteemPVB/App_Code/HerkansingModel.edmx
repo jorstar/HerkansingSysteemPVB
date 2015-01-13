@@ -172,6 +172,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetAllSurveillance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllToets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllVaks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="LoginBeheerder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
@@ -437,6 +439,8 @@
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="GetAllToets" ReturnType="Collection(herkansingDBModel.GetAllToets_Result)" />
+          <FunctionImport Name="GetAllSurveillance" ReturnType="Collection(herkansingDBModel.GetAllSurveillance_Result)" />
         </EntityContainer>
         <EntityType Name="Student">
           <Key>
@@ -476,6 +480,14 @@
           <Property Type="Int32" Name="Tijdsduur" Nullable="true" />
           <Property Type="String" Name="ToetsNaam" Nullable="false" MaxLength="200" />
           <Property Type="String" Name="ToetsDescriptie" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetAllToets_Result">
+          <Property Type="Int32" Name="ToetsID" Nullable="false" />
+          <Property Type="String" Name="ToetsNaam" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="GetAllSurveillance_Result">
+          <Property Type="String" Name="DocentID" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="Column1" Nullable="true" MaxLength="261" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -596,6 +608,22 @@
           <FunctionImportMapping FunctionImportName="LoginBeheerder" FunctionName="herkansingDBModel.Store.LoginBeheerder" />
           <FunctionImportMapping FunctionImportName="LoginDocent" FunctionName="herkansingDBModel.Store.LoginDocent" />
           <FunctionImportMapping FunctionImportName="LoginStudent" FunctionName="herkansingDBModel.Store.LoginStudent" />
+          <FunctionImportMapping FunctionImportName="GetAllToets" FunctionName="herkansingDBModel.Store.GetAllToets">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.GetAllToets_Result">
+                <ScalarProperty Name="ToetsID" ColumnName="ToetsID" />
+                <ScalarProperty Name="ToetsNaam" ColumnName="ToetsNaam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllSurveillance" FunctionName="herkansingDBModel.Store.GetAllSurveillance">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.GetAllSurveillance_Result">
+                <ScalarProperty Name="DocentID" ColumnName="DocentID" />
+                <ScalarProperty Name="Column1" ColumnName="Column1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

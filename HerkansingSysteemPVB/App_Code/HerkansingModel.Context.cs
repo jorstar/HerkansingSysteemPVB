@@ -87,4 +87,14 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("LoginStudent", usernameParameter, passwordParameter);
     }
+
+    public virtual ObjectResult<GetAllToets_Result> GetAllToets()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllToets_Result>("GetAllToets");
+    }
+
+    public virtual ObjectResult<GetAllSurveillance_Result> GetAllSurveillance()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllSurveillance_Result>("GetAllSurveillance");
+    }
 }

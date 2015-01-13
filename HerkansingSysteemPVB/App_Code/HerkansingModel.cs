@@ -136,6 +136,18 @@ public partial class Vak
     public virtual ICollection<Toets> Toets { get; set; }
 }
 
+public partial class GetAllSurveillance_Result
+{
+    public string DocentID { get; set; }
+    public string Column1 { get; set; }
+}
+
+public partial class GetAllToets_Result
+{
+    public int ToetsID { get; set; }
+    public string ToetsNaam { get; set; }
+}
+
 public partial class GetAllVaks_Result
 {
     public int VakID { get; set; }
