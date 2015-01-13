@@ -139,27 +139,18 @@ public partial class Vak
 public partial class GetAllSurveillance_Result
 {
     public string DocentID { get; set; }
-    public string Column1 { get; set; }
+    public string Roepnaam { get; set; }
+    public string Achternaam { get; set; }
 }
 
 public partial class GetAllToets_Result
 {
-    public int ToetsID { get; set; }
-    public string ToetsNaam { get; set; }
+    public int toetsID { get; set; }
+    public string toetsNaam { get; set; }
 }
 
 public partial class GetAllVaks_Result
 {
     public int VakID { get; set; }
     public string VakNaam { get; set; }
-}
-
-public partial class VerkrijgAlleHerkansingenStudent_Result
-{
-    public Nullable<int> HerkansingID { get; set; }
-    public string Lokaal { get; set; }
-    public Nullable<int> Toets { get; set; }
-    public Nullable<int> Tijdsduur { get; set; }
-    public string ToetsNaam { get; set; }
-    public string ToetsDescriptie { get; set; }
 }

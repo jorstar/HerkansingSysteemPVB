@@ -31,22 +31,23 @@ public partial class herkansingDBEntities : DbContext
     public DbSet<Herkansing> Herkansing { get; set; }
     public DbSet<Inschrijving> Inschrijving { get; set; }
     public DbSet<Lokaal> Lokaal { get; set; }
+    public DbSet<Student> Student { get; set; }
     public DbSet<Toets> Toets { get; set; }
     public DbSet<Vak> Vak { get; set; }
-    public DbSet<Student> Student { get; set; }
+
+    public virtual ObjectResult<GetAllSurveillance_Result> GetAllSurveillance()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllSurveillance_Result>("GetAllSurveillance");
+    }
+
+    public virtual ObjectResult<GetAllToets_Result> GetAllToets()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllToets_Result>("GetAllToets");
+    }
 
     public virtual ObjectResult<GetAllVaks_Result> GetAllVaks()
     {
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllVaks_Result>("GetAllVaks");
-    }
-
-    public virtual ObjectResult<VerkrijgAlleHerkansingenStudent_Result> VerkrijgAlleHerkansingenStudent(Nullable<int> studentID)
-    {
-        var studentIDParameter = studentID.HasValue ?
-            new ObjectParameter("studentID", studentID) :
-            new ObjectParameter("studentID", typeof(int));
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenStudent_Result>("VerkrijgAlleHerkansingenStudent", studentIDParameter);
     }
 
     public virtual ObjectResult<string> LoginBeheerder(string username, string password)
@@ -86,15 +87,5 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("Password", typeof(string));
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("LoginStudent", usernameParameter, passwordParameter);
-    }
-
-    public virtual ObjectResult<GetAllToets_Result> GetAllToets()
-    {
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllToets_Result>("GetAllToets");
-    }
-
-    public virtual ObjectResult<GetAllSurveillance_Result> GetAllSurveillance()
-    {
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllSurveillance_Result>("GetAllSurveillance");
     }
 }

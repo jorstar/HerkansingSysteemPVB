@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Beheerder">
           <Key>
             <PropertyRef Name="Gebruikersnaam" />
@@ -187,9 +187,6 @@
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="VerkrijgAlleHerkansingenStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="studentID" Type="int" Mode="In" />
-        </Function>
         <EntityContainer Name="herkansingDBModelStoreContainer">
           <EntitySet Name="Beheerder" EntityType="Self.Beheerder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Docent" EntityType="Self.Docent" Schema="dbo" store:Type="Tables" />
@@ -228,7 +225,8 @@
             <End Role="Toets" EntitySet="Toets" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="herkansingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -284,15 +282,30 @@
           <Property Name="BevestigingsID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Bevestigd" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Herkansing" Relationship="Self.FK_Inschrijving_Herkansing" FromRole="Inschrijving" ToRole="Herkansing" />
-          <NavigationProperty Name="Student" Relationship="herkansingDBModel.FK_Inschrijving_Sudent1" FromRole="Inschrijving" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Inschrijving_Sudent" FromRole="Inschrijving" ToRole="Student" />
         </EntityType>
         <EntityType Name="Lokaal">
           <Key>
             <PropertyRef Name="LokaalNr" />
           </Key>
           <Property Name="LokaalNr" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Herkansing" Relationship="Self.FK_Herkansing_Lokaal" FromRole="Lokaal" ToRole="Herkansing" />
           <Property Name="AantalPlaatsen" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Herkansing" Relationship="Self.FK_Herkansing_Lokaal" FromRole="Lokaal" ToRole="Herkansing" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="LRL_NR" />
+          </Key>
+          <Property Name="LRL_NR" Type="String" MaxLength="7" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="KLAS" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ROEPNAAM" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TUSSENV" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="ACHTERNAM" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OPLEIDING" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GEBOORTEDATUM" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WACHTWOORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Inschrijving" Relationship="Self.FK_Inschrijving_Sudent" FromRole="Student" ToRole="Inschrijving" />
         </EntityType>
         <EntityType Name="Toets">
           <Key>
@@ -309,10 +322,10 @@
           <Key>
             <PropertyRef Name="VakID" />
           </Key>
-          <Property Name="VakID" Type="Int32" Nullable="false" />
+          <Property Name="VakID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VakNaam" Type="String" MaxLength="35" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Toets" Relationship="Self.FK_Toets_Vak" FromRole="Vak" ToRole="Toets" />
           <Property Name="VakDescriptie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Toets" Relationship="Self.FK_Toets_Vak" FromRole="Vak" ToRole="Toets" />
         </EntityType>
         <Association Name="FK_Herkansing_Docent">
           <End Role="Docent" Type="Self.Docent" Multiplicity="1" />
@@ -374,6 +387,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inschrijving_Sudent">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Inschrijving" Type="Self.Inschrijving" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="LRL_NR" />
+            </Principal>
+            <Dependent Role="Inschrijving">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Toets_Vak">
           <End Role="Vak" Type="Self.Vak" Multiplicity="1" />
           <End Role="Toets" Type="Self.Toets" Multiplicity="*" />
@@ -392,6 +417,7 @@
           <EntitySet Name="Herkansing" EntityType="Self.Herkansing" />
           <EntitySet Name="Inschrijving" EntityType="Self.Inschrijving" />
           <EntitySet Name="Lokaal" EntityType="Self.Lokaal" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
           <EntitySet Name="Toets" EntityType="Self.Toets" />
           <EntitySet Name="Vak" EntityType="Self.Vak" />
           <AssociationSet Name="FK_Herkansing_Docent" Association="Self.FK_Herkansing_Docent">
@@ -414,19 +440,17 @@
             <End Role="Herkansing" EntitySet="Herkansing" />
             <End Role="Inschrijving" EntitySet="Inschrijving" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inschrijving_Sudent" Association="Self.FK_Inschrijving_Sudent">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Inschrijving" EntitySet="Inschrijving" />
+          </AssociationSet>
           <AssociationSet Name="FK_Toets_Vak" Association="Self.FK_Toets_Vak">
             <End Role="Vak" EntitySet="Vak" />
             <End Role="Toets" EntitySet="Toets" />
           </AssociationSet>
-          <EntitySet Name="Student" EntityType="herkansingDBModel.Student" />
-          <AssociationSet Name="FK_Inschrijving_Sudent1" Association="herkansingDBModel.FK_Inschrijving_Sudent1">
-            <End Role="Student" EntitySet="Student" />
-            <End Role="Inschrijving" EntitySet="Inschrijving" />
-          </AssociationSet>
+          <FunctionImport Name="GetAllSurveillance" ReturnType="Collection(herkansingDBModel.GetAllSurveillance_Result)" />
+          <FunctionImport Name="GetAllToets" ReturnType="Collection(herkansingDBModel.GetAllToets_Result)" />
           <FunctionImport Name="GetAllVaks" ReturnType="Collection(herkansingDBModel.GetAllVaks_Result)" />
-          <FunctionImport Name="VerkrijgAlleHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgAlleHerkansingenStudent_Result)">
-          <Parameter Name="studentID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="LoginBeheerder" ReturnType="Collection(String)">
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
@@ -439,55 +463,19 @@
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetAllToets" ReturnType="Collection(herkansingDBModel.GetAllToets_Result)" />
-          <FunctionImport Name="GetAllSurveillance" ReturnType="Collection(herkansingDBModel.GetAllSurveillance_Result)" />
         </EntityContainer>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="LRL_NR" />
-          </Key>
-          <Property Name="LRL_NR" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
-          <Property Name="KLAS" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
-          <Property Name="ROEPNAAM" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
-          <Property Name="TUSSENV" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="ACHTERNAM" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="OPLEIDING" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GEBOORTEDATUM" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="WACHTWOORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Inschrijving" Relationship="herkansingDBModel.FK_Inschrijving_Sudent1" FromRole="Student" ToRole="Inschrijving" />
-        </EntityType>
-        <Association Name="FK_Inschrijving_Sudent1">
-          <End Type="herkansingDBModel.Student" Role="Student" Multiplicity="1" />
-          <End Type="herkansingDBModel.Inschrijving" Role="Inschrijving" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="LRL_NR" />
-            </Principal>
-            <Dependent Role="Inschrijving">
-              <PropertyRef Name="StudentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <ComplexType Name="GetAllSurveillance_Result">
+          <Property Type="String" Name="DocentID" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="Roepnaam" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Achternaam" Nullable="false" MaxLength="250" />
+        </ComplexType>
+        <ComplexType Name="GetAllToets_Result">
+          <Property Type="Int32" Name="toetsID" Nullable="false" />
+          <Property Type="String" Name="toetsNaam" Nullable="false" MaxLength="200" />
+        </ComplexType>
         <ComplexType Name="GetAllVaks_Result">
           <Property Type="Int32" Name="VakID" Nullable="false" />
           <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
-        </ComplexType>
-        <ComplexType Name="VerkrijgAlleHerkansingenStudent_Result">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
-          <Property Type="Int32" Name="Tijdsduur" Nullable="true" />
-          <Property Type="String" Name="ToetsNaam" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="ToetsDescriptie" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetAllToets_Result">
-          <Property Type="Int32" Name="ToetsID" Nullable="false" />
-          <Property Type="String" Name="ToetsNaam" Nullable="false" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="GetAllSurveillance_Result">
-          <Property Type="String" Name="DocentID" Nullable="false" MaxLength="5" />
-          <Property Type="String" Name="Column1" Nullable="true" MaxLength="261" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -546,8 +534,23 @@
           <EntitySetMapping Name="Lokaal">
             <EntityTypeMapping TypeName="herkansingDBModel.Lokaal">
               <MappingFragment StoreEntitySet="Lokaal">
-                <ScalarProperty Name="AantalPlaatsen" ColumnName="AantalPlaatsen" />
                 <ScalarProperty Name="LokaalNr" ColumnName="LokaalNr" />
+                <ScalarProperty Name="AantalPlaatsen" ColumnName="AantalPlaatsen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="herkansingDBModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="LRL_NR" ColumnName="LRL_NR" />
+                <ScalarProperty Name="KLAS" ColumnName="KLAS" />
+                <ScalarProperty Name="ROEPNAAM" ColumnName="ROEPNAAM" />
+                <ScalarProperty Name="TUSSENV" ColumnName="TUSSENV" />
+                <ScalarProperty Name="ACHTERNAM" ColumnName="ACHTERNAM" />
+                <ScalarProperty Name="OPLEIDING" ColumnName="OPLEIDING" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="GEBOORTEDATUM" ColumnName="GEBOORTEDATUM" />
+                <ScalarProperty Name="WACHTWOORD" ColumnName="WACHTWOORD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -564,27 +567,29 @@
           <EntitySetMapping Name="Vak">
             <EntityTypeMapping TypeName="herkansingDBModel.Vak">
               <MappingFragment StoreEntitySet="Vak">
-                <ScalarProperty Name="VakDescriptie" ColumnName="VakDescriptie" />
                 <ScalarProperty Name="VakID" ColumnName="VakID" />
                 <ScalarProperty Name="VakNaam" ColumnName="VakNaam" />
+                <ScalarProperty Name="VakDescriptie" ColumnName="VakDescriptie" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Student">
-            <EntityTypeMapping TypeName="herkansingDBModel.Student">
-              <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="WACHTWOORD" ColumnName="WACHTWOORD" />
-                <ScalarProperty Name="GEBOORTEDATUM" ColumnName="GEBOORTEDATUM" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="OPLEIDING" ColumnName="OPLEIDING" />
-                <ScalarProperty Name="ACHTERNAM" ColumnName="ACHTERNAM" />
-                <ScalarProperty Name="TUSSENV" ColumnName="TUSSENV" />
-                <ScalarProperty Name="ROEPNAAM" ColumnName="ROEPNAAM" />
-                <ScalarProperty Name="KLAS" ColumnName="KLAS" />
-                <ScalarProperty Name="LRL_NR" ColumnName="LRL_NR" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllSurveillance" FunctionName="herkansingDBModel.Store.GetAllSurveillance">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.GetAllSurveillance_Result">
+                <ScalarProperty Name="DocentID" ColumnName="DocentID" />
+                <ScalarProperty Name="Roepnaam" ColumnName="Roepnaam" />
+                <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllToets" FunctionName="herkansingDBModel.Store.GetAllToets">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.GetAllToets_Result">
+                <ScalarProperty Name="toetsID" ColumnName="toetsID" />
+                <ScalarProperty Name="toetsNaam" ColumnName="toetsNaam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetAllVaks" FunctionName="herkansingDBModel.Store.GetAllVaks">
             <ResultMapping>
               <ComplexTypeMapping TypeName="herkansingDBModel.GetAllVaks_Result">
@@ -593,37 +598,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="VerkrijgAlleHerkansingenStudent" FunctionName="herkansingDBModel.Store.VerkrijgAlleHerkansingenStudent">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgAlleHerkansingenStudent_Result">
-                <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
-                <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
-                <ScalarProperty Name="Toets" ColumnName="Toets" />
-                <ScalarProperty Name="Tijdsduur" ColumnName="Tijdsduur" />
-                <ScalarProperty Name="ToetsNaam" ColumnName="ToetsNaam" />
-                <ScalarProperty Name="ToetsDescriptie" ColumnName="ToetsDescriptie" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="LoginBeheerder" FunctionName="herkansingDBModel.Store.LoginBeheerder" />
           <FunctionImportMapping FunctionImportName="LoginDocent" FunctionName="herkansingDBModel.Store.LoginDocent" />
           <FunctionImportMapping FunctionImportName="LoginStudent" FunctionName="herkansingDBModel.Store.LoginStudent" />
-          <FunctionImportMapping FunctionImportName="GetAllToets" FunctionName="herkansingDBModel.Store.GetAllToets">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.GetAllToets_Result">
-                <ScalarProperty Name="ToetsID" ColumnName="ToetsID" />
-                <ScalarProperty Name="ToetsNaam" ColumnName="ToetsNaam" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAllSurveillance" FunctionName="herkansingDBModel.Store.GetAllSurveillance">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.GetAllSurveillance_Result">
-                <ScalarProperty Name="DocentID" ColumnName="DocentID" />
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -638,7 +615,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
