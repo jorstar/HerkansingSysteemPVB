@@ -11,7 +11,7 @@
 <body>
     <form id="form1" runat="server">
         <div id="header"></div>
-        <div id="menu"></div>
+        <HERK:Menu runat="server"></HERK:Menu>
     <div id="content">
 
         <div id="title"><asp:Label ID="lblTitleHere" runat="server" Text="Titel hier"></asp:Label></div>
