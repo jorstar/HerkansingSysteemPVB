@@ -14,7 +14,7 @@
                 <table style="width: 900px; margin: 50px auto 50px auto; ">
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="GridView1" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                            <asp:GridView ID="dgvDocentenHerkansingOverzicht" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

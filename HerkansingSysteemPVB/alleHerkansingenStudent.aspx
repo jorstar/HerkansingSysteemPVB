@@ -45,8 +45,8 @@
                     <tr>
                         <td>
                             <div style="margin: 10px auto 10px auto; width: 297px;">
-                                <asp:RadioButtonList Width="297px" ID="RadioButtonList1" runat="server" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
-                                    <asp:ListItem Selected="True">Laat alle huidige herkansingen zien</asp:ListItem>
+                                <asp:RadioButtonList Width="297px" ID="rdbVeranderDisplay" runat="server">
+                                    <asp:ListItem Selected="True">Laat alle herkansingen zien</asp:ListItem>
                                     <asp:ListItem>Laat alle beschikbare herkansingen zien</asp:ListItem>
                                     <asp:ListItem>Laat alle herkansingen zien die zijn geweest</asp:ListItem>
                                 </asp:RadioButtonList>

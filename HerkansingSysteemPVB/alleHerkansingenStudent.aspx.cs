@@ -14,12 +14,24 @@ public partial class _Default : System.Web.UI.Page
 
         herkansingDBEntities objHerkansing = new herkansingDBEntities();
 
-        StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgAlleHerkansingenStudent(Userid).ToList();
-        StudentHerkansingsLijst.DataBind();
+        if (rdbVeranderDisplay.SelectedIndex == 0)
+        {
+            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgAlleHerkansingenStudent(Userid).ToList();
+            StudentHerkansingsLijst.DataBind();
+        }
+        else if (rdbVeranderDisplay.SelectedIndex == 1)
+        {
+            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgBeschikbareHerkansingStudent(Userid).ToList();
+            StudentHerkansingsLijst.DataBind();
+        }
+        else
+        {
+            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgHistorieHerkansingenStudent(Userid).ToList();
+            StudentHerkansingsLijst.DataBind();
+        }
+
+
     }
 
-    protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
-    {
 
-    }
 }

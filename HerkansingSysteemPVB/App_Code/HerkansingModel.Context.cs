@@ -121,4 +121,22 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetToetsInfo_Result>("GetToetsInfo", toetsIDParameter);
     }
+
+    public virtual ObjectResult<VerkrijgBeschikbareHerkansingStudent_Result> VerkrijgBeschikbareHerkansingStudent(Nullable<int> studentID)
+    {
+        var studentIDParameter = studentID.HasValue ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(int));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgBeschikbareHerkansingStudent_Result>("VerkrijgBeschikbareHerkansingStudent", studentIDParameter);
+    }
+
+    public virtual ObjectResult<VerkrijgHistorieHerkansingenStudent_Result> VerkrijgHistorieHerkansingenStudent(Nullable<int> studentID)
+    {
+        var studentIDParameter = studentID.HasValue ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(int));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenStudent_Result>("VerkrijgHistorieHerkansingenStudent", studentIDParameter);
+    }
 }
