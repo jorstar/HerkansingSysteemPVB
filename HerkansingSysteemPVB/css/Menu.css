@@ -17,12 +17,6 @@ cursor:pointer;
 {
 display:block;
 }
-.menu-vertical li,.menu-vertical .menu-item,ul.dynamic .menu-item,
-.menu-vertical .menu-item .additional-background,ul.dynamic .menu-item .additional-background
-.menu-vertical .menu-item .menu-item-text,ul.dynamic .menu-item .menu-item-text
-{
-zoom:1;
-}
 .menu li.hover,.menu li.hover-off
 {
 position:relative;
@@ -31,11 +25,6 @@ z-index:100;
 .menu-horizontal .menu-item-text
 {
 white-space:nowrap;
-}
-.menu-vertical .menu-item-text 
-{
-word-wrap:break-word; 
-overflow:hidden;
 }
 .menu-horizontal ul.static
 {
@@ -66,14 +55,6 @@ background-position:right center;
 {
 padding-right:15px;
 background-image:url('/_layouts/images/roc/menu-right.png');
-}
-.menu-vertical a.dynamic-children span.additional-background,
-.menu-vertical span.dynamic-children span.additional-background
-{
-padding-right:10px;
-background-image:url('/_layouts/images/roc/menu-right.png');
-background-repeat:no-repeat;
-background-position:right center;
 }
 .menu ul.dynamic
 {
