@@ -173,6 +173,7 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="GetAllklassen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllLokalen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllopleidingen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllSurveillance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllToets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -291,6 +292,7 @@
           </FunctionImport>
           <FunctionImport Name="GetAllklassen" ReturnType="Collection(String)" />
           <FunctionImport Name="GetAllopleidingen" ReturnType="Collection(String)" />
+          <FunctionImport Name="GetAllLokalen" ReturnType="Collection(String)" />
         </EntityContainer>
         <EntityType Name="Beheerder">
           <Key>
@@ -649,6 +651,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetAllklassen" FunctionName="herkansingDBModel.Store.GetAllklassen" />
           <FunctionImportMapping FunctionImportName="GetAllopleidingen" FunctionName="herkansingDBModel.Store.GetAllopleidingen" />
+          <FunctionImportMapping FunctionImportName="GetAllLokalen" FunctionName="herkansingDBModel.Store.GetAllLokalen" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

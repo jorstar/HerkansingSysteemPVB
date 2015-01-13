@@ -107,4 +107,9 @@ public partial class herkansingDBEntities : DbContext
     {
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetAllopleidingen");
     }
+
+    public virtual ObjectResult<string> GetAllLokalen()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetAllLokalen");
+    }
 }
