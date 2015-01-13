@@ -48,4 +48,43 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenStudent_Result>("VerkrijgAlleHerkansingenStudent", studentIDParameter);
     }
+
+    public virtual ObjectResult<string> LoginBeheerder(string username, string password)
+    {
+        var usernameParameter = username != null ?
+            new ObjectParameter("Username", username) :
+            new ObjectParameter("Username", typeof(string));
+
+        var passwordParameter = password != null ?
+            new ObjectParameter("Password", password) :
+            new ObjectParameter("Password", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("LoginBeheerder", usernameParameter, passwordParameter);
+    }
+
+    public virtual ObjectResult<string> LoginDocent(string username, string password)
+    {
+        var usernameParameter = username != null ?
+            new ObjectParameter("Username", username) :
+            new ObjectParameter("Username", typeof(string));
+
+        var passwordParameter = password != null ?
+            new ObjectParameter("Password", password) :
+            new ObjectParameter("Password", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("LoginDocent", usernameParameter, passwordParameter);
+    }
+
+    public virtual ObjectResult<string> LoginStudent(string username, string password)
+    {
+        var usernameParameter = username != null ?
+            new ObjectParameter("Username", username) :
+            new ObjectParameter("Username", typeof(string));
+
+        var passwordParameter = password != null ?
+            new ObjectParameter("Password", password) :
+            new ObjectParameter("Password", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("LoginStudent", usernameParameter, passwordParameter);
+    }
 }
