@@ -50,7 +50,7 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllVaks_Result>("GetAllVaks");
     }
 
-    public virtual ObjectResult<string> LoginBeheerder(string username, string password)
+    public virtual ObjectResult<LoginBeheer_Result> LoginBeheer(string username, string password)
     {
         var usernameParameter = username != null ?
             new ObjectParameter("Username", username) :
@@ -60,7 +60,7 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("Password", password) :
             new ObjectParameter("Password", typeof(string));
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("LoginBeheerder", usernameParameter, passwordParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<LoginBeheer_Result>("LoginBeheer", usernameParameter, passwordParameter);
     }
 
     public virtual ObjectResult<string> LoginDocent(string username, string password)

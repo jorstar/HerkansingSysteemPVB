@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a1ee2dbf56664bbf9c5d082f3a884a7d" Name="Diagram1">
-        <EntityTypeShape EntityType="herkansingDBModel.Beheerder" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="herkansingDBModel.Docent" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="herkansingDBModel.Herkansing" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="herkansingDBModel.Inschrijving" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="herkansingDBModel.Lokaal" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="herkansingDBModel.Student" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="herkansingDBModel.Toets" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="herkansingDBModel.Vak" Width="1.5" PointX="1.5" PointY="11.125" IsExpanded="true" />
-        <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Docent" ManuallyRouted="false" />
-        <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Docent1" ManuallyRouted="false" />
-        <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Lokaal" ManuallyRouted="false" />
-        <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Toets" ManuallyRouted="false" />
-        <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Herkansing" ManuallyRouted="false" />
-        <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Sudent" ManuallyRouted="false" />
-        <AssociationConnector Association="herkansingDBModel.FK_Toets_Vak" ManuallyRouted="false" />
+      <Diagram DiagramId="f97d21bfc43e4c6db0ad304b7a77d132" Name="Diagram1" >
+        <EntityTypeShape EntityType="herkansingDBModel.Beheerder" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="herkansingDBModel.Docent" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="herkansingDBModel.Herkansing" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="herkansingDBModel.Inschrijving" Width="1.5" PointX="5.25" PointY="1.875" />
+        <EntityTypeShape EntityType="herkansingDBModel.Lokaal" Width="1.5" PointX="0.75" PointY="12.25" />
+        <EntityTypeShape EntityType="herkansingDBModel.Student" Width="1.5" PointX="3" PointY="12.5" />
+        <EntityTypeShape EntityType="herkansingDBModel.Toets" Width="1.5" PointX="0.75" PointY="6.125" />
+        <EntityTypeShape EntityType="herkansingDBModel.Vak" Width="1.5" PointX="1.5" PointY="9.375" />
+        <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Docent" />
+        <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Docent1" />
+        <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Lokaal" />
+        <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Toets" />
+        <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Herkansing" />
+        <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Sudent" />
+        <AssociationConnector Association="herkansingDBModel.FK_Toets_Vak" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

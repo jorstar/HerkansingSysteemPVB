@@ -139,8 +139,7 @@ public partial class Vak
 public partial class GetAllSurveillance_Result
 {
     public string DocentID { get; set; }
-    public string Roepnaam { get; set; }
-    public string Achternaam { get; set; }
+    public string DocentInfo { get; set; }
 }
 
 public partial class GetAllToets_Result
@@ -155,13 +154,22 @@ public partial class GetAllVaks_Result
     public string VakNaam { get; set; }
 }
 
+public partial class LoginBeheer_Result
+{
+    public string Gebruikersnaam { get; set; }
+    public string Roepnaam { get; set; }
+    public string Tussenvoegsel { get; set; }
+    public string Achternaam { get; set; }
+    public string Wachtwoord { get; set; }
+}
+
 public partial class VerkrijgAlleHerkansingenStudent_Result
 {
     public Nullable<int> HerkansingID { get; set; }
-    public Nullable<System.DateTime> Datum { get; set; }
+    public string Datum { get; set; }
     public string Lokaal { get; set; }
     public Nullable<int> Toets { get; set; }
     public Nullable<int> Tijdsduur { get; set; }
+    public string VakNaam { get; set; }
     public string ToetsNaam { get; set; }
-    public string ToetsDescriptie { get; set; }
 }

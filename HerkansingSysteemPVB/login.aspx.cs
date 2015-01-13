@@ -29,11 +29,16 @@ public partial class _Default : System.Web.UI.Page
             string user = tbGebruikersnaam.Text.ToUpper();
             string passwd = Functies.CalculateHashedPassword(tbWachtwoord.Text, user);
             
-            var beheer = ef.LoginBeheerder(user, passwd);
+            //beheerder Login
+            var beheer = from b in ef.Beheerder
+                         where b.Gebruikersnaam.ToUpper() == user && b.Wachtwoord == passwd
+                         select b;
             if (beheer.Any())
             {
+                Beheerder obj = beheer.First();
+                
                 string role = "B";
-                Session["User"] = beheer.Single();
+                Session["User"] = obj.Gebruikersnaam;
                 Session["Role"] = role;
 
                 tbGebruikersnaam.Text = "";
@@ -42,11 +47,16 @@ public partial class _Default : System.Web.UI.Page
             }
             else
             {
-                var docent = ef.LoginDocent(user, passwd);
+                //docent login
+                var docent = from d in ef.Docent
+                             where d.DocentID.ToUpper() == user && d.Wachtwoord == passwd
+                             select d;
                 if (docent.Any())
                 {
+                    Docent obj = (Docent)docent.First();
+
                     string role = "D";
-                    Session["User"] = docent.First();
+                    Session["User"] = obj.DocentID;
                     Session["Role"] = role;
 
                     tbGebruikersnaam.Text = "";
@@ -55,11 +65,15 @@ public partial class _Default : System.Web.UI.Page
                 }
                 else
                 {
-                    var student = ef.LoginStudent(user, passwd);
+                    //Student Login
+                    var student = from s in ef.Student
+                                  where s.LRL_NR.ToUpper() == user && s.WACHTWOORD == passwd
+                                  select s;
                     if (student.Any())
                     {
+                        Student obj = (Student)student.First();
                         string role = "S";
-                        Session["User"] = student.First();
+                        Session["User"] = obj.LRL_NR;
                         Session["Role"] = role;
 
                         tbGebruikersnaam.Text = "";
