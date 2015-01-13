@@ -11,7 +11,7 @@
                 <table style="width: 900px; margin: 50px auto 50px auto;">
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="GridView1" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                            <asp:GridView ID="StudentHerkansingsLijst" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -45,8 +45,8 @@
                     <tr>
                         <td>
                             <div style="margin: 10px auto 10px auto; width: 297px;">
-                                <asp:RadioButtonList Width="297px" ID="RadioButtonList1" runat="server">
-                                    <asp:ListItem>Laat alle huidige herkansingen zien</asp:ListItem>
+                                <asp:RadioButtonList Width="297px" ID="RadioButtonList1" runat="server" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+                                    <asp:ListItem Selected="True">Laat alle huidige herkansingen zien</asp:ListItem>
                                     <asp:ListItem>Laat alle beschikbare herkansingen zien</asp:ListItem>
                                     <asp:ListItem>Laat alle herkansingen zien die zijn geweest</asp:ListItem>
                                 </asp:RadioButtonList>
