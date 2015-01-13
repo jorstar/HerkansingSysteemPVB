@@ -33,7 +33,7 @@ public partial class _Default : System.Web.UI.Page
             if (beheer.Any())
             {
                 string role = "B";
-                Session["User"] = beheer.First();
+                Session["User"] = beheer.Single();
                 Session["Role"] = role;
 
                 tbGebruikersnaam.Text = "";
