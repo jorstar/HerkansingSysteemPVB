@@ -154,3 +154,14 @@ public partial class GetAllVaks_Result
     public int VakID { get; set; }
     public string VakNaam { get; set; }
 }
+
+public partial class VerkrijgAlleHerkansingenStudent_Result
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public Nullable<System.DateTime> Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> Toets { get; set; }
+    public Nullable<int> Tijdsduur { get; set; }
+    public string ToetsNaam { get; set; }
+    public string ToetsDescriptie { get; set; }
+}
