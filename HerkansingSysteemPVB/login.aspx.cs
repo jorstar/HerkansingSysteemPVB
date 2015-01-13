@@ -13,6 +13,17 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {
+        try
+        {
+            string user = tbGebruikersnaam.Text;
+            string passwd = Functies.CalculateHashedPassword(tbWachtwoord.Text, user);
 
+            var student
+
+        }
+        catch
+        {
+
+        }
     }
 }
