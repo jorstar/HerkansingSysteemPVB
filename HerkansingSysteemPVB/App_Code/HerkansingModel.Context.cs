@@ -97,4 +97,14 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenStudent_Result>("VerkrijgAlleHerkansingenStudent", studentIDParameter);
     }
+
+    public virtual ObjectResult<string> GetAllklassen()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetAllklassen");
+    }
+
+    public virtual ObjectResult<string> GetAllopleidingen()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetAllopleidingen");
+    }
 }

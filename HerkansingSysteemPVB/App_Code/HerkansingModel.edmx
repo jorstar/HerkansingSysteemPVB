@@ -172,6 +172,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetAllklassen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllopleidingen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllSurveillance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllToets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllVaks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -285,8 +287,10 @@
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="VerkrijgAlleHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgAlleHerkansingenStudent_Result)">
-            <Parameter Name="studentID" Mode="In" Type="Int32" />
+          <Parameter Name="studentID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="GetAllklassen" ReturnType="Collection(String)" />
+          <FunctionImport Name="GetAllopleidingen" ReturnType="Collection(String)" />
         </EntityContainer>
         <EntityType Name="Beheerder">
           <Key>
@@ -643,6 +647,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllklassen" FunctionName="herkansingDBModel.Store.GetAllklassen" />
+          <FunctionImportMapping FunctionImportName="GetAllopleidingen" FunctionName="herkansingDBModel.Store.GetAllopleidingen" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
