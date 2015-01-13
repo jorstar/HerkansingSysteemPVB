@@ -112,4 +112,13 @@ public partial class herkansingDBEntities : DbContext
     {
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetAllLokalen");
     }
+
+    public virtual ObjectResult<GetToetsInfo_Result> GetToetsInfo(Nullable<int> toetsID)
+    {
+        var toetsIDParameter = toetsID.HasValue ?
+            new ObjectParameter("ToetsID", toetsID) :
+            new ObjectParameter("ToetsID", typeof(int));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetToetsInfo_Result>("GetToetsInfo", toetsIDParameter);
+    }
 }

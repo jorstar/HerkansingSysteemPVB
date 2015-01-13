@@ -12,19 +12,22 @@ public partial class _Default : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
-            herkansingDBEntities entiry = new herkansingDBEntities();
+            herkansingDBEntities entity = new herkansingDBEntities();
 
-            ddlToetsen.DataSource = entiry.GetAllToets();
+            ddlToetsen.DataSource = entity.GetAllToets();
             ddlToetsen.DataValueField = "toetsID";
             ddlToetsen.DataTextField = "toetsNaam";
             ddlToetsen.DataBind();
 
-            ddlSureillance.DataSource = entiry.GetAllSurveillance();
+            ddlSureillance.DataSource = entity.GetAllSurveillance();
             ddlSureillance.DataTextField = "DocentInfo";
             ddlSureillance.DataValueField = "DocentID";
             ddlSureillance.DataBind();
 
             rblKlasOfOpleiding.SelectedIndex = 0;
+
+            ddlLokaal.DataSource = entity.GetAllLokalen();
+            ddlLokaal.DataBind();
 
         }
 
@@ -42,6 +45,7 @@ public partial class _Default : System.Web.UI.Page
             ddlKlasOfOpleidingSelecteren.DataBind();
         }
 
+        
 
     }
 }

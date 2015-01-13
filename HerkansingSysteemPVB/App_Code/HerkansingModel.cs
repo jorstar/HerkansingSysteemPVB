@@ -154,6 +154,14 @@ public partial class GetAllVaks_Result
     public string VakNaam { get; set; }
 }
 
+public partial class GetToetsInfo_Result
+{
+    public Nullable<int> ToetsID { get; set; }
+    public string ToetsNaam { get; set; }
+    public string ToetsDescriptie { get; set; }
+    public string VakNaam { get; set; }
+}
+
 public partial class LoginBeheer_Result
 {
     public string Gebruikersnaam { get; set; }
