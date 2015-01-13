@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Users\jordy\Documents\GitHub\HerkansingSysteemPVB\HerkansingSysteemPVB\HerkansingSysteemPVB\App_Code\HerkansingModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Defelopment\ASP.net\pvbProjectHerkansing\HerkansingSysteemPVB\HerkansingSysteemPVB\App_Code\HerkansingModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
