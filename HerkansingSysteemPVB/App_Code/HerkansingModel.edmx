@@ -39,6 +39,8 @@
           <Property Name="Tijdsduur" Type="int" Nullable="false" />
           <Property Name="Plaatsen" Type="int" Nullable="false" />
           <Property Name="Actief" Type="bit" Nullable="false" />
+          <Property Name="IsHetEenKlas" Type="bit" Nullable="false" />
+          <Property Name="KlasIDofOpleidingsID" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Inschrijving">
           <Key>
@@ -297,7 +299,7 @@
           <FunctionImport Name="GetAllopleidingen" ReturnType="Collection(String)" />
           <FunctionImport Name="GetAllLokalen" ReturnType="Collection(String)" />
           <FunctionImport Name="GetToetsInfo" ReturnType="Collection(herkansingDBModel.GetToetsInfo_Result)">
-            <Parameter Name="ToetsID" Mode="In" Type="Int32" />
+          <Parameter Name="ToetsID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -341,6 +343,8 @@
           <NavigationProperty Name="Lokaal1" Relationship="herkansingDBModel.FK_Herkansing_Lokaal" FromRole="Herkansing" ToRole="Lokaal" />
           <NavigationProperty Name="Toets1" Relationship="herkansingDBModel.FK_Herkansing_Toets" FromRole="Herkansing" ToRole="Toets" />
           <NavigationProperty Name="Inschrijving" Relationship="herkansingDBModel.FK_Inschrijving_Herkansing" FromRole="Herkansing" ToRole="Inschrijving" />
+          <Property Name="IsHetEenKlas" Type="Boolean" Nullable="false" />
+          <Property Name="KlasIDofOpleidingsID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Inschrijving">
           <Key>
@@ -547,6 +551,8 @@
           <EntitySetMapping Name="Herkansing">
             <EntityTypeMapping TypeName="herkansingDBModel.Herkansing">
               <MappingFragment StoreEntitySet="Herkansing">
+                <ScalarProperty Name="KlasIDofOpleidingsID" ColumnName="KlasIDofOpleidingsID" />
+                <ScalarProperty Name="IsHetEenKlas" ColumnName="IsHetEenKlas" />
                 <ScalarProperty Name="Actief" ColumnName="Actief" />
                 <ScalarProperty Name="Plaatsen" ColumnName="Plaatsen" />
                 <ScalarProperty Name="Tijdsduur" ColumnName="Tijdsduur" />
