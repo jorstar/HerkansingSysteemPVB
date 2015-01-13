@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="docentAanmaken.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="Docent aanmaken" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="docentAanmaken.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -6,39 +6,71 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="paginaContent" runat="server">
-
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <table style="text-align:center; width: 100%;">
         <tr>
             <td>
 
-                <table style="width: 600px; margin: 50px auto 50px auto">
+                <table style="width: 600px; margin: 50px auto 50px auto" class="fancyTable">
                     <tr>
                         <td>Voornaam:</td>
+                        <td class="herkansingAanmakenRightTableCollumn">
+                            <asp:TextBox ID="txtVoornaam" CssClass="inputs" runat="server" Width="250px"></asp:TextBox></td>
                         <td>
-                            <asp:TextBox ID="TextBox1" runat="server" Width="169px"></asp:TextBox></td>
-                        <td></td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Het veld voornaam is verplicht" ControlToValidate="txtVoornaam" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td>Tussenvoegsel:</td>
+                        <td class="herkansingAanmakenRightTableCollumn">
+                            <asp:TextBox ID="txtTussenvoegsel" CssClass="inputs" runat="server" Width="250px"></asp:TextBox></td>
                         <td>
-                            <asp:TextBox ID="TextBox2" runat="server" Width="169px"></asp:TextBox></td>
-                        <td></td>
+                            &nbsp;</td>
                     </tr>
                     <tr>
                         <td>Achternaam:</td>
+                        <td class="herkansingAanmakenRightTableCollumn">
+                            <asp:TextBox ID="txtAchternaam" CssClass="inputs" runat="server" Width="250px"></asp:TextBox></td>
                         <td>
-                            <asp:TextBox ID="TextBox3" runat="server" Width="169px"></asp:TextBox></td>
-                        <td></td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Het veld achternaam is verplicht" ControlToValidate="txtAchternaam" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Afkorting:</td>
+                        <td class="herkansingAanmakenRightTableCollumn">
+                            <asp:TextBox ID="txtAfkorting" CssClass="inputs" runat="server" Width="250px"></asp:TextBox></td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Het veld afkorting is verplicht" ControlToValidate="txtAfkorting" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </td>
                     </tr>
                     <tr>
                         <td>E-mail:</td>
+                        <td class="herkansingAanmakenRightTableCollumn">
+                            <asp:TextBox ID="txtEMail" CssClass="inputs" runat="server" Width="250px"></asp:TextBox></td>
                         <td>
-                            <asp:TextBox ID="TextBox4" runat="server" Width="169px"></asp:TextBox></td>
-                        <td></td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Het veld e-mail is verplicht" ControlToValidate="txtEMail" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Wachtwoord:</td>
+                        <td class="herkansingAanmakenRightTableCollumn">
+                            <asp:TextBox ID="txtWachtwoord" CssClass="inputs" runat="server" Width="250px" TextMode="Password"></asp:TextBox></td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Het veld wachtwoord is verplicht" ControlToValidate="txtWachtwoord" ForeColor="Red">*</asp:RequiredFieldValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="height: 50px;">
+                            <asp:Button ID="btnBevestigen" CssClass="fancyButton" runat="server" Text="Bevestig" OnClick="btnBevestigen_Click" /></td>
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <asp:Button ID="Button1" runat="server" Text="Bevestig" /></td>
+                            <div style=" margin: 10px auto 10px auto; width: 250px; text-align:left;">
+
+                                <asp:ValidationSummary  ID="ValidationSummary1" runat="server" ForeColor="Red" />
+
+                            </div>
+                        </td>
                     </tr>
                 </table>
 

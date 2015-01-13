@@ -11,4 +11,25 @@ public partial class _Default : System.Web.UI.Page
     {
 
     }
+    protected void btnBevestigen_Click(object sender, EventArgs e)
+    {
+        if (Page.IsValid)
+        {
+            herkansingDBEntities entity = new herkansingDBEntities();
+
+            entity.Docent.Add(new Docent
+            {
+                Roepnaam = txtVoornaam.Text,
+                Tussenvoegsel = txtTussenvoegsel.Text,
+                Achternaam = txtAchternaam.Text,
+                Email = txtEMail.Text,
+                DocentID = txtAfkorting.Text,
+                Wachtwoord = Functies.CalculateHashedPassword(txtWachtwoord.Text, txtAfkorting.Text)
+            });
+
+            entity.SaveChanges();
+
+            Response.Redirect("docentAanmaken.aspx");
+        }
+    }
 }

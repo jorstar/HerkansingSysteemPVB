@@ -89,7 +89,7 @@ public partial class _Default : System.Web.UI.Page
                 objBool = false;
             }
 
-            DateTime objDT = Convert.ToDateTime(txtDatum.Text).Date.;
+            DateTime objDT = Convert.ToDateTime(txtDatum.Text).Date;
 
             herkansingDBEntities entity = new herkansingDBEntities();
 
