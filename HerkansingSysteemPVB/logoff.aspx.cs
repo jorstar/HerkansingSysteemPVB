@@ -11,4 +11,14 @@ public partial class _Default : System.Web.UI.Page
     {
 
     }
+    protected void btnBevestig_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/home.aspx");
+    }
+    protected void btnAnnuleren_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('U bent succesvol uitgelogd.');", true);
+        Response.Redirect("~/login.aspx");
+    }
 }

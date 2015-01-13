@@ -61,7 +61,7 @@ public partial class _Default : System.Web.UI.Page
 
                     tbGebruikersnaam.Text = "";
                     tbWachtwoord.Text = "";
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("~/Home.aspx");
                 }
                 else
                 {
@@ -78,7 +78,7 @@ public partial class _Default : System.Web.UI.Page
 
                         tbGebruikersnaam.Text = "";
                         tbWachtwoord.Text = "";
-                        Response.Redirect("Home.aspx");
+                        Response.Redirect("~/Home.aspx");
                     }
                     else
                     {
