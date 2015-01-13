@@ -10,15 +10,25 @@ public partial class _Default : System.Web.UI.Page
     herkansingDBEntities ef = new herkansingDBEntities();
     protected void Page_Load(object sender, EventArgs e)
     {
+        //List<Student> stud = (from u in ef.Student
+        //                      where u.WACHTWOORD == null
+        //                      select u).ToList();
+        //foreach (Student s in stud)
+        //{
+        //    string user = s.LRL_NR;
+        //    string pass = Functies.CalculateHashedPassword("ROCvT", user);
+        //    s.WACHTWOORD = pass;
+        //    ef.SaveChanges();
+        //}
 
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         try
         {
-            string user = tbGebruikersnaam.Text;
+            string user = tbGebruikersnaam.Text.ToUpper();
             string passwd = Functies.CalculateHashedPassword(tbWachtwoord.Text, user);
-
+            
             var beheer = ef.LoginBeheerder(user, passwd);
             if (beheer.Any())
             {
