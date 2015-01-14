@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Beheerder">
           <Key>
             <PropertyRef Name="Gebruikersnaam" />
@@ -41,6 +41,7 @@
           <Property Name="Actief" Type="bit" Nullable="false" />
           <Property Name="IsHetEenKlas" Type="bit" Nullable="false" />
           <Property Name="KlasIDofOpleidingsID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BeginTijd" Type="nchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="Inschrijving">
           <Key>
@@ -180,6 +181,9 @@
         <Function Name="GetAllSurveillance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllToets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllVaks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetHerkansingInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HerkansingsID" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetToetsInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ToetsID" Type="int" Mode="In" />
         </Function>
@@ -308,10 +312,13 @@
           <Parameter Name="ToetsID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="VerkrijgBeschikbareHerkansingStudent" ReturnType="Collection(herkansingDBModel.VerkrijgBeschikbareHerkansingStudent_Result)">
-            <Parameter Name="studentID" Mode="In" Type="Int32" />
+          <Parameter Name="studentID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="VerkrijgHistorieHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgHistorieHerkansingenStudent_Result)">
-            <Parameter Name="studentID" Mode="In" Type="Int32" />
+          <Parameter Name="studentID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetHerkansingInfo" ReturnType="Collection(herkansingDBModel.GetHerkansingInfo_Result)">
+            <Parameter Name="HerkansingsID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -357,6 +364,7 @@
           <NavigationProperty Name="Inschrijving" Relationship="herkansingDBModel.FK_Inschrijving_Herkansing" FromRole="Herkansing" ToRole="Inschrijving" />
           <Property Name="IsHetEenKlas" Type="Boolean" Nullable="false" />
           <Property Name="KlasIDofOpleidingsID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BeginTijd" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Inschrijving">
           <Key>
@@ -549,6 +557,20 @@
           <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
           <Property Type="String" Name="ToetsNaam" Nullable="true" MaxLength="200" />
         </ComplexType>
+        <ComplexType Name="GetHerkansingInfo_Result">
+          <Property Type="Int32" Name="HerkansingID" Nullable="false" />
+          <Property Type="String" Name="Lokaal" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="Docent" Nullable="false" MaxLength="5" />
+          <Property Type="DateTime" Name="Datum" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Surveillant" Nullable="false" MaxLength="5" />
+          <Property Type="Int32" Name="Toets" Nullable="false" />
+          <Property Type="Int32" Name="Tijdsduur" Nullable="false" />
+          <Property Type="Int32" Name="Plaatsen" Nullable="false" />
+          <Property Type="Boolean" Name="Actief" Nullable="false" />
+          <Property Type="Boolean" Name="IsHetEenKlas" Nullable="false" />
+          <Property Type="String" Name="KlasIDofOpleidingsID" Nullable="false" />
+          <Property Type="String" Name="BeginTijd" Nullable="false" MaxLength="5" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -581,6 +603,7 @@
           <EntitySetMapping Name="Herkansing">
             <EntityTypeMapping TypeName="herkansingDBModel.Herkansing">
               <MappingFragment StoreEntitySet="Herkansing">
+                <ScalarProperty Name="BeginTijd" ColumnName="BeginTijd" />
                 <ScalarProperty Name="KlasIDofOpleidingsID" ColumnName="KlasIDofOpleidingsID" />
                 <ScalarProperty Name="IsHetEenKlas" ColumnName="IsHetEenKlas" />
                 <ScalarProperty Name="Actief" ColumnName="Actief" />
@@ -733,6 +756,24 @@
                 <ScalarProperty Name="Tijdsduur" ColumnName="Tijdsduur" />
                 <ScalarProperty Name="VakNaam" ColumnName="VakNaam" />
                 <ScalarProperty Name="ToetsNaam" ColumnName="ToetsNaam" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetHerkansingInfo" FunctionName="herkansingDBModel.Store.GetHerkansingInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.GetHerkansingInfo_Result">
+                <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
+                <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
+                <ScalarProperty Name="Docent" ColumnName="Docent" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Surveillant" ColumnName="Surveillant" />
+                <ScalarProperty Name="Toets" ColumnName="Toets" />
+                <ScalarProperty Name="Tijdsduur" ColumnName="Tijdsduur" />
+                <ScalarProperty Name="Plaatsen" ColumnName="Plaatsen" />
+                <ScalarProperty Name="Actief" ColumnName="Actief" />
+                <ScalarProperty Name="IsHetEenKlas" ColumnName="IsHetEenKlas" />
+                <ScalarProperty Name="KlasIDofOpleidingsID" ColumnName="KlasIDofOpleidingsID" />
+                <ScalarProperty Name="BeginTijd" ColumnName="BeginTijd" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

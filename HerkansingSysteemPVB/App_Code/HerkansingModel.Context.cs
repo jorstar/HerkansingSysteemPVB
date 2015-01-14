@@ -139,4 +139,13 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenStudent_Result>("VerkrijgHistorieHerkansingenStudent", studentIDParameter);
     }
+
+    public virtual ObjectResult<GetHerkansingInfo_Result> GetHerkansingInfo(Nullable<int> herkansingsID)
+    {
+        var herkansingsIDParameter = herkansingsID.HasValue ?
+            new ObjectParameter("HerkansingsID", herkansingsID) :
+            new ObjectParameter("HerkansingsID", typeof(int));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetHerkansingInfo_Result>("GetHerkansingInfo", herkansingsIDParameter);
+    }
 }
