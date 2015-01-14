@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -89,14 +90,12 @@ public partial class _Default : System.Web.UI.Page
                 objBool = false;
             }
 
-            DateTime objDT = Convert.ToDateTime(txtDatum.Text).Date;
-
             herkansingDBEntities entity = new herkansingDBEntities();
 
             entity.Herkansing.Add(new Herkansing
             {
                 Actief = true,
-                Datum = objDT,
+                Datum = Convert.ToDateTime(txtDatum.Text),
                 Plaatsen = Convert.ToInt32(txtMaxPlaatsen.Text),
                 Docent = Convert.ToString(Session["User"]),
                 Lokaal = ddlLokaal.SelectedValue,

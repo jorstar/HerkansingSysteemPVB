@@ -26,13 +26,12 @@
                                 <td>Datum:</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
                                     <div>
-                                        <asp:TextBox ID="txtDatum" placeholder="Klik hier" runat="server" CssClass="inputs" Width="169px"></asp:TextBox>
-                                        <asp:CalendarExtender ID="txtDatum_CalendarExtender" runat="server" Enabled="True" TargetControlID="txtDatum">
-                                        </asp:CalendarExtender>
+                                        <asp:TextBox ID="txtDatum" placeholder="Klik hier" runat="server" CssClass="inputs" Width="169px" TextMode="date"></asp:TextBox>
                                     </div>
+
                                 </td>
                                 <td>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtDatum" ErrorMessage="Datum moet worden opgegeven" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                                 </td>
                             </tr>
                             <tr>
