@@ -56,6 +56,7 @@ public partial class Herkansing
     public bool Actief { get; set; }
     public bool IsHetEenKlas { get; set; }
     public string KlasIDofOpleidingsID { get; set; }
+    public string BeginTijd { get; set; }
 
     public virtual Docent Docent1 { get; set; }
     public virtual Docent Docent2 { get; set; }

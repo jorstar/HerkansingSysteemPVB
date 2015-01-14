@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Beheerder">
           <Key>
             <PropertyRef Name="Gebruikersnaam" />
@@ -41,6 +41,7 @@
           <Property Name="Actief" Type="bit" Nullable="false" />
           <Property Name="IsHetEenKlas" Type="bit" Nullable="false" />
           <Property Name="KlasIDofOpleidingsID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BeginTijd" Type="nchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="Inschrijving">
           <Key>
@@ -308,10 +309,10 @@
           <Parameter Name="ToetsID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="VerkrijgBeschikbareHerkansingStudent" ReturnType="Collection(herkansingDBModel.VerkrijgBeschikbareHerkansingStudent_Result)">
-            <Parameter Name="studentID" Mode="In" Type="Int32" />
+          <Parameter Name="studentID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="VerkrijgHistorieHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgHistorieHerkansingenStudent_Result)">
-            <Parameter Name="studentID" Mode="In" Type="Int32" />
+          <Parameter Name="studentID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -357,6 +358,7 @@
           <NavigationProperty Name="Inschrijving" Relationship="herkansingDBModel.FK_Inschrijving_Herkansing" FromRole="Herkansing" ToRole="Inschrijving" />
           <Property Name="IsHetEenKlas" Type="Boolean" Nullable="false" />
           <Property Name="KlasIDofOpleidingsID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BeginTijd" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Inschrijving">
           <Key>
@@ -581,6 +583,7 @@
           <EntitySetMapping Name="Herkansing">
             <EntityTypeMapping TypeName="herkansingDBModel.Herkansing">
               <MappingFragment StoreEntitySet="Herkansing">
+                <ScalarProperty Name="BeginTijd" ColumnName="BeginTijd" />
                 <ScalarProperty Name="KlasIDofOpleidingsID" ColumnName="KlasIDofOpleidingsID" />
                 <ScalarProperty Name="IsHetEenKlas" ColumnName="IsHetEenKlas" />
                 <ScalarProperty Name="Actief" ColumnName="Actief" />
