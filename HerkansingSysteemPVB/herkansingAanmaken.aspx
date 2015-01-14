@@ -37,9 +37,9 @@
                             <tr>
                                 <td>Tijd:</td>
                                 <td class="herkansingAanmakenRightTableCollumn" id="herkansingAanmakenSpecial">
-                                    <asp:TextBox ID="txtUur" runat="server" Width="35px" TextMode="Number" max="23" min="0" CssClass="inputs"></asp:TextBox>
+                                    <asp:TextBox ID="txtUur" runat="server" Width="35px" TextMode="Number" max="23" min="0" CssClass="inputs" AutoPostBack="True" OnTextChanged="txtUur_TextChanged"></asp:TextBox>
                                     :
-                            <asp:TextBox ID="txtMinuten" runat="server" Width="35px" TextMode="Number" max="59" min="0" CssClass="inputs"></asp:TextBox>
+                            <asp:TextBox ID="txtMinuten" runat="server" Width="35px" TextMode="Number" max="59" min="0" CssClass="inputs" AutoPostBack="True" OnTextChanged="txtMinuten_TextChanged"></asp:TextBox>
                                 </td>
                                 <td></td>
                             </tr>

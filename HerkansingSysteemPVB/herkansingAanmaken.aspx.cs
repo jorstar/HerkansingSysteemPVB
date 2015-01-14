@@ -103,7 +103,8 @@ public partial class _Default : System.Web.UI.Page
                 KlasIDofOpleidingsID = ddlKlasOfOpleidingSelecteren.SelectedValue,
                 Tijdsduur = Convert.ToInt32(txtMaxPlaatsen.Text),
                 Toets = Convert.ToInt32(ddlToetsen.SelectedValue),
-                Surveillant = ddlSureillance.SelectedValue
+                Surveillant = ddlSureillance.SelectedValue,
+                BeginTijd = txtUur.Text + ":" + txtMinuten
 
             });
 
@@ -113,5 +114,21 @@ public partial class _Default : System.Web.UI.Page
 
         }
 
+    }
+    protected void txtUur_TextChanged(object sender, EventArgs e)
+    {
+
+        if (txtUur.Text.Length == 1)
+        {
+            txtUur.Text = "0" + txtUur.Text;
+        }
+
+    }
+    protected void txtMinuten_TextChanged(object sender, EventArgs e)
+    {
+        if (txtMinuten.Text.Length == 1)
+        {
+            txtMinuten.Text = "0" + txtMinuten.Text;
+        }
     }
 }
