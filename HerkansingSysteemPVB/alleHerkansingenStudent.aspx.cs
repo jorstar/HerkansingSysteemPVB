@@ -15,48 +15,43 @@ public partial class _Default : System.Web.UI.Page
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
+
+        ////Session["userID"] = Userid;
+        ////Sesssion[""] //moet een waarde krijgen voor de geselecteerde herkansing
+        #region voor de radiobuttonlist
+        SelectRadioButtonValue();
+        rdbSelectedValue = rdbVeranderDisplay.SelectedIndex;
+
+        if (rdbVeranderDisplay.SelectedIndex == 0)
         {
-            ////Session["userID"] = Userid;
-            ////Sesssion[""] //moet een waarde krijgen voor de geselecteerde herkansing
-            #region voor de radiobuttonlist
-            SelectRadioButtonValue();
-            rdbSelectedValue = rdbVeranderDisplay.SelectedIndex;
-
-            if (rdbVeranderDisplay.SelectedIndex == 0)
-            {
-                StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgAlleHerkansingenStudent(Userid).ToList();
-                StudentHerkansingsLijst.DataBind();
-            }
-
-            if (rdbVeranderDisplay.SelectedIndex == 1)
-            {
-                StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgBeschikbareHerkansingStudent(Userid).ToList();
-                StudentHerkansingsLijst.DataBind();
-            }
-            if (rdbVeranderDisplay.SelectedIndex == 2)
-            {
-                StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgHistorieHerkansingenStudent(Userid).ToList();
-                StudentHerkansingsLijst.DataBind();
-            }
-            #endregion
-
-            #region voor de dropdownlist
-            ddlSelecteerdHerkansing.DataSource = objHerkansing.DisplayHerkansingen(Userid);
-
-
-            //datavalue = herkansingID
-            ddlSelecteerdHerkansing.DataValueField = "herkansingID";
-            ddlSelecteerdHerkansing.DataBind();
-
-
-            #endregion
+            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgAlleHerkansingenStudent(Userid).ToList();
+            StudentHerkansingsLijst.DataBind();
         }
-        catch (Exception)
+
+        if (rdbVeranderDisplay.SelectedIndex == 1)
         {
-            //error message met Javascript\\
-            throw;
+            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgBeschikbareHerkansingStudent(Userid).ToList();
+            StudentHerkansingsLijst.DataBind();
         }
+        if (rdbVeranderDisplay.SelectedIndex == 2)
+        {
+            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgHistorieHerkansingenStudent(Userid).ToList();
+            StudentHerkansingsLijst.DataBind();
+        }
+        #endregion
+
+        #region voor de dropdownlist
+        ddlSelecteerdHerkansing.DataSource = objHerkansing.DisplayHerkansingen(Userid);
+
+
+        //datavalue = herkansingID
+        ddlSelecteerdHerkansing.DataValueField = "herkansingID";
+        ddlSelecteerdHerkansing.DataBind();
+
+
+        #endregion
+
+
     }
 
     protected int SelectRadioButtonValue()
