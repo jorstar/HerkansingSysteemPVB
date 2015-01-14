@@ -157,4 +157,9 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayHerkansingen_Result>("DisplayHerkansingen", studentIDParameter);
     }
+
+    public virtual ObjectResult<GetAllAankomendeHerkansingenPlusInfo_Result> GetAllAankomendeHerkansingenPlusInfo()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllAankomendeHerkansingenPlusInfo_Result>("GetAllAankomendeHerkansingenPlusInfo");
+    }
 }

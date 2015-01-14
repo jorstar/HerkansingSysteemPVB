@@ -146,6 +146,20 @@ public partial class DisplayHerkansingen_Result
     public string Datum { get; set; }
 }
 
+public partial class GetAllAankomendeHerkansingenPlusInfo_Result
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public Nullable<int> ToetsID { get; set; }
+    public Nullable<System.DateTime> Datum { get; set; }
+    public string BeginTijd { get; set; }
+    public Nullable<int> Tijdsduur { get; set; }
+    public string Surveillant { get; set; }
+    public Nullable<bool> IsHetEenKlas { get; set; }
+    public string KlasIDofOpleidingsID { get; set; }
+    public Nullable<int> Plaatsen { get; set; }
+    public string Lokaal { get; set; }
+}
+
 public partial class GetAllSurveillance_Result
 {
     public string DocentID { get; set; }
