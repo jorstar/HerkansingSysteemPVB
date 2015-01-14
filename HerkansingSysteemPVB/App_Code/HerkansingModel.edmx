@@ -322,22 +322,22 @@
           <Parameter Name="HerkansingsID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetAllAankomendeHerkansingenPlusInfo" ReturnType="Collection(herkansingDBModel.GetAllAankomendeHerkansingenPlusInfo_Result)" />
-          <FunctionImport Name="DisplayHerkansingen" ReturnType="Collection(herkansingDBModel.DisplayHerkansingen_Result3)">
-            <Parameter Name="studentID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="GetAllStudentenHerk" ReturnType="Collection(herkansingDBModel.GetAllStudentenHerk_Result)">
-            <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
+          <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetHerkansingInfoHerk" ReturnType="Collection(herkansingDBModel.GetHerkansingInfoHerk_Result)">
-            <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
+          <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="VerkrijgAlleHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgAlleHerkansingenStudent_Result3)">
+          <FunctionImport Name="DisplayHerkansingen" ReturnType="Collection(herkansingDBModel.DisplayHerkansingen_Result)">
             <Parameter Name="studentID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="VerkrijgBeschikbareHerkansingStudent" ReturnType="Collection(herkansingDBModel.VerkrijgBeschikbareHerkansingStudent_Result3)">
+          <FunctionImport Name="VerkrijgAlleHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgAlleHerkansingenStudent_Result)">
             <Parameter Name="studentID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="VerkrijgHistorieHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgHistorieHerkansingenStudent_Result3)">
+          <FunctionImport Name="VerkrijgBeschikbareHerkansingStudent" ReturnType="Collection(herkansingDBModel.VerkrijgBeschikbareHerkansingStudent_Result)">
+            <Parameter Name="studentID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerkrijgHistorieHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgHistorieHerkansingenStudent_Result)">
             <Parameter Name="studentID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -544,38 +544,11 @@
           <Property Type="String" Name="Achternaam" Nullable="false" MaxLength="150" />
           <Property Type="String" Name="Wachtwoord" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="VerkrijgAlleHerkansingenStudent_Result">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
-          <Property Type="Int32" Name="Tijdsduur" Nullable="true" />
-          <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="ToetsNaam" Nullable="true" MaxLength="200" />
-        </ComplexType>
         <ComplexType Name="GetToetsInfo_Result">
           <Property Type="Int32" Name="ToetsID" Nullable="true" />
           <Property Type="String" Name="ToetsNaam" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="ToetsDescriptie" Nullable="true" />
           <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
-        </ComplexType>
-        <ComplexType Name="VerkrijgBeschikbareHerkansingStudent_Result">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
-          <Property Type="Int32" Name="Tijdsduur" Nullable="true" />
-          <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="ToetsNaam" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="VerkrijgHistorieHerkansingenStudent_Result">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
-          <Property Type="Int32" Name="Tijdsduur" Nullable="true" />
-          <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="ToetsNaam" Nullable="true" MaxLength="200" />
         </ComplexType>
         <ComplexType Name="GetHerkansingInfo_Result">
           <Property Type="Int32" Name="HerkansingID" Nullable="false" />
@@ -591,11 +564,6 @@
           <Property Type="String" Name="KlasIDofOpleidingsID" Nullable="false" />
           <Property Type="String" Name="BeginTijd" Nullable="false" MaxLength="5" />
         </ComplexType>
-        <ComplexType Name="DisplayHerkansingen_Result">
-          <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="ToetsNaam" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-        </ComplexType>
         <ComplexType Name="GetAllAankomendeHerkansingenPlusInfo_Result">
           <Property Type="Int32" Name="HerkansingID" Nullable="true" />
           <Property Type="Int32" Name="ToetsID" Nullable="true" />
@@ -607,82 +575,6 @@
           <Property Type="String" Name="KlasIDofOpleidingsID" Nullable="true" />
           <Property Type="Int32" Name="Plaatsen" Nullable="true" />
           <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-        </ComplexType>
-        <ComplexType Name="DisplayHerkansingen_Result1">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-        </ComplexType>
-        <ComplexType Name="VerkrijgAlleHerkansingenStudent_Result1">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
-          <Property Type="Int32" Name="Lengte_van_toets" Nullable="true" />
-          <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="Toets1" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="VerkrijgBeschikbareHerkansingStudent_Result1">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
-          <Property Type="Int32" Name="Tijdsduur" Nullable="true" />
-          <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="ToetsNaam" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="VerkrijgHistorieHerkansingenStudent_Result1">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
-          <Property Type="Int32" Name="Lengte_van_toets" Nullable="true" />
-          <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="Toets1" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="DisplayHerkansingen_Result2">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-        </ComplexType>
-        <ComplexType Name="VerkrijgAlleHerkansingenStudent_Result2">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
-          <Property Type="Int32" Name="Lengte_van_toets" Nullable="true" />
-          <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="Toets1" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="VerkrijgBeschikbareHerkansingStudent_Result2">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
-          <Property Type="Int32" Name="Tijdsduur" Nullable="true" />
-          <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="ToetsNaam" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="VerkrijgHistorieHerkansingenStudent_Result2">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
-          <Property Type="Int32" Name="Lengte_van_toets" Nullable="true" />
-          <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="Toets1" Nullable="true" MaxLength="200" />
-        </ComplexType>
-        <ComplexType Name="DisplayHerkansingen_Result3">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
         </ComplexType>
         <ComplexType Name="GetAllStudentenHerk_Result">
           <Property Type="String" Name="Studentcode" Nullable="false" MaxLength="7" />
@@ -702,7 +594,13 @@
           <Property Type="String" Name="Lokaal" Nullable="false" MaxLength="8" />
           <Property Type="String" Name="Surveillant" Nullable="false" MaxLength="5" />
         </ComplexType>
-        <ComplexType Name="VerkrijgAlleHerkansingenStudent_Result3">
+        <ComplexType Name="DisplayHerkansingen_Result">
+          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
+          <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
+        </ComplexType>
+        <ComplexType Name="VerkrijgAlleHerkansingenStudent_Result">
           <Property Type="Int32" Name="HerkansingID" Nullable="true" />
           <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
           <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
@@ -712,7 +610,7 @@
           <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
           <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
         </ComplexType>
-        <ComplexType Name="VerkrijgBeschikbareHerkansingStudent_Result3">
+        <ComplexType Name="VerkrijgBeschikbareHerkansingStudent_Result">
           <Property Type="Int32" Name="HerkansingID" Nullable="true" />
           <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
           <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
@@ -721,7 +619,7 @@
           <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
           <Property Type="String" Name="ToetsNaam" Nullable="true" MaxLength="200" />
         </ComplexType>
-        <ComplexType Name="VerkrijgHistorieHerkansingenStudent_Result3">
+        <ComplexType Name="VerkrijgHistorieHerkansingenStudent_Result">
           <Property Type="Int32" Name="HerkansingID" Nullable="true" />
           <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
           <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
@@ -914,16 +812,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="DisplayHerkansingen" FunctionName="herkansingDBModel.Store.DisplayHerkansingen">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.DisplayHerkansingen_Result3">
-                <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
-                <ScalarProperty Name="Vak" ColumnName="Vak" />
-                <ScalarProperty Name="Toets" ColumnName="Toets" />
-                <ScalarProperty Name="Datum" ColumnName="Datum" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetAllStudentenHerk" FunctionName="herkansingDBModel.Store.GetAllStudentenHerk">
             <ResultMapping>
               <ComplexTypeMapping TypeName="herkansingDBModel.GetAllStudentenHerk_Result">
@@ -950,9 +838,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DisplayHerkansingen" FunctionName="herkansingDBModel.Store.DisplayHerkansingen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.DisplayHerkansingen_Result">
+                <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
+                <ScalarProperty Name="Vak" ColumnName="Vak" />
+                <ScalarProperty Name="Toets" ColumnName="Toets" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="VerkrijgAlleHerkansingenStudent" FunctionName="herkansingDBModel.Store.VerkrijgAlleHerkansingenStudent">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgAlleHerkansingenStudent_Result3">
+              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgAlleHerkansingenStudent_Result">
                 <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
@@ -966,7 +864,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="VerkrijgBeschikbareHerkansingStudent" FunctionName="herkansingDBModel.Store.VerkrijgBeschikbareHerkansingStudent">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgBeschikbareHerkansingStudent_Result3">
+              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgBeschikbareHerkansingStudent_Result">
                 <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
@@ -979,7 +877,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="VerkrijgHistorieHerkansingenStudent" FunctionName="herkansingDBModel.Store.VerkrijgHistorieHerkansingenStudent">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgHistorieHerkansingenStudent_Result3">
+              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgHistorieHerkansingenStudent_Result">
                 <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
