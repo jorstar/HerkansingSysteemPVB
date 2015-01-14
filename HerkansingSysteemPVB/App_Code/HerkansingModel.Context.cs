@@ -127,39 +127,57 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllAankomendeHerkansingenPlusInfo_Result>("GetAllAankomendeHerkansingenPlusInfo");
     }
 
-    public virtual ObjectResult<DisplayHerkansingen_Result1> DisplayHerkansingen(Nullable<int> studentID)
+    public virtual ObjectResult<DisplayHerkansingen_Result3> DisplayHerkansingen(Nullable<int> studentID)
     {
         var studentIDParameter = studentID.HasValue ?
             new ObjectParameter("studentID", studentID) :
             new ObjectParameter("studentID", typeof(int));
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayHerkansingen_Result1>("DisplayHerkansingen", studentIDParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayHerkansingen_Result3>("DisplayHerkansingen", studentIDParameter);
     }
 
-    public virtual ObjectResult<VerkrijgAlleHerkansingenStudent_Result1> VerkrijgAlleHerkansingenStudent(Nullable<int> studentID)
+    public virtual ObjectResult<GetAllStudentenHerk_Result> GetAllStudentenHerk(Nullable<int> herkansingID)
     {
-        var studentIDParameter = studentID.HasValue ?
-            new ObjectParameter("studentID", studentID) :
-            new ObjectParameter("studentID", typeof(int));
+        var herkansingIDParameter = herkansingID.HasValue ?
+            new ObjectParameter("HerkansingID", herkansingID) :
+            new ObjectParameter("HerkansingID", typeof(int));
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenStudent_Result1>("VerkrijgAlleHerkansingenStudent", studentIDParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllStudentenHerk_Result>("GetAllStudentenHerk", herkansingIDParameter);
     }
 
-    public virtual ObjectResult<VerkrijgBeschikbareHerkansingStudent_Result1> VerkrijgBeschikbareHerkansingStudent(Nullable<int> studentID)
+    public virtual ObjectResult<GetHerkansingInfoHerk_Result> GetHerkansingInfoHerk(Nullable<int> herkansingID)
     {
-        var studentIDParameter = studentID.HasValue ?
-            new ObjectParameter("studentID", studentID) :
-            new ObjectParameter("studentID", typeof(int));
+        var herkansingIDParameter = herkansingID.HasValue ?
+            new ObjectParameter("HerkansingID", herkansingID) :
+            new ObjectParameter("HerkansingID", typeof(int));
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgBeschikbareHerkansingStudent_Result1>("VerkrijgBeschikbareHerkansingStudent", studentIDParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetHerkansingInfoHerk_Result>("GetHerkansingInfoHerk", herkansingIDParameter);
     }
 
-    public virtual ObjectResult<VerkrijgHistorieHerkansingenStudent_Result1> VerkrijgHistorieHerkansingenStudent(Nullable<int> studentID)
+    public virtual ObjectResult<VerkrijgAlleHerkansingenStudent_Result3> VerkrijgAlleHerkansingenStudent(Nullable<int> studentID)
     {
         var studentIDParameter = studentID.HasValue ?
             new ObjectParameter("studentID", studentID) :
             new ObjectParameter("studentID", typeof(int));
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenStudent_Result1>("VerkrijgHistorieHerkansingenStudent", studentIDParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenStudent_Result3>("VerkrijgAlleHerkansingenStudent", studentIDParameter);
+    }
+
+    public virtual ObjectResult<VerkrijgBeschikbareHerkansingStudent_Result3> VerkrijgBeschikbareHerkansingStudent(Nullable<int> studentID)
+    {
+        var studentIDParameter = studentID.HasValue ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(int));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgBeschikbareHerkansingStudent_Result3>("VerkrijgBeschikbareHerkansingStudent", studentIDParameter);
+    }
+
+    public virtual ObjectResult<VerkrijgHistorieHerkansingenStudent_Result3> VerkrijgHistorieHerkansingenStudent(Nullable<int> studentID)
+    {
+        var studentIDParameter = studentID.HasValue ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(int));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenStudent_Result3>("VerkrijgHistorieHerkansingenStudent", studentIDParameter);
     }
 }

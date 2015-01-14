@@ -154,6 +154,22 @@ public partial class DisplayHerkansingen_Result1
     public string Datum { get; set; }
 }
 
+public partial class DisplayHerkansingen_Result2
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Vak { get; set; }
+    public string Toets { get; set; }
+    public string Datum { get; set; }
+}
+
+public partial class DisplayHerkansingen_Result3
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Vak { get; set; }
+    public string Toets { get; set; }
+    public string Datum { get; set; }
+}
+
 public partial class GetAllAankomendeHerkansingenPlusInfo_Result
 {
     public Nullable<int> HerkansingID { get; set; }
@@ -166,6 +182,14 @@ public partial class GetAllAankomendeHerkansingenPlusInfo_Result
     public string KlasIDofOpleidingsID { get; set; }
     public Nullable<int> Plaatsen { get; set; }
     public string Lokaal { get; set; }
+}
+
+public partial class GetAllStudentenHerk_Result
+{
+    public string Studentcode { get; set; }
+    public string Naam { get; set; }
+    public string KLAS { get; set; }
+    public string OPLEIDING { get; set; }
 }
 
 public partial class GetAllSurveillance_Result
@@ -200,6 +224,20 @@ public partial class GetHerkansingInfo_Result
     public bool IsHetEenKlas { get; set; }
     public string KlasIDofOpleidingsID { get; set; }
     public string BeginTijd { get; set; }
+}
+
+public partial class GetHerkansingInfoHerk_Result
+{
+    public string Toetsnaam { get; set; }
+    public int ToetsID { get; set; }
+    public string VakNaam { get; set; }
+    public string ToetsDescriptie { get; set; }
+    public string Datum { get; set; }
+    public string BeginTijd { get; set; }
+    public int Tijdsduur { get; set; }
+    public string KlasIDofOpleidingsID { get; set; }
+    public string Lokaal { get; set; }
+    public string Surveillant { get; set; }
 }
 
 public partial class GetToetsInfo_Result
@@ -242,6 +280,30 @@ public partial class VerkrijgAlleHerkansingenStudent_Result1
     public string Toets1 { get; set; }
 }
 
+public partial class VerkrijgAlleHerkansingenStudent_Result2
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> Toets { get; set; }
+    public Nullable<int> Lengte_van_toets { get; set; }
+    public string Starttijd { get; set; }
+    public string Vak { get; set; }
+    public string Toets1 { get; set; }
+}
+
+public partial class VerkrijgAlleHerkansingenStudent_Result3
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> toetsId { get; set; }
+    public Nullable<int> Lengte_van_toets { get; set; }
+    public string Starttijd { get; set; }
+    public string Vak { get; set; }
+    public string Toets { get; set; }
+}
+
 public partial class VerkrijgBeschikbareHerkansingStudent_Result
 {
     public Nullable<int> HerkansingID { get; set; }
@@ -264,6 +326,28 @@ public partial class VerkrijgBeschikbareHerkansingStudent_Result1
     public string ToetsNaam { get; set; }
 }
 
+public partial class VerkrijgBeschikbareHerkansingStudent_Result2
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> Toets { get; set; }
+    public Nullable<int> Tijdsduur { get; set; }
+    public string VakNaam { get; set; }
+    public string ToetsNaam { get; set; }
+}
+
+public partial class VerkrijgBeschikbareHerkansingStudent_Result3
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> Toets { get; set; }
+    public Nullable<int> Tijdsduur { get; set; }
+    public string VakNaam { get; set; }
+    public string ToetsNaam { get; set; }
+}
+
 public partial class VerkrijgHistorieHerkansingenStudent_Result
 {
     public Nullable<int> HerkansingID { get; set; }
@@ -276,6 +360,30 @@ public partial class VerkrijgHistorieHerkansingenStudent_Result
 }
 
 public partial class VerkrijgHistorieHerkansingenStudent_Result1
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> Toets { get; set; }
+    public Nullable<int> Lengte_van_toets { get; set; }
+    public string Starttijd { get; set; }
+    public string Vak { get; set; }
+    public string Toets1 { get; set; }
+}
+
+public partial class VerkrijgHistorieHerkansingenStudent_Result2
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> Toets { get; set; }
+    public Nullable<int> Lengte_van_toets { get; set; }
+    public string Starttijd { get; set; }
+    public string Vak { get; set; }
+    public string Toets1 { get; set; }
+}
+
+public partial class VerkrijgHistorieHerkansingenStudent_Result3
 {
     public Nullable<int> HerkansingID { get; set; }
     public string Datum { get; set; }

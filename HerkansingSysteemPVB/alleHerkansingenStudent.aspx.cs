@@ -41,14 +41,10 @@ public partial class _Default : System.Web.UI.Page
         #endregion
 
         #region voor de dropdownlist
-        ddlSelecteerdHerkansing.DataSource = objHerkansing.DisplayHerkansingen(Userid);
-
-
+        //ddlSelecteerdHerkansing.DataSource = objHerkansing.DisplayHerkansingen(Userid);
         //datavalue = herkansingID
-        ddlSelecteerdHerkansing.DataValueField = "herkansingID";
-        ddlSelecteerdHerkansing.DataBind();
-
-
+        //ddlSelecteerdHerkansing.DataValueField = "herkansingID";
+        //ddlSelecteerdHerkansing.DataBind();
         #endregion
 
 
