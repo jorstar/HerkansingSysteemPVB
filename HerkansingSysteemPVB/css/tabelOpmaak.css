@@ -3,3 +3,10 @@
     padding: 20px;
     border-radius: 25px;
 }
+.tablewhiteround
+{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    
+}

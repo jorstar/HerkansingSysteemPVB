@@ -16,7 +16,7 @@
         <tr>
             <td>
 
-                <table style="width: 900px; margin: 50px auto 50px auto">
+                <table class="fancyTable">
                     <tr>
                         <td style="border-bottom: 2px solid black; padding: 10px 0">
                             De kandidaten</td>
@@ -27,11 +27,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style1">
-
-
-
-                            <asp:GridView ID="GridView1" runat="server" Width="900px" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <td >
+                            <asp:GridView ID="dgvKandidaten" runat="server" Width="900px" CellPadding="4" ForeColor="#333333" GridLines="None">
                                 <AlternatingRowStyle BackColor="White" />
                                 <EditRowStyle BackColor="#2461BF" />
                                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -69,29 +66,57 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Toets titel:
-                            <asp:Label ID="lblToetsNaam" runat="server" Text="oefen examen"></asp:Label><br />
-                            Toets ID:
-                            <asp:Label ID="lblToetsID" runat="server" Text="2356"></asp:Label><br />
-                            Toets vak:
-                            <asp:Label ID="Label1" runat="server" Text="Engels"></asp:Label><br />
-                            Toets beschrijfing: 
-                            <asp:Label ID="Label2" runat="server" Text="Dit is het oefen examen voor niveau 4"></asp:Label><br />
-                            Herkansings Datum: 
-                            <asp:Label ID="Label3" runat="server" Text="23 januari, 2015"></asp:Label>
-                            <br />
-                            Herkansing's lengte: 
-                            <asp:Label ID="Label5" runat="server" Text="4 uur"></asp:Label>
-                            <br />
-                            Voor wie:
-                            <asp:Label ID="Label6" runat="server" Text="Opleiding, Applicatie Ontwikkeling"></asp:Label>
-                            <br />
-                            Lokaal: 
-                            <asp:Label ID="Label7" runat="server" Text="no.3.104"></asp:Label>
-                            <br />
-                            <br />
-                            Surviance: 
-                            <asp:Label ID="Label4" runat="server" Text="M. Roesink"></asp:Label>
+                        <td>
+                            <table class="align tablewhiteround">
+                                <tr>
+                                    <td>Toets Titel:</td>
+                                    <td>
+                                        <asp:Label ID="lblToetsTitel" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td>Toets ID:</td>
+                                    <td>
+                                        <asp:Label ID="lblToetsID" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td>Vak:</td>
+                                    <td>
+                                        <asp:Label ID="lblVak" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td>Toets Beschrijving:</td>
+                                    <td>
+                                        <asp:Label ID="lblBeschrijving" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td>Herkansings Datum:</td>
+                                    <td>
+                                        <asp:Label ID="lblDatumTijd" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td>Herkansings Lengte:</td>
+                                    <td>
+                                        <asp:Label ID="lblLengte" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td>Studenten Van:</td>
+                                    <td>
+                                        <asp:Label ID="lblStudvan" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td>Lokaal:</td>
+                                    <td>
+                                        <asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>Surveillant:</td>
+                                    <td>
+                                        <asp:Label ID="lblSurveillant" runat="server" Text=""></asp:Label></td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                     <tr>
@@ -102,7 +127,7 @@
                     <tr>
                         <td>
 
-                            <asp:Button ID="Button1" runat="server" Text="Bevestig + mail " />
+                            <asp:Button ID="btnMail" runat="server" Text="Mailen naar Surveillant" />
 
                         </td>
                     </tr>

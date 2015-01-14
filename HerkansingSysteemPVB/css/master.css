@@ -4,6 +4,10 @@
     font-family: Arial;
 }
 
+table.align tr td {
+    text-align:left!important;
+}
+
 div#header{
     width: 100%;
     background-image:url("/images/header.jpg");
