@@ -9,8 +9,8 @@
         <EntityTypeShape EntityType="herkansingDBModel.Docent" Width="1.5" PointX="0.75" PointY="1.625" />
         <EntityTypeShape EntityType="herkansingDBModel.Herkansing" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="herkansingDBModel.Inschrijving" Width="1.5" PointX="5.25" PointY="1.875" />
-        <EntityTypeShape EntityType="herkansingDBModel.Lokaal" Width="1.5" PointX="0.75" PointY="12.25" />
-        <EntityTypeShape EntityType="herkansingDBModel.Student" Width="1.5" PointX="3" PointY="12.5" />
+        <EntityTypeShape EntityType="herkansingDBModel.Lokaal" Width="1.5" PointX="2.875" PointY="11.5" />
+        <EntityTypeShape EntityType="herkansingDBModel.Student" Width="1.5" PointX="4.625" PointY="9.75" />
         <EntityTypeShape EntityType="herkansingDBModel.Toets" Width="1.5" PointX="0.75" PointY="6.125" />
         <EntityTypeShape EntityType="herkansingDBModel.Vak" Width="1.5" PointX="1.5" PointY="9.375" />
         <AssociationConnector Association="herkansingDBModel.FK_Herkansing_Docent" />

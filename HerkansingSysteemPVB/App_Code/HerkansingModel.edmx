@@ -614,20 +614,20 @@
           <Property Type="Int32" Name="HerkansingID" Nullable="true" />
           <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
           <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
+          <Property Type="Int32" Name="ToetsID" Nullable="true" />
           <Property Type="Int32" Name="Tijdsduur" Nullable="true" />
-          <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="ToetsNaam" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
         </ComplexType>
         <ComplexType Name="VerkrijgHistorieHerkansingenStudent_Result">
           <Property Type="Int32" Name="HerkansingID" Nullable="true" />
           <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
           <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="Toets" Nullable="true" />
+          <Property Type="Int32" Name="ToetsID" Nullable="true" />
           <Property Type="Int32" Name="Lengte_van_toets" Nullable="true" />
           <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
           <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
-          <Property Type="String" Name="Toets1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -868,10 +868,10 @@
                 <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
-                <ScalarProperty Name="Toets" ColumnName="Toets" />
+                <ScalarProperty Name="ToetsID" ColumnName="ToetsID" />
                 <ScalarProperty Name="Tijdsduur" ColumnName="Tijdsduur" />
-                <ScalarProperty Name="VakNaam" ColumnName="VakNaam" />
-                <ScalarProperty Name="ToetsNaam" ColumnName="ToetsNaam" />
+                <ScalarProperty Name="Vak" ColumnName="Vak" />
+                <ScalarProperty Name="Toets" ColumnName="Toets" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -881,11 +881,11 @@
                 <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
-                <ScalarProperty Name="Toets" ColumnName="Toets" />
+                <ScalarProperty Name="ToetsID" ColumnName="ToetsID" />
                 <ScalarProperty Name="Lengte_van_toets" ColumnName="Lengte van toets" />
                 <ScalarProperty Name="Starttijd" ColumnName="Starttijd" />
                 <ScalarProperty Name="Vak" ColumnName="Vak" />
-                <ScalarProperty Name="Toets1" ColumnName="Toets1" />
+                <ScalarProperty Name="Toets" ColumnName="Toets" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

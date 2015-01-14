@@ -251,10 +251,10 @@ public partial class VerkrijgBeschikbareHerkansingStudent_Result
     public Nullable<int> HerkansingID { get; set; }
     public string Datum { get; set; }
     public string Lokaal { get; set; }
-    public Nullable<int> Toets { get; set; }
+    public Nullable<int> ToetsID { get; set; }
     public Nullable<int> Tijdsduur { get; set; }
-    public string VakNaam { get; set; }
-    public string ToetsNaam { get; set; }
+    public string Vak { get; set; }
+    public string Toets { get; set; }
 }
 
 public partial class VerkrijgHistorieHerkansingenStudent_Result
@@ -262,9 +262,9 @@ public partial class VerkrijgHistorieHerkansingenStudent_Result
     public Nullable<int> HerkansingID { get; set; }
     public string Datum { get; set; }
     public string Lokaal { get; set; }
-    public Nullable<int> Toets { get; set; }
+    public Nullable<int> ToetsID { get; set; }
     public Nullable<int> Lengte_van_toets { get; set; }
     public string Starttijd { get; set; }
     public string Vak { get; set; }
-    public string Toets1 { get; set; }
+    public string Toets { get; set; }
 }
