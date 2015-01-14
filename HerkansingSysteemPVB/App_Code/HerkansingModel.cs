@@ -157,6 +157,22 @@ public partial class GetAllVaks_Result
     public string VakNaam { get; set; }
 }
 
+public partial class GetHerkansingInfo_Result
+{
+    public int HerkansingID { get; set; }
+    public string Lokaal { get; set; }
+    public string Docent { get; set; }
+    public System.DateTime Datum { get; set; }
+    public string Surveillant { get; set; }
+    public int Toets { get; set; }
+    public int Tijdsduur { get; set; }
+    public int Plaatsen { get; set; }
+    public bool Actief { get; set; }
+    public bool IsHetEenKlas { get; set; }
+    public string KlasIDofOpleidingsID { get; set; }
+    public string BeginTijd { get; set; }
+}
+
 public partial class GetToetsInfo_Result
 {
     public Nullable<int> ToetsID { get; set; }
