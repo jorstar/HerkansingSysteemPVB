@@ -11,11 +11,13 @@ div#header{
     background-position: center;
 }
 
-div#menu{
+div#nav{
     background-color: #A8B326;
     height: 36px;
-    background-image:url("/images/menubg.png");
+    background-image:url("/images/navigatue.jpg");
     background-repeat:repeat-x;
+    border-top: 0px solid #A8B326;
+border-bottom: 0px solid #A8B326;
 }
 
 div#content{
