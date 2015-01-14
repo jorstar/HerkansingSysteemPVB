@@ -11,14 +11,19 @@
 <body>
     <form id="form1" runat="server">
         <div id="header"></div>
-        <HERK:Menu runat="server"></HERK:Menu>
-    <div id="content">
+        <div id="nav">
+            <HERK:Menu runat="server"></HERK:Menu>
+        </div>
+        <div id="content">
 
-        <div id="title"><asp:Label ID="lblTitleHere" runat="server" Text="Titel hier"></asp:Label></div>
+            <div id="title">
+                <asp:Label ID="lblTitleHere" runat="server" Text="Titel hier"></asp:Label></div>
 
-        <div id="mainPageContent"><asp:ContentPlaceHolder ID="paginaContent" runat="server"></asp:ContentPlaceHolder></div>
+            <div id="mainPageContent">
+                <asp:ContentPlaceHolder ID="paginaContent" runat="server"></asp:ContentPlaceHolder>
+            </div>
 
-    </div>
+        </div>
     </form>
 </body>
 </html>
