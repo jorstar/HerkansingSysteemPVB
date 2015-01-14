@@ -139,6 +139,13 @@ public partial class Vak
     public virtual ICollection<Toets> Toets { get; set; }
 }
 
+public partial class DisplayHerkansingen_Result
+{
+    public string VakNaam { get; set; }
+    public string ToetsNaam { get; set; }
+    public string Datum { get; set; }
+}
+
 public partial class GetAllSurveillance_Result
 {
     public string DocentID { get; set; }
