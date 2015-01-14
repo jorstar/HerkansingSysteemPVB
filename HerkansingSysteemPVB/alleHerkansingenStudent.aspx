@@ -30,13 +30,12 @@
                         <td>
                             <br />
                         </td>
-
                         <td rowspan="2">
                             <table style="height: 100%; width: 100%;">
                                 <tr>
                                     <td>Selecteer een toets om voor aan te melden:
                                         <br />
-                                        <asp:DropDownList ID="DropDownList2" Width="169px" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server"></asp:DropDownList>
                                     </td>
                                 </tr>
                             </table>
@@ -45,10 +44,10 @@
                     <tr>
                         <td>
                             <div style="margin: 10px auto 10px auto; width: 297px;">
-                                <asp:RadioButtonList Width="297px" ID="rdbVeranderDisplay" runat="server">
-                                    <asp:ListItem Selected="True">Laat alle herkansingen zien</asp:ListItem>
-                                    <asp:ListItem>Laat alle beschikbare herkansingen zien</asp:ListItem>
-                                    <asp:ListItem>Laat alle herkansingen zien die zijn geweest</asp:ListItem>
+                                <asp:RadioButtonList Width="297px" ID="rdbVeranderDisplay" runat="server" AutoPostBack="True">
+                                    <asp:ListItem Selected="True">Laat alle herkansingen zien.</asp:ListItem>
+                                    <asp:ListItem>Laat alle beschikbare herkansingen zien.</asp:ListItem>
+                                    <asp:ListItem>Laat alle herkansingen zien die zijn geweest.</asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
                         </td>
