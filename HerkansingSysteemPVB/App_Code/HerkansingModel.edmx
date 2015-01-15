@@ -215,6 +215,19 @@
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="UpdateHerkansing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HerkansingID" Type="int" Mode="In" />
+          <Parameter Name="Lokaal" Type="nvarchar" Mode="In" />
+          <Parameter Name="Datum" Type="datetime" Mode="In" />
+          <Parameter Name="Surveillant" Type="nchar" Mode="In" />
+          <Parameter Name="Toets" Type="int" Mode="In" />
+          <Parameter Name="Tijdsduur" Type="int" Mode="In" />
+          <Parameter Name="Plaatsen" Type="int" Mode="In" />
+          <Parameter Name="Actief" Type="bit" Mode="In" />
+          <Parameter Name="IsHetEenKlas" Type="bit" Mode="In" />
+          <Parameter Name="KlasIDofOpleidingsID" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="BeginTijd" Type="nchar" Mode="In" />
+        </Function>
         <Function Name="VerkrijgAlleHerkansingenStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="studentID" Type="int" Mode="In" />
         </Function>
@@ -350,7 +363,20 @@
           <Parameter Name="SurveillantID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetAllStudentenHerk" ReturnType="Collection(herkansingDBModel.GetAllStudentenHerk_Result1)">
+          <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateHerkansing">
             <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
+            <Parameter Name="Lokaal" Mode="In" Type="String" />
+            <Parameter Name="Datum" Mode="In" Type="DateTime" />
+            <Parameter Name="Surveillant" Mode="In" Type="String" />
+            <Parameter Name="Toets" Mode="In" Type="Int32" />
+            <Parameter Name="Tijdsduur" Mode="In" Type="Int32" />
+            <Parameter Name="Plaatsen" Mode="In" Type="Int32" />
+            <Parameter Name="Actief" Mode="In" Type="Boolean" />
+            <Parameter Name="IsHetEenKlas" Mode="In" Type="Boolean" />
+            <Parameter Name="KlasIDofOpleidingsID" Mode="In" Type="String" />
+            <Parameter Name="BeginTijd" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -909,6 +935,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateHerkansing" FunctionName="herkansingDBModel.Store.UpdateHerkansing" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

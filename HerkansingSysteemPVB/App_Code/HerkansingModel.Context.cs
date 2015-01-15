@@ -198,4 +198,53 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllStudentenHerk_Result1>("GetAllStudentenHerk", herkansingIDParameter);
     }
+
+    public virtual int UpdateHerkansing(Nullable<int> herkansingID, string lokaal, Nullable<System.DateTime> datum, string surveillant, Nullable<int> toets, Nullable<int> tijdsduur, Nullable<int> plaatsen, Nullable<bool> actief, Nullable<bool> isHetEenKlas, string klasIDofOpleidingsID, string beginTijd)
+    {
+        var herkansingIDParameter = herkansingID.HasValue ?
+            new ObjectParameter("HerkansingID", herkansingID) :
+            new ObjectParameter("HerkansingID", typeof(int));
+
+        var lokaalParameter = lokaal != null ?
+            new ObjectParameter("Lokaal", lokaal) :
+            new ObjectParameter("Lokaal", typeof(string));
+
+        var datumParameter = datum.HasValue ?
+            new ObjectParameter("Datum", datum) :
+            new ObjectParameter("Datum", typeof(System.DateTime));
+
+        var surveillantParameter = surveillant != null ?
+            new ObjectParameter("Surveillant", surveillant) :
+            new ObjectParameter("Surveillant", typeof(string));
+
+        var toetsParameter = toets.HasValue ?
+            new ObjectParameter("Toets", toets) :
+            new ObjectParameter("Toets", typeof(int));
+
+        var tijdsduurParameter = tijdsduur.HasValue ?
+            new ObjectParameter("Tijdsduur", tijdsduur) :
+            new ObjectParameter("Tijdsduur", typeof(int));
+
+        var plaatsenParameter = plaatsen.HasValue ?
+            new ObjectParameter("Plaatsen", plaatsen) :
+            new ObjectParameter("Plaatsen", typeof(int));
+
+        var actiefParameter = actief.HasValue ?
+            new ObjectParameter("Actief", actief) :
+            new ObjectParameter("Actief", typeof(bool));
+
+        var isHetEenKlasParameter = isHetEenKlas.HasValue ?
+            new ObjectParameter("IsHetEenKlas", isHetEenKlas) :
+            new ObjectParameter("IsHetEenKlas", typeof(bool));
+
+        var klasIDofOpleidingsIDParameter = klasIDofOpleidingsID != null ?
+            new ObjectParameter("KlasIDofOpleidingsID", klasIDofOpleidingsID) :
+            new ObjectParameter("KlasIDofOpleidingsID", typeof(string));
+
+        var beginTijdParameter = beginTijd != null ?
+            new ObjectParameter("BeginTijd", beginTijd) :
+            new ObjectParameter("BeginTijd", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateHerkansing", herkansingIDParameter, lokaalParameter, datumParameter, surveillantParameter, toetsParameter, tijdsduurParameter, plaatsenParameter, actiefParameter, isHetEenKlasParameter, klasIDofOpleidingsIDParameter, beginTijdParameter);
+    }
 }

@@ -104,7 +104,7 @@ public partial class _Default : System.Web.UI.Page
                 Tijdsduur = Convert.ToInt32(txtMaxPlaatsen.Text),
                 Toets = Convert.ToInt32(ddlToetsen.SelectedValue),
                 Surveillant = ddlSureillance.SelectedValue,
-                BeginTijd = txtUur.Text + ":" + txtMinuten
+                BeginTijd = txtUur.Text + ":" + txtMinuten.Text
 
             });
 

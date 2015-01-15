@@ -61,7 +61,7 @@
                                     </p>
                                 </td>
                                 <td class="herkansingAanmakenRightTableCollumn">
-                                    <asp:DropDownList ID="ddlSureillance" Width="202px" runat="server" CssClass="inputs">
+                                    <asp:DropDownList ID="ddlSureillance" Width="202px" runat="server" CssClass="inputs" AutoPostBack="True">
                                     </asp:DropDownList>
                                 </td>
                                 <td></td>
@@ -81,7 +81,7 @@
                             <tr>
                                 <td>Selecteer klas/opleiding</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
-                                    <asp:DropDownList ID="ddlKlasOfOpleidingSelecteren" Width="200px" runat="server" CssClass="inputs">
+                                    <asp:DropDownList ID="ddlKlasOfOpleidingSelecteren" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True">
                                     </asp:DropDownList>
                                 </td>
                                 <td></td>
@@ -99,7 +99,13 @@
                             <tr>
                                 <td>Lokaal selecteren</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
-                                    <asp:DropDownList ID="ddlLokaal" Width="200px" runat="server" CssClass="inputs"></asp:DropDownList></td>
+                                    <asp:DropDownList ID="ddlLokaal" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True"></asp:DropDownList></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Herkansing actief</td>
+                                <td class="herkansingAanmakenRightTableCollumn">
+                                    <asp:CheckBox ID="cbActief" runat="server" AutoPostBack="True" />
                                 <td></td>
                             </tr>
                             <tr>
@@ -109,7 +115,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3">
-                                    <asp:Button ID="btnBevestig" runat="server" Text="Bevestig" CssClass="fancyButton" /></td>
+                                    <asp:Button ID="btnBevestig" runat="server" Text="Bevestig" CssClass="fancyButton" OnClick="btnBevestig_Click" /></td>
                             </tr>
                             <tr>
                                 <td colspan="2">
