@@ -24,15 +24,16 @@ public partial class _Default : System.Web.UI.Page
 
         if (rdbVeranderDisplay.SelectedIndex == 0)
         {
-            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgAlleHerkansingenStudent(Userid).ToList();
+            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgBeschikbareHerkansingStudent(Userid).ToList();
             StudentHerkansingsLijst.DataBind();
         }
 
         if (rdbVeranderDisplay.SelectedIndex == 1)
         {
-            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgBeschikbareHerkansingStudent(Userid).ToList();
+            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgAlleHerkansingenStudent(Userid).ToList();
             StudentHerkansingsLijst.DataBind();
         }
+
         if (rdbVeranderDisplay.SelectedIndex == 2)
         {
             StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgHistorieHerkansingenStudent(Userid).ToList();
@@ -41,18 +42,14 @@ public partial class _Default : System.Web.UI.Page
         #endregion
 
         #region voor de dropdownlist
+        if (!IsPostBack)
+        {
+            ddlSelecteerdHerkansing.DataSource = objHerkansing.DisplayHerkansingen(Userid);
+            ddlSelecteerdHerkansing.DataValueField = "herkansingID";
 
-        ////datavalue = herkansingID
-
-        ddlSelecteerdHerkansing.DataSource = objHerkansing.DisplayHerkansingen(Userid);
-
-        ddlSelecteerdHerkansing.DataValueField = "herkansingID";
-        ddlSelecteerdHerkansing.DataTextField = "Vak";
-        ddlSelecteerdHerkansing.DataTextFormatString = ""; //hier verder gaan..
-        ddlSelecteerdHerkansing.DataBind();
+            ddlSelecteerdHerkansing.DataBind();
+        }
         #endregion
-
-
     }
 
     protected int SelectRadioButtonValue()
@@ -65,5 +62,13 @@ public partial class _Default : System.Web.UI.Page
             return rdbSelectedValue = 2;
         else
             return rdbSelectedValue = 0;
+    }
+    protected void ddlSelecteerdHerkansing_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //hier dingen in een session zetten
+    }
+    protected void btnTest_Click(object sender, EventArgs e)
+    {
+
     }
 }

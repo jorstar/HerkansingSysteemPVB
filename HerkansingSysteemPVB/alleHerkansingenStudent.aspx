@@ -33,20 +33,22 @@
                         <td rowspan="2">
                             <table style="height: 100%; width: 100%;">
                                 <tr>
-                                    <td>Selecteer een toets om voor aan te melden:
+                                    <td>Selecteer een HerkansingID om voor aan te melden:
                                         <br />
-                                        <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server" OnSelectedIndexChanged="ddlSelecteerdHerkansing_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                                     </td>
                                 </tr>
                             </table>
+                            <asp:Label ID="lbltest" runat="server" Text="Label"></asp:Label>
+                            <asp:Button ID="btnTest" runat="server" Text="test" OnClick="btnTest_Click" />
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div style="margin: 10px auto 10px auto; width: 297px;">
                                 <asp:RadioButtonList Width="297px" ID="rdbVeranderDisplay" runat="server" AutoPostBack="True">
-                                    <asp:ListItem Selected="True">Laat alle herkansingen zien.</asp:ListItem>
-                                    <asp:ListItem>Laat alle beschikbare herkansingen zien.</asp:ListItem>
+                                    <asp:ListItem Selected="True">Laat alle beschikbare herkansingen zien.</asp:ListItem>
+                                    <asp:ListItem>Laat alle herkansingen zien.</asp:ListItem>
                                     <asp:ListItem>Laat alle herkansingen zien die zijn geweest.</asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
