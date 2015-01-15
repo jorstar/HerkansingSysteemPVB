@@ -242,6 +242,19 @@ public partial class LoginBeheer_Result
     public string Wachtwoord { get; set; }
 }
 
+public partial class VerkrijgAlleHerkansingenDocent_Result
+{
+    public string LRL_NR { get; set; }
+    public Nullable<int> HerkansingID { get; set; }
+    public string Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> toetsId { get; set; }
+    public Nullable<int> Lengte_van_toets { get; set; }
+    public string Starttijd { get; set; }
+    public string Vak { get; set; }
+    public string Toets { get; set; }
+}
+
 public partial class VerkrijgAlleHerkansingenStudent_Result
 {
     public Nullable<int> HerkansingID { get; set; }
@@ -254,6 +267,17 @@ public partial class VerkrijgAlleHerkansingenStudent_Result
     public string Toets { get; set; }
 }
 
+public partial class VerkrijgBeschikbareHerkansingDocent_Result
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> ToetsID { get; set; }
+    public Nullable<int> Tijdsduur { get; set; }
+    public string Vak { get; set; }
+    public string Toets { get; set; }
+}
+
 public partial class VerkrijgBeschikbareHerkansingStudent_Result
 {
     public Nullable<int> HerkansingID { get; set; }
@@ -261,6 +285,18 @@ public partial class VerkrijgBeschikbareHerkansingStudent_Result
     public string Lokaal { get; set; }
     public Nullable<int> ToetsID { get; set; }
     public Nullable<int> Tijdsduur { get; set; }
+    public string Vak { get; set; }
+    public string Toets { get; set; }
+}
+
+public partial class VerkrijgHistorieHerkansingenDocent_Result
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> ToetsID { get; set; }
+    public Nullable<int> Lengte_van_toets { get; set; }
+    public string Starttijd { get; set; }
     public string Vak { get; set; }
     public string Toets { get; set; }
 }

@@ -7,15 +7,14 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-
     public int Userid = 0015180; // verwijderen als de Session dingen zijn geregeld\\
+    
     #region important stuffs
     public herkansingDBEntities objHerkansing = new herkansingDBEntities();
     public int rdbSelectedValue;
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
-
         ////Session["userID"] = Userid;
         ////Sesssion[""] //moet een waarde krijgen voor de geselecteerde herkansing
         #region voor de radiobuttonlist
@@ -24,20 +23,20 @@ public partial class _Default : System.Web.UI.Page
 
         if (rdbVeranderDisplay.SelectedIndex == 0)
         {
-            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgBeschikbareHerkansingStudent(Userid).ToList();
-            StudentHerkansingsLijst.DataBind();
+            dgvStudentenHerkansingsOverzicht.DataSource = objHerkansing.VerkrijgBeschikbareHerkansingStudent(Userid).ToList();
+            dgvStudentenHerkansingsOverzicht.DataBind();
         }
 
         if (rdbVeranderDisplay.SelectedIndex == 1)
         {
-            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgAlleHerkansingenStudent(Userid).ToList();
-            StudentHerkansingsLijst.DataBind();
+            dgvStudentenHerkansingsOverzicht.DataSource = objHerkansing.VerkrijgAlleHerkansingenStudent(Userid).ToList();
+            dgvStudentenHerkansingsOverzicht.DataBind();
         }
 
         if (rdbVeranderDisplay.SelectedIndex == 2)
         {
-            StudentHerkansingsLijst.DataSource = objHerkansing.VerkrijgHistorieHerkansingenStudent(Userid).ToList();
-            StudentHerkansingsLijst.DataBind();
+            dgvStudentenHerkansingsOverzicht.DataSource = objHerkansing.VerkrijgHistorieHerkansingenStudent(Userid).ToList();
+            dgvStudentenHerkansingsOverzicht.DataBind();
         }
         #endregion
 
@@ -63,12 +62,14 @@ public partial class _Default : System.Web.UI.Page
         else
             return rdbSelectedValue = 0;
     }
+
     protected void ddlSelecteerdHerkansing_SelectedIndexChanged(object sender, EventArgs e)
     {
         //hier dingen in een session zetten
     }
-    protected void btnTest_Click(object sender, EventArgs e)
-    {
 
+    protected void btnAanmelden_Click(object sender, EventArgs e)
+    {
+        //sessions versturen OF aanmelden voor een herkansing
     }
 }

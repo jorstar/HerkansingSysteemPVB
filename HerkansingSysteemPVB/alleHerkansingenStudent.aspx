@@ -11,7 +11,7 @@
                 <table style="width: 900px; margin: 50px auto 50px auto;">
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="StudentHerkansingsLijst" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                            <asp:GridView ID="dgvStudentenHerkansingsOverzicht" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -39,8 +39,7 @@
                                     </td>
                                 </tr>
                             </table>
-                            <asp:Label ID="lbltest" runat="server" Text="Label"></asp:Label>
-                            <asp:Button ID="btnTest" runat="server" Text="test" OnClick="btnTest_Click" />
+                            <asp:Button ID="btnAanmelden" runat="server" Text="Aanmelden" OnClick="btnAanmelden_Click" />
                         </td>
                     </tr>
                     <tr>
