@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class _Default : System.Web.UI.Page
 {
     public int Userid = 0015180; // verwijderen als de Session dingen zijn geregeld\\
-    
+
     #region important stuffs
     public herkansingDBEntities objHerkansing = new herkansingDBEntities();
     public int rdbSelectedValue;
@@ -45,7 +45,6 @@ public partial class _Default : System.Web.UI.Page
         {
             ddlSelecteerdHerkansing.DataSource = objHerkansing.DisplayHerkansingen(Userid);
             ddlSelecteerdHerkansing.DataValueField = "herkansingID";
-
             ddlSelecteerdHerkansing.DataBind();
         }
         #endregion

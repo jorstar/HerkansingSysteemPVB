@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="alleHerkansingenStudent.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="Overzicht herkansingen" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="alleHerkansingenStudent.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -8,7 +8,7 @@
     <table style="text-align: center; width: 100%;">
         <tr>
             <td>
-                <table style="width: 900px; margin: 50px auto 50px auto;">
+                <table class="fancyTable" style="width: 900px; margin: 50px auto 50px auto;">
                     <tr>
                         <td colspan="2">
                             <asp:GridView ID="dgvStudentenHerkansingsOverzicht" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">

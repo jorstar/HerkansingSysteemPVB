@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="alleHerkansingenDocent.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="Overzicht herkansingen" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="alleHerkansingenDocent.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -8,7 +8,7 @@
     <table style="text-align: center; width: 100%;">
         <tr>
             <td>
-                <table style="width: 900px; margin: 50px auto 50px auto;">
+                <table class="fancyTable" style="width: 900px; margin: 50px auto 50px auto;">
                     <tr>
                         <td colspan="2">
                             <asp:GridView ID="dgvDocentenHerkansingOverzicht" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
@@ -36,7 +36,7 @@
                                 <tr>
                                     <td>Selecteer een toets om alle kandidaten te zien:
                                         <br />
-                                        <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server" OnSelectedIndexChanged="ddlSelecteerdHerkansing_SelectedIndexChanged"></asp:DropDownList>
                                     </td>
                                 </tr>
                             </table>
