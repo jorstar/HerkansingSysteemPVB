@@ -127,7 +127,7 @@
                     <tr>
                         <td>
 
-                            <asp:Button ID="btnMail" runat="server" Text="Mailen naar Surveillant" />
+                            <asp:Button ID="btnMail" runat="server" Text="Mailen naar Surveillant" OnClick="btnMail_Click" />
 
                         </td>
                     </tr>

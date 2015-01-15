@@ -11,7 +11,7 @@
             <asp:MenuItem Text="New Item" Value="New Item"></asp:MenuItem>
             <asp:MenuItem Text="New Item" Value="New Item"></asp:MenuItem>
             <asp:MenuItem Text="New Item" Value="New Item"></asp:MenuItem>
-            <asp:MenuItem NavigateUrl="~/loguit.aspx" Text="Uitloggen" Value="Uitloggen"></asp:MenuItem>
+            <asp:MenuItem NavigateUrl="~/logoff.aspx" Text="Uitloggen" Value="Uitloggen"></asp:MenuItem>
         </Items>
         <StaticSelectedStyle  CssClass="selected" />
         <DynamicSelectedStyle CssClass="selected" />

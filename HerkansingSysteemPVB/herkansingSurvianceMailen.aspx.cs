@@ -1,26 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
-    herkansingDBEntities ef = new herkansingDBEntities();
+    string toetsTitel = "";
+    string toetsID = "";
+    string Beschrijving = "";
+    string Datum = "";
+    string Tijd = "";
+    string lengte = "";
+    string studentenvan = "";
+    string docentSurveillant = "";
+    string vak = "";
+    
     protected void Page_Load(object sender, EventArgs e)
     {
-        dgvKandidaten.DataSource = ef.GetAllStudentenHerk(11004);
+        herkansingDBEntities ef = new herkansingDBEntities();
+        //herkansing id
+        int herkansingID = 11004;
+        var herkinfo = ef.GetHerkansingInfoHerk(herkansingID).First();
+
+
+        //datagridview vullen
+        dgvKandidaten.DataSource = ef.GetAllStudentenHerk(herkansingID);
         dgvKandidaten.DataBind();
 
+       
+        //variable vullen
+        toetsTitel = herkinfo.Toetsnaam;
+        toetsID = herkinfo.ToetsID.ToString();
+        Beschrijving = herkinfo.ToetsDescriptie;
+        Datum = herkinfo.Datum.ToString();
+        Tijd = herkinfo.BeginTijd.ToString();
+        lengte = herkinfo.Tijdsduur.ToString();
+        studentenvan = herkinfo.KlasIDofOpleidingsID;
+        docentSurveillant = herkinfo.Surveillant;
+        vak = herkinfo.VakNaam;
+
         //labels vullen
-        lblToetsTitel.Text = ef.GetHerkansingInfoHerk(11004).First().Toetsnaam.ToString();
-        lblToetsID.Text = ef.GetHerkansingInfoHerk(11004).First().ToetsID.ToString();
-        lblBeschrijving.Text = ef.GetHerkansingInfoHerk(11004).First().ToetsDescriptie.ToString();
-        lblDatumTijd.Text = ef.GetHerkansingInfoHerk(11004).First().Datum.ToString() + " om " + ef.GetHerkansingInfoHerk(11004).First().BeginTijd.ToString();
-        lblLengte.Text = ef.GetHerkansingInfoHerk(11004).First().Tijdsduur.ToString() + " Minuten";
-        lblStudvan.Text = ef.GetHerkansingInfoHerk(11004).First().KlasIDofOpleidingsID.ToString();
-        lblSurveillant.Text = ef.GetHerkansingInfoHerk(11004).First().Surveillant.ToString();
-        lblVak.Text = ef.GetHerkansingInfoHerk(11004).First().VakNaam.ToString();
+        lblToetsTitel.Text = toetsTitel;
+        lblToetsID.Text = toetsID;
+        lblBeschrijving.Text = Beschrijving;
+        lblDatumTijd.Text = Datum + " om " + Tijd;
+        lblLengte.Text = lengte;
+        lblStudvan.Text = studentenvan;
+        lblSurveillant.Text = docentSurveillant;
+        lblVak.Text = vak;
+    }
+    protected void btnMail_Click(object sender, EventArgs e)
+    {
+        herkansingDBEntities entity = new herkansingDBEntities();
+        var surveillant = (from s in entity.Docent
+                           where s.DocentID == docentSurveillant
+                           select s);
+        MailMessage Message = new MailMessage();
+
+        Message.From = new MailAddress("test@gmail.com");
+        Message.To.Add(new MailAddress("receiver@gmail.com"));
+        Message.Subject = TBSub.Text;
+        Message.Body = TBBody.Text;
+        Message.IsBodyHtml = true;
+
+        NetworkCredential nc = new NetworkCredential();
+        nc.UserName = "test";
+        nc.Password = "password";
+
+        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+        smtp.Credentials = nc;
+        smtp.EnableSsl = true;
+        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+        smtp.Send(Message);
     }
 }

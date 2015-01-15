@@ -180,4 +180,22 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenStudent_Result>("VerkrijgHistorieHerkansingenStudent", studentIDParameter);
     }
+
+    public virtual ObjectResult<string> GetDocentEmail(string docentID)
+    {
+        var docentIDParameter = docentID != null ?
+            new ObjectParameter("DocentID", docentID) :
+            new ObjectParameter("DocentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetDocentEmail", docentIDParameter);
+    }
+
+    public virtual ObjectResult<string> GetSurveillantEmail(string surveillantID)
+    {
+        var surveillantIDParameter = surveillantID != null ?
+            new ObjectParameter("SurveillantID", surveillantID) :
+            new ObjectParameter("SurveillantID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetSurveillantEmail", surveillantIDParameter);
+    }
 }
