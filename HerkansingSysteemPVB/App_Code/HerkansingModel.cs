@@ -233,6 +233,18 @@ public partial class GetHerkansingInfoHerk_Result
     public string Surveillant { get; set; }
 }
 
+public partial class getStudentHerkansingen_Result
+{
+    public string Toets { get; set; }
+    public string Beschrijving { get; set; }
+    public string Datum { get; set; }
+    public string begintijd { get; set; }
+    public string Tijdsduur { get; set; }
+    public string Lokaal { get; set; }
+    public string surveillant { get; set; }
+    public Nullable<int> plaatsen { get; set; }
+}
+
 public partial class GetToetsInfo_Result
 {
     public Nullable<int> ToetsID { get; set; }

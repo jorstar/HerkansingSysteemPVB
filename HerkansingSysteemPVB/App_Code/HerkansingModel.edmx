@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Beheerder">
           <Key>
             <PropertyRef Name="Gebruikersnaam" />
@@ -198,6 +198,9 @@
         <Function Name="GetHerkansingInfoHerk" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="HerkansingID" Type="int" Mode="In" />
         </Function>
+        <Function Name="getStudentHerkansingen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="herkansingid" Type="int" Mode="In" />
+        </Function>
         <Function Name="GetSurveillantEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SurveillantID" Type="nvarchar" Mode="In" />
         </Function>
@@ -390,7 +393,10 @@
           <FunctionImport Name="VerkrijgHistorieHerkansingenDocent" ReturnType="Collection(herkansingDBModel.VerkrijgHistorieHerkansingenDocent_Result)" />
           <FunctionImport Name="DisplayHerkansingenDocent" ReturnType="Collection(herkansingDBModel.DisplayHerkansingenDocent_Result)" />
           <FunctionImport Name="verkrijgHerkansingenGemaaktDoorDocent" ReturnType="Collection(herkansingDBModel.verkrijgHerkansingenGemaaktDoorDocent_Result)">
-            <Parameter Name="DocentID" Mode="In" Type="String" />
+          <Parameter Name="DocentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getStudentHerkansingen" ReturnType="Collection(herkansingDBModel.getStudentHerkansingen_Result)">
+            <Parameter Name="herkansingid" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -733,6 +739,16 @@
           <Property Type="String" Name="Vak" Nullable="true" MaxLength="35" />
           <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
         </ComplexType>
+        <ComplexType Name="getStudentHerkansingen_Result">
+          <Property Type="String" Name="Toets" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Beschrijving" Nullable="true" />
+          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
+          <Property Type="String" Name="begintijd" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="Tijdsduur" Nullable="true" MaxLength="38" />
+          <Property Type="String" Name="Lokaal" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="surveillant" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="plaatsen" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1059,6 +1075,20 @@
                 <ScalarProperty Name="Starttijd" ColumnName="Starttijd" />
                 <ScalarProperty Name="Vak" ColumnName="Vak" />
                 <ScalarProperty Name="Toets" ColumnName="Toets" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getStudentHerkansingen" FunctionName="herkansingDBModel.Store.getStudentHerkansingen">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.getStudentHerkansingen_Result">
+                <ScalarProperty Name="Toets" ColumnName="Toets" />
+                <ScalarProperty Name="Beschrijving" ColumnName="Beschrijving" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="begintijd" ColumnName="begintijd" />
+                <ScalarProperty Name="Tijdsduur" ColumnName="Tijdsduur" />
+                <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
+                <ScalarProperty Name="surveillant" ColumnName="surveillant" />
+                <ScalarProperty Name="plaatsen" ColumnName="plaatsen" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
