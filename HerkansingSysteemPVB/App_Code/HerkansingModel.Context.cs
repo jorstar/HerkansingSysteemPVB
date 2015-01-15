@@ -262,4 +262,9 @@ public partial class herkansingDBEntities : DbContext
     {
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenDocent_Result>("VerkrijgHistorieHerkansingenDocent");
     }
+
+    public virtual ObjectResult<DisplayHerkansingenDocent_Result> DisplayHerkansingenDocent()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayHerkansingenDocent_Result>("DisplayHerkansingenDocent");
+    }
 }

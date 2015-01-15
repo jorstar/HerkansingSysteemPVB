@@ -147,6 +147,14 @@ public partial class DisplayHerkansingen_Result
     public string Datum { get; set; }
 }
 
+public partial class DisplayHerkansingenDocent_Result
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Vak { get; set; }
+    public string Toets { get; set; }
+    public string Datum { get; set; }
+}
+
 public partial class GetAllAankomendeHerkansingenPlusInfo_Result
 {
     public Nullable<int> HerkansingID { get; set; }
