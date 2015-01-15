@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -19,7 +21,8 @@ public partial class _Default : System.Web.UI.Page
     string studentenvan = "";
     string docentSurveillant = "";
     string vak = "";
-    
+    string lokaal = "";
+
     protected void Page_Load(object sender, EventArgs e)
     {
         herkansingDBEntities ef = new herkansingDBEntities();
@@ -32,7 +35,7 @@ public partial class _Default : System.Web.UI.Page
         dgvKandidaten.DataSource = ef.GetAllStudentenHerk(herkansingID);
         dgvKandidaten.DataBind();
 
-       
+
         //variable vullen
         toetsTitel = herkinfo.Toetsnaam;
         toetsID = herkinfo.ToetsID.ToString();
@@ -43,6 +46,8 @@ public partial class _Default : System.Web.UI.Page
         studentenvan = herkinfo.KlasIDofOpleidingsID;
         docentSurveillant = herkinfo.Surveillant;
         vak = herkinfo.VakNaam;
+        lokaal = herkinfo.Lokaal;
+        
 
         //labels vullen
         lblToetsTitel.Text = toetsTitel;
@@ -53,11 +58,13 @@ public partial class _Default : System.Web.UI.Page
         lblStudvan.Text = studentenvan;
         lblSurveillant.Text = docentSurveillant;
         lblVak.Text = vak;
+        lblLokaal.Text = lokaal;
     }
     protected void btnMail_Click(object sender, EventArgs e)
     {
         try
         {
+
             //string docent = Session["User"].ToString();
             string docent = "KMP01";
 
@@ -69,9 +76,22 @@ public partial class _Default : System.Web.UI.Page
             Message.From = new MailAddress(docentemail);
             Message.To.Add(new MailAddress(surveillantemail));
             Message.Subject = "Herkansing: " + toetsID + " - " + toetsTitel;
-            Message.Body = dgvKandidaten.ToString();
-            Message.IsBodyHtml = true;
+            Message.SubjectEncoding = Encoding.UTF8;
 
+            Message.Body += "De volgende studenten hebben zich aangemeld voor de toets <br/> <hr/>";
+            Message.Body += GridViewToHtml(dgvKandidaten);
+            Message.Body += "<br/> <hr/>";
+            Message.Body += "<table><tr><td>Toets Informatie:</td></tr>"
+                + "<tr><td>Toets:</td><td>" + toetsTitel + "</td></tr>"
+                + "<tr><td>Beschrijving:</td><td>" + Beschrijving + "</td></tr>"
+                + "<tr><td>Datum:</td><td>" + Datum + "</td></tr>"
+                + "<tr><td>Tijd:</td><td>" + Tijd + "</td></tr>"
+                + "<tr><td>Tijdsduur:</td><td>" + lengte + " Minuten</td></tr>"
+                + "<tr><td>Studenten Van:</td><td>" + studentenvan + "</td></tr>"
+                + "<tr><td>Lokaal:</td><td>" + lokaal + "</td></tr></table>";
+
+            Message.IsBodyHtml = true;
+            Message.BodyEncoding = Encoding.UTF8;
             NetworkCredential nc = new NetworkCredential();
             nc.UserName = "rocvantwentepvb@gmail.com";
             nc.Password = "KJI1337!";
@@ -81,6 +101,7 @@ public partial class _Default : System.Web.UI.Page
             smtp.EnableSsl = true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(Message);
+      
         }
         catch (SmtpFailedRecipientsException ex)
         {
@@ -102,5 +123,17 @@ public partial class _Default : System.Web.UI.Page
         {
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
         }
+    }
+    private string GridViewToHtml(GridView gv)
+    {
+        StringBuilder sb = new StringBuilder();
+        StringWriter sw = new StringWriter(sb);
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        gv.RenderControl(hw);
+        return sb.ToString();
+    }
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+        /* Verifies that the control is rendered */
     }
 }
