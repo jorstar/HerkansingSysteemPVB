@@ -1,17 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="alleHerkansingenDocent.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="paginaContent" runat="server">
-
-    <table style="text-align:center; width: 100%;">
+    <table style="text-align: center; width: 100%;">
         <tr>
             <td>
-
-                <table style="width: 900px; margin: 50px auto 50px auto; ">
+                <table style="width: 900px; margin: 50px auto 50px auto;">
                     <tr>
                         <td colspan="2">
                             <asp:GridView ID="dgvDocentenHerkansingOverzicht" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
@@ -30,16 +27,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <td >
+                        <td>
                             <br />
                         </td>
-                        
+
                         <td rowspan="2">
                             <table style="height: 100%; width: 100%;">
                                 <tr>
-                                    <td>
-                                        Selecteer een toets on alle kandidaten te zien: <br />
-                                        <asp:DropDownList ID="DropDownList2" Width="169px" runat="server"></asp:DropDownList>
+                                    <td>Selecteer een toets om alle kandidaten te zien:
+                                        <br />
+                                        <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server"></asp:DropDownList>
                                     </td>
                                 </tr>
                             </table>
@@ -47,12 +44,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <div style="margin: 10px auto 10px auto; width: 297px;">
-                                <asp:RadioButtonList Width="297px" ID="RadioButtonList1" runat="server">
-                                    <asp:ListItem>Laat alle zelf aangemaakte herkansingen zien</asp:ListItem>
+                            <div style="margin: 10px auto 10px auto; width: 350px;">
+                                <asp:RadioButtonList Width="350px" ID="rdbVeranderDisplay" AutoPostBack="true" runat="server">
+                                    <asp:ListItem Value="Laat beschikbare herkansingen zien" Selected="True">Laat beschikbare herkansingen zien</asp:ListItem>
                                     <asp:ListItem>Laat alle herkansingen zien</asp:ListItem>
-                                    <asp:ListItem>Laat alle actieve herkansingen zien</asp:ListItem>
-                                    <asp:ListItem>Laat alle geweeste herkansingen zien</asp:ListItem>
+                                    <asp:ListItem Value="Laat herkansings geschiedenis zien">Laat herkansings geschiedenis zien</asp:ListItem>
+                                    <asp:ListItem>Laat alle zelf aangemaakte herkansingen zien</asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
                         </td>
