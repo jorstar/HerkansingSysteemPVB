@@ -297,6 +297,18 @@ public partial class VerkrijgBeschikbareHerkansingStudent_Result
     public string Toets { get; set; }
 }
 
+public partial class verkrijgHerkansingenGemaaktDoorDocent_Result
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string Datum { get; set; }
+    public string Lokaal { get; set; }
+    public Nullable<int> toetsId { get; set; }
+    public Nullable<int> Lengte_van_toets { get; set; }
+    public string Starttijd { get; set; }
+    public string Vak { get; set; }
+    public string Toets { get; set; }
+}
+
 public partial class VerkrijgHistorieHerkansingenDocent_Result
 {
     public Nullable<int> HerkansingID { get; set; }
