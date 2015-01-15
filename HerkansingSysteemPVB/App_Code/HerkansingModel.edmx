@@ -328,9 +328,6 @@
           <Parameter Name="HerkansingsID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetAllAankomendeHerkansingenPlusInfo" ReturnType="Collection(herkansingDBModel.GetAllAankomendeHerkansingenPlusInfo_Result)" />
-          <FunctionImport Name="GetAllStudentenHerk" ReturnType="Collection(herkansingDBModel.GetAllStudentenHerk_Result)">
-          <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="GetHerkansingInfoHerk" ReturnType="Collection(herkansingDBModel.GetHerkansingInfoHerk_Result)">
           <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -347,10 +344,13 @@
           <Parameter Name="studentID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetDocentEmail" ReturnType="Collection(String)">
-            <Parameter Name="DocentID" Mode="In" Type="String" />
+          <Parameter Name="DocentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetSurveillantEmail" ReturnType="Collection(String)">
-            <Parameter Name="SurveillantID" Mode="In" Type="String" />
+          <Parameter Name="SurveillantID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllStudentenHerk" ReturnType="Collection(herkansingDBModel.GetAllStudentenHerk_Result1)">
+            <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -641,6 +641,12 @@
           <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
           <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
         </ComplexType>
+        <ComplexType Name="GetAllStudentenHerk_Result1">
+          <Property Type="String" Name="Studentcode" Nullable="false" MaxLength="7" />
+          <Property Type="String" Name="Naam" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="KLAS" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="OPLEIDING" Nullable="false" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -824,16 +830,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAllStudentenHerk" FunctionName="herkansingDBModel.Store.GetAllStudentenHerk">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.GetAllStudentenHerk_Result">
-                <ScalarProperty Name="Studentcode" ColumnName="Studentcode" />
-                <ScalarProperty Name="Naam" ColumnName="Naam" />
-                <ScalarProperty Name="KLAS" ColumnName="KLAS" />
-                <ScalarProperty Name="OPLEIDING" ColumnName="OPLEIDING" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetHerkansingInfoHerk" FunctionName="herkansingDBModel.Store.GetHerkansingInfoHerk">
             <ResultMapping>
               <ComplexTypeMapping TypeName="herkansingDBModel.GetHerkansingInfoHerk_Result">
@@ -903,6 +899,16 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetDocentEmail" FunctionName="herkansingDBModel.Store.GetDocentEmail" />
           <FunctionImportMapping FunctionImportName="GetSurveillantEmail" FunctionName="herkansingDBModel.Store.GetSurveillantEmail" />
+          <FunctionImportMapping FunctionImportName="GetAllStudentenHerk" FunctionName="herkansingDBModel.Store.GetAllStudentenHerk">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.GetAllStudentenHerk_Result1">
+                <ScalarProperty Name="Studentcode" ColumnName="Studentcode" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="KLAS" ColumnName="KLAS" />
+                <ScalarProperty Name="OPLEIDING" ColumnName="OPLEIDING" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

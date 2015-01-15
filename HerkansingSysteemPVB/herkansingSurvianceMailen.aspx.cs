@@ -55,21 +55,23 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void btnMail_Click(object sender, EventArgs e)
     {
+        //string docent = Session["User"].ToString();
+        string docent = "KMP01";
+
         herkansingDBEntities entity = new herkansingDBEntities();
-        var surveillant = (from s in entity.Docent
-                           where s.DocentID == docentSurveillant
-                           select s);
+        string surveillantemail = entity.GetSurveillantEmail(docentSurveillant).First();
+        string docentemail = entity.GetDocentEmail(docent).First();
         MailMessage Message = new MailMessage();
 
-        Message.From = new MailAddress("test@gmail.com");
-        Message.To.Add(new MailAddress("receiver@gmail.com"));
-        Message.Subject = TBSub.Text;
-        Message.Body = TBBody.Text;
+        Message.From = new MailAddress(docentemail);
+        Message.To.Add(new MailAddress(surveillantemail));
+        Message.Subject = "Herkansing: " + toetsID + " - " + toetsTitel;
+        Message.Body = "";
         Message.IsBodyHtml = true;
 
         NetworkCredential nc = new NetworkCredential();
-        nc.UserName = "test";
-        nc.Password = "password";
+        nc.UserName = "rocvantwentepvb@gmail.com";
+        nc.Password = "KJI1337!";
 
         SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
         smtp.Credentials = nc;

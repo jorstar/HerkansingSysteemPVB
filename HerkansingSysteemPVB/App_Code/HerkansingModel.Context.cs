@@ -127,15 +127,6 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllAankomendeHerkansingenPlusInfo_Result>("GetAllAankomendeHerkansingenPlusInfo");
     }
 
-    public virtual ObjectResult<GetAllStudentenHerk_Result> GetAllStudentenHerk(Nullable<int> herkansingID)
-    {
-        var herkansingIDParameter = herkansingID.HasValue ?
-            new ObjectParameter("HerkansingID", herkansingID) :
-            new ObjectParameter("HerkansingID", typeof(int));
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllStudentenHerk_Result>("GetAllStudentenHerk", herkansingIDParameter);
-    }
-
     public virtual ObjectResult<GetHerkansingInfoHerk_Result> GetHerkansingInfoHerk(Nullable<int> herkansingID)
     {
         var herkansingIDParameter = herkansingID.HasValue ?
@@ -197,5 +188,14 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("SurveillantID", typeof(string));
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetSurveillantEmail", surveillantIDParameter);
+    }
+
+    public virtual ObjectResult<GetAllStudentenHerk_Result1> GetAllStudentenHerk(Nullable<int> herkansingID)
+    {
+        var herkansingIDParameter = herkansingID.HasValue ?
+            new ObjectParameter("HerkansingID", herkansingID) :
+            new ObjectParameter("HerkansingID", typeof(int));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllStudentenHerk_Result1>("GetAllStudentenHerk", herkansingIDParameter);
     }
 }
