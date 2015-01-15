@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -55,28 +56,51 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void btnMail_Click(object sender, EventArgs e)
     {
-        //string docent = Session["User"].ToString();
-        string docent = "KMP01";
+        try
+        {
+            //string docent = Session["User"].ToString();
+            string docent = "KMP01";
 
-        herkansingDBEntities entity = new herkansingDBEntities();
-        string surveillantemail = entity.GetSurveillantEmail(docentSurveillant).First();
-        string docentemail = entity.GetDocentEmail(docent).First();
-        MailMessage Message = new MailMessage();
+            herkansingDBEntities entity = new herkansingDBEntities();
+            string surveillantemail = entity.GetSurveillantEmail(docentSurveillant).First();
+            string docentemail = entity.GetDocentEmail(docent).First();
+            MailMessage Message = new MailMessage();
 
-        Message.From = new MailAddress(docentemail);
-        Message.To.Add(new MailAddress(surveillantemail));
-        Message.Subject = "Herkansing: " + toetsID + " - " + toetsTitel;
-        Message.Body = "";
-        Message.IsBodyHtml = true;
+            Message.From = new MailAddress(docentemail);
+            Message.To.Add(new MailAddress(surveillantemail));
+            Message.Subject = "Herkansing: " + toetsID + " - " + toetsTitel;
+            Message.Body = dgvKandidaten.ToString();
+            Message.IsBodyHtml = true;
 
-        NetworkCredential nc = new NetworkCredential();
-        nc.UserName = "rocvantwentepvb@gmail.com";
-        nc.Password = "KJI1337!";
+            NetworkCredential nc = new NetworkCredential();
+            nc.UserName = "rocvantwentepvb@gmail.com";
+            nc.Password = "KJI1337!";
 
-        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-        smtp.Credentials = nc;
-        smtp.EnableSsl = true;
-        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-        smtp.Send(Message);
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = nc;
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Send(Message);
+        }
+        catch (SmtpFailedRecipientsException ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
+        }
+        catch (SmtpFailedRecipientException ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
+        }
+        catch (SmtpException ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
+        }
+        catch (EntityException ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
+        }
+        catch (Exception ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
+        }
     }
 }
