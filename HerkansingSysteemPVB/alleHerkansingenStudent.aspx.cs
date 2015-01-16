@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 public partial class _Default : System.Web.UI.Page
 {
     public int Userid = 0015180; // verwijderen als de Session dingen zijn geregeld\\
+    public string sessHerkansingID = "";
 
     #region important stuffs
     public herkansingDBEntities objHerkansing = new herkansingDBEntities();
@@ -62,13 +63,11 @@ public partial class _Default : System.Web.UI.Page
             return rdbSelectedValue = 0;
     }
 
-    protected void ddlSelecteerdHerkansing_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        //hier dingen in een session zetten
-    }
-
     protected void btnAanmelden_Click(object sender, EventArgs e)
     {
-        //sessions versturen OF aanmelden voor een herkansing
+        ////sessions versturen OF aanmelden voor een herkansing
+        sessHerkansingID = ddlSelecteerdHerkansing.SelectedValue;
+        Session["HerkansingID"] = sessHerkansingID;
+
     }
 }

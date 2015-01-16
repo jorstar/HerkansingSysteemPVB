@@ -35,7 +35,9 @@
                                 <tr>
                                     <td>Selecteer een HerkansingID om voor aan te melden:
                                         <br />
-                                        <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server" OnSelectedIndexChanged="ddlSelecteerdHerkansing_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server" AutoPostBack="True">
+                                            <asp:ListItem Value="0"></asp:ListItem>
+                                        </asp:DropDownList>
                                     </td>
                                 </tr>
                             </table>
