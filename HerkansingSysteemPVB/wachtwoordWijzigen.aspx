@@ -17,8 +17,11 @@
                         </td>
                         <td class="herkansingAanmakenRightTableCollumn">
 
-                            <asp:TextBox ID="txtOldPass" CssClass="inputs" Width="169px" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtOldPass" CssClass="inputs" Width="250px" runat="server" TextMode="Password"></asp:TextBox>
 
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtOldPass" ErrorMessage="Het oude wachtwoord is verplicht" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -27,8 +30,12 @@
                         </td>
                         <td class="herkansingAanmakenRightTableCollumn">
 
-                            <asp:TextBox ID="txtNewPass" CssClass="inputs" runat="server" Width="169px"></asp:TextBox>
+                            <asp:TextBox ID="txtNewPass" CssClass="inputs" runat="server" Width="250px" TextMode="Password"></asp:TextBox>
 
+                        </td>
+                        <td>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtNewPass" ControlToValidate="txtNewPassCheck" ErrorMessage="Nieuwe wachtwoorden komen niet overeen" ForeColor="Red">*</asp:CompareValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNewPass" ErrorMessage="Geen nieuw wachtwoord opgegeven" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -37,8 +44,11 @@
                         </td>
                         <td class="herkansingAanmakenRightTableCollumn">
 
-                            <asp:TextBox ID="txtNewPassCheck" CssClass="inputs" runat="server" Width="169px"></asp:TextBox>
+                            <asp:TextBox ID="txtNewPassCheck" CssClass="inputs" runat="server" Width="250px" TextMode="Password"></asp:TextBox>
 
+                        </td>
+                        <td>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtNewPassCheck" ErrorMessage="Geen check voor het nieuwe wachtwoord opgegeven" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -48,9 +58,18 @@
                     </tr>
                      <tr>
                         <td colspan="2">
-                            <asp:Button ID="btnBevestig" CssClass="fancyButton" runat="server" Text="Bevestig" />
+                            <asp:Button ID="btnBevestig" CssClass="fancyButton" runat="server" Text="Wachtwoord wijzigen" OnClick="btnBevestig_Click" />
                         </td>
                     </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="padding: 10px 0; text-align:center;">
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+                        </td>
+                    </tr>
+
                 </table>
 
             </td>
