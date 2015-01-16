@@ -1,0 +1,34 @@
+Alpha 1.3 - Changes:
+ - Stress markers are visible through panels
+ - Added x-ray mode
+ - Uneven ocean floor (not yet editable, but physics are working)
+ - Multithreaded simulation: should run much faster on multicore processors
+ - Fixed the "jelly bug" - simulation is much more stable (still issues with spheres)
+ - Fixed bug where program would fail to close when a large ship was loaded
+ - Added option (Ctrl+R) to reload last ship
+
+Alpha 1.2 - Changes:
+ - Materials system with customizable materials (data/materials.json)
+ - New materials (+ new colour codes)
+ - Improved physics/stiffness
+ - Improved graphics (solid panels)
+ - Fixed crashing and physics issues associated with smash tool
+ - *Temporary fix* for non-transparent water (see settings dialog)
+
+Alpha 1.1 - Changes:
+ - Added Grab tool
+ - Pressure increases with depth
+ - Water can flow both in and out of hull breaches
+ - Improved fluid dynamics
+
+Alpha 1.0 - Changes:
+ - Hull material is not self-buoyant (need air pockets for buoyancy)
+ - Hull material is heavier, slightly stronger
+ - Exposed white areas flood more quickly
+ - Gaps in hull material leak automatically, without anything breaking
+ - Different materials - Steel, wood, etc. (different strengths, colours)
+ - Can destroy ships with mouse (interactive!)
+ - Fixed crashing issue (was some bad memory access, fixed up the order of things now)
+ - Customizable wave height, water pressure, strength and buoyancy
+ - Sea floor at 150m depth
+ - Can view stress levels
