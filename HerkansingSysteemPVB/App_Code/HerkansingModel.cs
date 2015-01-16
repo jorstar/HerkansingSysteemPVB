@@ -313,6 +313,15 @@ public partial class VerkrijgAlleHerkansingenStudent_Result
     public string Toets { get; set; }
 }
 
+public partial class VerkrijgAlleStudentenVanEenHerkansing_Result
+{
+    public Nullable<int> HerkansingID { get; set; }
+    public string LRL_NR { get; set; }
+    public string ROEPNAAM { get; set; }
+    public string TUSSENV { get; set; }
+    public string ACHTERNAM { get; set; }
+}
+
 public partial class VerkrijgBeschikbareHerkansingDocent_Result
 {
     public Nullable<int> HerkansingID { get; set; }

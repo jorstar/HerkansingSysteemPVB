@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Beheerder">
           <Key>
             <PropertyRef Name="Gebruikersnaam" />
@@ -236,6 +236,9 @@
         <Function Name="VerkrijgAlleHerkansingenStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="studentID" Type="int" Mode="In" />
         </Function>
+        <Function Name="VerkrijgAlleStudentenVanEenHerkansing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HerkansingID" Type="int" Mode="In" />
+        </Function>
         <Function Name="VerkrijgBeschikbareHerkansingDocent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="VerkrijgBeschikbareHerkansingStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="studentID" Type="int" Mode="In" />
@@ -396,7 +399,10 @@
           <Parameter Name="DocentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="getStudentHerkansingen" ReturnType="Collection(herkansingDBModel.getStudentHerkansingen_Result2)">
-            <Parameter Name="herkansingid" Mode="In" Type="Int32" />
+          <Parameter Name="herkansingid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VerkrijgAlleStudentenVanEenHerkansing" ReturnType="Collection(herkansingDBModel.VerkrijgAlleStudentenVanEenHerkansing_Result)">
+            <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -771,6 +777,13 @@
           <Property Type="String" Name="surveillant" Nullable="false" MaxLength="250" />
           <Property Type="String" Name="plaatsen" Nullable="true" MaxLength="61" />
         </ComplexType>
+        <ComplexType Name="VerkrijgAlleStudentenVanEenHerkansing_Result">
+          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
+          <Property Type="String" Name="LRL_NR" Nullable="false" MaxLength="7" />
+          <Property Type="String" Name="ROEPNAAM" Nullable="false" MaxLength="75" />
+          <Property Type="String" Name="TUSSENV" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="ACHTERNAM" Nullable="false" MaxLength="150" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1112,6 +1125,17 @@
                 <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
                 <ScalarProperty Name="surveillant" ColumnName="surveillant" />
                 <ScalarProperty Name="plaatsen" ColumnName="plaatsen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerkrijgAlleStudentenVanEenHerkansing" FunctionName="herkansingDBModel.Store.VerkrijgAlleStudentenVanEenHerkansing">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgAlleStudentenVanEenHerkansing_Result">
+                <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
+                <ScalarProperty Name="LRL_NR" ColumnName="LRL_NR" />
+                <ScalarProperty Name="ROEPNAAM" ColumnName="ROEPNAAM" />
+                <ScalarProperty Name="TUSSENV" ColumnName="TUSSENV" />
+                <ScalarProperty Name="ACHTERNAM" ColumnName="ACHTERNAM" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
