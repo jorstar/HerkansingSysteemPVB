@@ -35,10 +35,10 @@
                                 <tr>
                                     <td>Selecteer een HerkansingID om voor aan te melden:
                                         <br />
-                                        <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server" AutoPostBack="True">
+                                        <asp:DropDownList CssClass="inputs" ID="ddlSelecteerdHerkansing" Width="169px" runat="server" AutoPostBack="True">
                                         </asp:DropDownList>
                                         <br />
-                                        <asp:Button ID="btnAanmelden" runat="server" Text="Aanmelden" OnClick="btnAanmelden_Click" />
+                                        <asp:Button ID="btnAanmelden" CssClass="fancyButton" runat="server" Text="Aanmelden" OnClick="btnAanmelden_Click" />
                                     </td>
                                 </tr>
                             </table>
