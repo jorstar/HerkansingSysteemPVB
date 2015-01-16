@@ -46,7 +46,7 @@
                     <tr>
                         <td colspan="2">
                             <hr />
-                            <asp:Button ID="btnAanmelden" runat="server" Text="Aanmelden" OnClick="btnAanmelden_Click" />
+                            <asp:Button ID="btnAanmelden" CssClass="fancyButton" runat="server" Text="Aanmelden" OnClick="btnAanmelden_Click" />
                         </td>
                     </tr>
                 </table>

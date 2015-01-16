@@ -36,9 +36,9 @@
                                 <tr>
                                     <td>Selecteer een toets om alle kandidaten te zien:
                                         <br />
-                                        <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server" OnSelectedIndexChanged="ddlSelecteerdHerkansing_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:DropDownList CssClass="inputs" ID="ddlSelecteerdHerkansing" Width="169px" runat="server" OnSelectedIndexChanged="ddlSelecteerdHerkansing_SelectedIndexChanged"></asp:DropDownList>
                                         <br />
-                                        <asp:Button ID="btnTonen" Text="Tonen" runat="server" OnClick="btnTonen_Click" />
+                                        <asp:Button CssClass="fancyButton" ID="btnTonen" Text="Tonen" runat="server" OnClick="btnTonen_Click" />
                                     </td>
                                 </tr>
                             </table>
