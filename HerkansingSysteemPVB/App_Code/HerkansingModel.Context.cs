@@ -294,4 +294,43 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleStudentenVanEenHerkansing_Result>("VerkrijgAlleStudentenVanEenHerkansing", herkansingIDParameter);
     }
+
+    public virtual int wwChangeBeheer(string nieuwWachtWoord, string gebruikersnaam)
+    {
+        var nieuwWachtWoordParameter = nieuwWachtWoord != null ?
+            new ObjectParameter("NieuwWachtWoord", nieuwWachtWoord) :
+            new ObjectParameter("NieuwWachtWoord", typeof(string));
+
+        var gebruikersnaamParameter = gebruikersnaam != null ?
+            new ObjectParameter("Gebruikersnaam", gebruikersnaam) :
+            new ObjectParameter("Gebruikersnaam", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeBeheer", nieuwWachtWoordParameter, gebruikersnaamParameter);
+    }
+
+    public virtual int wwChangeDocent(string nieuwWachtWoord, string docentID)
+    {
+        var nieuwWachtWoordParameter = nieuwWachtWoord != null ?
+            new ObjectParameter("NieuwWachtWoord", nieuwWachtWoord) :
+            new ObjectParameter("NieuwWachtWoord", typeof(string));
+
+        var docentIDParameter = docentID != null ?
+            new ObjectParameter("DocentID", docentID) :
+            new ObjectParameter("DocentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeDocent", nieuwWachtWoordParameter, docentIDParameter);
+    }
+
+    public virtual int wwChangeStudent(string nieuwWachtWoord, string lRL_NR)
+    {
+        var nieuwWachtWoordParameter = nieuwWachtWoord != null ?
+            new ObjectParameter("NieuwWachtWoord", nieuwWachtWoord) :
+            new ObjectParameter("NieuwWachtWoord", typeof(string));
+
+        var lRL_NRParameter = lRL_NR != null ?
+            new ObjectParameter("LRL_NR", lRL_NR) :
+            new ObjectParameter("LRL_NR", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeStudent", nieuwWachtWoordParameter, lRL_NRParameter);
+    }
 }
