@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="wachtwoordWijzigen.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="Wachtwoord wijzigen" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="wachtwoordWijzigen.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -10,14 +10,14 @@
         <tr>
             <td>
 
-                <table style="width: 600px; margin: 50px auto 50px auto;">
+                <table class="fancyTable" style="width: 600px; margin: 50px auto 50px auto;">
                     <tr>
                         <td style="width: 50%;">Het oude wachtwoord
 
                         </td>
-                        <td>
+                        <td class="herkansingAanmakenRightTableCollumn">
 
-                            <asp:TextBox ID="TextBox1" Width="169px" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtOldPass" CssClass="inputs" Width="169px" runat="server"></asp:TextBox>
 
                         </td>
                     </tr>
@@ -25,9 +25,9 @@
                         <td>Het nieuwe wachtwoord
 
                         </td>
-                        <td>
+                        <td class="herkansingAanmakenRightTableCollumn">
 
-                            <asp:TextBox ID="TextBox2" runat="server" Width="169px"></asp:TextBox>
+                            <asp:TextBox ID="txtNewPass" CssClass="inputs" runat="server" Width="169px"></asp:TextBox>
 
                         </td>
                     </tr>
@@ -35,9 +35,9 @@
                         <td>Het nieuwe wachtwoord (check)
 
                         </td>
-                        <td>
+                        <td class="herkansingAanmakenRightTableCollumn">
 
-                            <asp:TextBox ID="TextBox3" runat="server" Width="169px"></asp:TextBox>
+                            <asp:TextBox ID="txtNewPassCheck" CssClass="inputs" runat="server" Width="169px"></asp:TextBox>
 
                         </td>
                     </tr>
@@ -48,7 +48,7 @@
                     </tr>
                      <tr>
                         <td colspan="2">
-                            <asp:Button ID="Button1" runat="server" Text="Bevestig" />
+                            <asp:Button ID="btnBevestig" CssClass="fancyButton" runat="server" Text="Bevestig" />
                         </td>
                     </tr>
                 </table>
