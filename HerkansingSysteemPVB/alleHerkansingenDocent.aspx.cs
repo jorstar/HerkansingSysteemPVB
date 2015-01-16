@@ -10,6 +10,7 @@ public partial class _Default : System.Web.UI.Page
     public herkansingDBEntities objHerkansing = new herkansingDBEntities();
     public int rdbSelectedValue;
     public string DocentID = "WGS01";
+    public string HerkansingsIDString = "";
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -68,6 +69,13 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void ddlSelecteerdHerkansing_SelectedIndexChanged(object sender, EventArgs e)
     {
+        HerkansingsIDString = ddlSelecteerdHerkansing.SelectedValue;
+    }
+    protected void btnTonen_Click(object sender, EventArgs e)
+    {
+        HerkansingsIDString = ddlSelecteerdHerkansing.SelectedValue;
 
+        dgvDocentenHerkansingOverzicht.DataSource = objHerkansing.VerkrijgAlleStudentenVanEenHerkansing(Convert.ToInt32(HerkansingsIDString));
+        dgvDocentenHerkansingOverzicht.DataBind();
     }
 }

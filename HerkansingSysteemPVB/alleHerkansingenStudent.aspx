@@ -36,12 +36,13 @@
                                     <td>Selecteer een HerkansingID om voor aan te melden:
                                         <br />
                                         <asp:DropDownList ID="ddlSelecteerdHerkansing" Width="169px" runat="server" AutoPostBack="True">
-                                            <asp:ListItem Value="0"></asp:ListItem>
                                         </asp:DropDownList>
+                                        <br />
+                                        <asp:Button ID="btnAanmelden" runat="server" Text="Aanmelden" OnClick="btnAanmelden_Click" />
                                     </td>
                                 </tr>
                             </table>
-                            <asp:Button ID="btnAanmelden" runat="server" Text="Aanmelden" OnClick="btnAanmelden_Click" />
+
                         </td>
                     </tr>
                     <tr>
