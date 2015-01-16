@@ -251,14 +251,17 @@
           <Parameter Name="studentID" Type="int" Mode="In" />
         </Function>
         <Function Name="wwChangeBeheer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="oldWachtWoord" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="NieuwWachtWoord" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="Gebruikersnaam" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="wwChangeDocent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="oldWachtWoord" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="NieuwWachtWoord" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="DocentID" Type="nchar" Mode="In" />
         </Function>
         <Function Name="wwChangeStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="oldWachtWoord" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="NieuwWachtWoord" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="LRL_NR" Type="nchar" Mode="In" />
         </Function>
@@ -417,14 +420,17 @@
           <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="wwChangeBeheer">
+            <Parameter Name="oldWachtWoord" Mode="In" Type="String" />
             <Parameter Name="NieuwWachtWoord" Mode="In" Type="String" />
             <Parameter Name="Gebruikersnaam" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="wwChangeDocent">
+            <Parameter Name="oldWachtWoord" Mode="In" Type="String" />
             <Parameter Name="NieuwWachtWoord" Mode="In" Type="String" />
             <Parameter Name="DocentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="wwChangeStudent">
+            <Parameter Name="oldWachtWoord" Mode="In" Type="String" />
             <Parameter Name="NieuwWachtWoord" Mode="In" Type="String" />
             <Parameter Name="LRL_NR" Mode="In" Type="String" />
           </FunctionImport>

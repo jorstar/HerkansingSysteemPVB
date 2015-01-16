@@ -295,8 +295,12 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleStudentenVanEenHerkansing_Result>("VerkrijgAlleStudentenVanEenHerkansing", herkansingIDParameter);
     }
 
-    public virtual int wwChangeBeheer(string nieuwWachtWoord, string gebruikersnaam)
+    public virtual int wwChangeBeheer(string oldWachtWoord, string nieuwWachtWoord, string gebruikersnaam)
     {
+        var oldWachtWoordParameter = oldWachtWoord != null ?
+            new ObjectParameter("oldWachtWoord", oldWachtWoord) :
+            new ObjectParameter("oldWachtWoord", typeof(string));
+
         var nieuwWachtWoordParameter = nieuwWachtWoord != null ?
             new ObjectParameter("NieuwWachtWoord", nieuwWachtWoord) :
             new ObjectParameter("NieuwWachtWoord", typeof(string));
@@ -305,11 +309,15 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("Gebruikersnaam", gebruikersnaam) :
             new ObjectParameter("Gebruikersnaam", typeof(string));
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeBeheer", nieuwWachtWoordParameter, gebruikersnaamParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeBeheer", oldWachtWoordParameter, nieuwWachtWoordParameter, gebruikersnaamParameter);
     }
 
-    public virtual int wwChangeDocent(string nieuwWachtWoord, string docentID)
+    public virtual int wwChangeDocent(string oldWachtWoord, string nieuwWachtWoord, string docentID)
     {
+        var oldWachtWoordParameter = oldWachtWoord != null ?
+            new ObjectParameter("oldWachtWoord", oldWachtWoord) :
+            new ObjectParameter("oldWachtWoord", typeof(string));
+
         var nieuwWachtWoordParameter = nieuwWachtWoord != null ?
             new ObjectParameter("NieuwWachtWoord", nieuwWachtWoord) :
             new ObjectParameter("NieuwWachtWoord", typeof(string));
@@ -318,11 +326,15 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("DocentID", docentID) :
             new ObjectParameter("DocentID", typeof(string));
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeDocent", nieuwWachtWoordParameter, docentIDParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeDocent", oldWachtWoordParameter, nieuwWachtWoordParameter, docentIDParameter);
     }
 
-    public virtual int wwChangeStudent(string nieuwWachtWoord, string lRL_NR)
+    public virtual int wwChangeStudent(string oldWachtWoord, string nieuwWachtWoord, string lRL_NR)
     {
+        var oldWachtWoordParameter = oldWachtWoord != null ?
+            new ObjectParameter("oldWachtWoord", oldWachtWoord) :
+            new ObjectParameter("oldWachtWoord", typeof(string));
+
         var nieuwWachtWoordParameter = nieuwWachtWoord != null ?
             new ObjectParameter("NieuwWachtWoord", nieuwWachtWoord) :
             new ObjectParameter("NieuwWachtWoord", typeof(string));
@@ -331,6 +343,6 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("LRL_NR", lRL_NR) :
             new ObjectParameter("LRL_NR", typeof(string));
 
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeStudent", nieuwWachtWoordParameter, lRL_NRParameter);
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeStudent", oldWachtWoordParameter, nieuwWachtWoordParameter, lRL_NRParameter);
     }
 }
