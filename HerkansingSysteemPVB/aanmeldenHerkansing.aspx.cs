@@ -15,6 +15,10 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void btnAanmelden_Click(object sender, EventArgs e)
     {
+
+
+
+
         ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + Guid.NewGuid().ToString("N") + "');", true);
     }
 }
