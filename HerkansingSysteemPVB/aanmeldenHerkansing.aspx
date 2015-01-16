@@ -12,7 +12,7 @@
 
                 <table style="width: 600px; margin: 50px auto 50px auto">
                     <tr>
-                        <td>Toets:</td>
+                        <td>Vak:</td>
                         <td></td>
                     </tr>
                     <tr>
@@ -20,7 +20,7 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td>Vak:</td>
                         <td></td>
                     </tr>
                     <tr>

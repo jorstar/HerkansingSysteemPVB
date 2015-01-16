@@ -395,7 +395,7 @@
           <FunctionImport Name="verkrijgHerkansingenGemaaktDoorDocent" ReturnType="Collection(herkansingDBModel.verkrijgHerkansingenGemaaktDoorDocent_Result)">
           <Parameter Name="DocentID" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="getStudentHerkansingen" ReturnType="Collection(herkansingDBModel.getStudentHerkansingen_Result1)">
+          <FunctionImport Name="getStudentHerkansingen" ReturnType="Collection(herkansingDBModel.getStudentHerkansingen_Result2)">
             <Parameter Name="herkansingid" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -760,6 +760,17 @@
           <Property Type="String" Name="surveillant" Nullable="false" MaxLength="250" />
           <Property Type="Int32" Name="plaatsen" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="getStudentHerkansingen_Result2">
+          <Property Type="String" Name="Toets" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Beschrijving" Nullable="true" />
+          <Property Type="String" Name="VakNaam" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
+          <Property Type="String" Name="begintijd" Nullable="false" MaxLength="5" />
+          <Property Type="String" Name="Tijdsduur" Nullable="true" MaxLength="38" />
+          <Property Type="String" Name="Lokaal" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="surveillant" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="plaatsen" Nullable="true" MaxLength="61" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1091,7 +1102,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getStudentHerkansingen" FunctionName="herkansingDBModel.Store.getStudentHerkansingen">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.getStudentHerkansingen_Result1">
+              <ComplexTypeMapping TypeName="herkansingDBModel.getStudentHerkansingen_Result2">
                 <ScalarProperty Name="Toets" ColumnName="Toets" />
                 <ScalarProperty Name="Beschrijving" ColumnName="Beschrijving" />
                 <ScalarProperty Name="VakNaam" ColumnName="VakNaam" />

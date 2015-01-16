@@ -258,6 +258,19 @@ public partial class getStudentHerkansingen_Result1
     public Nullable<int> plaatsen { get; set; }
 }
 
+public partial class getStudentHerkansingen_Result2
+{
+    public string Toets { get; set; }
+    public string Beschrijving { get; set; }
+    public string VakNaam { get; set; }
+    public string Datum { get; set; }
+    public string begintijd { get; set; }
+    public string Tijdsduur { get; set; }
+    public string Lokaal { get; set; }
+    public string surveillant { get; set; }
+    public string plaatsen { get; set; }
+}
+
 public partial class GetToetsInfo_Result
 {
     public Nullable<int> ToetsID { get; set; }
