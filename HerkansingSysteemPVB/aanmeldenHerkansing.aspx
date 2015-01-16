@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="aanmeldenHerkansing.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="Aanmelden voor Herkansing" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="aanmeldenHerkansing.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -10,33 +10,42 @@
         <tr>
             <td>
 
-                <table style="width: 600px; margin: 50px auto 50px auto">
+                <table class="fancyTable">
                     <tr>
                         <td>Vak:</td>
-                        <td></td>
+                        <td><asp:Label ID="lblvak" runat="server" Text=""></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td>Toets:</td>
+                        <td><asp:Label ID="lblToets" runat="server" Text=""></asp:Label></td>
                     </tr>
                     <tr>
                         <td>Beschrijving:</td>
-                        <td></td>
+                        <td><asp:Label ID="lblBeschrijving" runat="server" Text=""></asp:Label></td>
                     </tr>
                     <tr>
-                        <td>Vak:</td>
-                        <td></td>
+                        <td>Datum:</td>
+                        <td><asp:Label ID="lblDatum" runat="server" Text=""></asp:Label></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td>Tijdsduur:</td>
+                        <td><asp:Label ID="lblTijdsduur" runat="server" Text=""></asp:Label></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td>Lokaal:</td>
+                        <td><asp:Label ID="lblLokaal" runat="server" Text=""></asp:Label></td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td>Aantal Plaatsen:</td>
+                        <td><asp:Label ID="lblPlaatsen" runat="server" Text=""></asp:Label></td>
                     </tr>
                     <tr>
-                        <td>
+                        <td>Surveillant:</td>
+                        <td><asp:Label ID="lblSurveillant" runat="server" Text=""></asp:Label></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <hr />
                             <asp:Button ID="btnAanmelden" runat="server" Text="Aanmelden" OnClick="btnAanmelden_Click" />
                         </td>
                     </tr>
