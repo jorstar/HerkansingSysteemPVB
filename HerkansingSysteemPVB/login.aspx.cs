@@ -9,7 +9,7 @@ public partial class _Default : System.Web.UI.Page
 {
     herkansingDBEntities ef = new herkansingDBEntities();
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {   
         //List<Student> stud = (from u in ef.Student
         //                      where u.WACHTWOORD == null
         //                      select u).ToList();
@@ -20,6 +20,11 @@ public partial class _Default : System.Web.UI.Page
         //    s.WACHTWOORD = pass;
         //    ef.SaveChanges();
         //}
+
+        if (Session["Role"] != null)
+        {
+            Response.Redirect("Home.aspx");
+        }
 
     }
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -59,9 +64,19 @@ public partial class _Default : System.Web.UI.Page
                     Session["User"] = obj.DocentID;
                     Session["Role"] = role;
 
-                    tbGebruikersnaam.Text = "";
-                    tbWachtwoord.Text = "";
-                    Response.Redirect("~/Home.aspx");
+                    if (docent.First().FirstLogin == true)
+                    {
+                        Session["wwChange"] = true;
+                        tbGebruikersnaam.Text = "";
+                        tbWachtwoord.Text = "";
+                        Response.Redirect("~/wachtwoordWijzigen.aspx");
+                    }
+                    else
+                    {
+                        tbGebruikersnaam.Text = "";
+                        tbWachtwoord.Text = "";
+                        Response.Redirect("~/Home.aspx");
+                    }
                 }
                 else
                 {
@@ -76,9 +91,30 @@ public partial class _Default : System.Web.UI.Page
                         Session["User"] = obj.LRL_NR;
                         Session["Role"] = role;
 
-                        tbGebruikersnaam.Text = "";
-                        tbWachtwoord.Text = "";
-                        Response.Redirect("~/Home.aspx");
+                        if (student.First().FirstLogin == true)
+                        {
+                            Session["wwChange"] = true;
+                            tbGebruikersnaam.Text = "";
+                            tbWachtwoord.Text = "";
+                            Response.Redirect("~/wachtwoordWijzigen.aspx");
+                        }
+                        else
+                        {
+                            tbGebruikersnaam.Text = "";
+                            tbWachtwoord.Text = "";
+
+                            string page = Request.QueryString["page"];
+                            if (page == "Bevestigen")
+                            {
+                                string guid = Request.QueryString["ID"];
+                                Response.Redirect("mailbevestigen.aspx?herkansing=" + guid);
+                            }
+                            else
+                            {
+                                Response.Redirect("~/Home.aspx");
+                            }
+                        }
+                        
                     }
                     else
                     {

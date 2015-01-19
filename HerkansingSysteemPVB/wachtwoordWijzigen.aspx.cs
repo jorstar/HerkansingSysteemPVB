@@ -12,7 +12,10 @@ public partial class _Default : System.Web.UI.Page
 
         if (Convert.ToString(Session["Role"]) == "B" | Convert.ToString(Session["Role"]) == "D" | Convert.ToString(Session["Role"]) == "S")
         {
-
+            if (Session["wwChange"] == null)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Wijzig uw wachtwoord');", true);
+            }
         }
         else
         {

@@ -17,6 +17,7 @@ public partial class Beheerder
     public string Tussenvoegsel { get; set; }
     public string Achternaam { get; set; }
     public string Wachtwoord { get; set; }
+    public Nullable<bool> FirstLogin { get; set; }
 }
 
 public partial class Docent
@@ -33,6 +34,7 @@ public partial class Docent
     public string Achternaam { get; set; }
     public string Email { get; set; }
     public string Wachtwoord { get; set; }
+    public bool FirstLogin { get; set; }
 
     public virtual ICollection<Herkansing> Herkansing { get; set; }
     public virtual ICollection<Herkansing> Herkansing1 { get; set; }
