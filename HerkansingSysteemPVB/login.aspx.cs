@@ -21,6 +21,11 @@ public partial class _Default : System.Web.UI.Page
         //    ef.SaveChanges();
         //}
 
+        if (Session["Role"] != null)
+        {
+            Response.Redirect("Home.aspx");
+        }
+
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {
