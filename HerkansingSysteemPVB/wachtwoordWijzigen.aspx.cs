@@ -10,7 +10,16 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        if (Session["role"] == null)
+        {
+            Response.Redirect("login.aspx");
+        }
+        else
+        {
 
+
+
+        }
 
     }
     protected void btnBevestig_Click(object sender, EventArgs e)
@@ -28,35 +37,102 @@ public partial class _Default : System.Web.UI.Page
             }
             else
             {
+
                 if (Session["Role"] == "B")
                 {
                     herkansingDBEntities entity = new herkansingDBEntities();
 
-                    entity.wwChangeBeheer(
+                    string user = Convert.ToString(Session["User"]).ToUpper();
+                    string passwd = Functies.CalculateHashedPassword(txtOldPass.Text, user);
+
+                    var objVar = from b in entity.Beheerder
+                                 where b.Gebruikersnaam.ToUpper() == user && b.Wachtwoord == passwd
+                                 select b;
+                    if (objVar.Any())
+                    {
+                        entity.wwChangeBeheer(
                         Functies.CalculateHashedPassword(txtOldPass.Text, Convert.ToString(Session["User"])),
                         Functies.CalculateHashedPassword(txtNewPass.Text, Convert.ToString(Session["User"])),
                         Convert.ToString(Session["User"])
                         );
+
+                        Session.Abandon();
+
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Wachtwoord is gewijzigd.');", true);
+
+                        Response.Redirect("login.aspx");
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Het oude wachtwoord was incorrect');", true);
+
+                        txtOldPass.Text = "";
+                        txtOldPass.Focus();
+                    }
                 }
                 else if (Session["Role"] == "D")
                 {
                     herkansingDBEntities entity = new herkansingDBEntities();
 
-                    entity.wwChangeDocent(
+                    string user = Convert.ToString(Session["User"]).ToUpper();
+                    string passwd = Functies.CalculateHashedPassword(txtOldPass.Text, user);
+
+                    var objVar = from b in entity.Docent
+                                 where b.DocentID.ToUpper() == user && b.Wachtwoord == passwd
+                                 select b;
+                    if (objVar.Any())
+                    {
+                        entity.wwChangeDocent(
                         Functies.CalculateHashedPassword(txtOldPass.Text, Convert.ToString(Session["User"])),
                         Functies.CalculateHashedPassword(txtNewPass.Text, Convert.ToString(Session["User"])),
                         Convert.ToString(Session["User"])
                         );
+
+                        Session.Abandon();
+
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Wachtwoord is gewijzigd.');", true);
+
+                        Response.Redirect("login.aspx");
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Het oude wachtwoord was incorrect');", true);
+
+                        txtOldPass.Text = "";
+                        txtOldPass.Focus();
+                    }
                 }
                 else if (Session["Role"] == "S")
                 {
                     herkansingDBEntities entity = new herkansingDBEntities();
 
-                    entity.wwChangeStudent(
-                        Functies.CalculateHashedPassword(txtOldPass.Text, Convert.ToString(Session["User"])),
-                        Functies.CalculateHashedPassword(txtNewPass.Text, Convert.ToString(Session["User"])),
-                        Convert.ToString(Session["User"])
-                        );
+                    string user = Convert.ToString(Session["User"]).ToUpper();
+                    string passwd = Functies.CalculateHashedPassword(txtOldPass.Text, user);
+
+                    var objVar = from b in entity.Student
+                                 where b.LRL_NR.ToUpper() == user && b.WACHTWOORD == passwd
+                                 select b;
+                    if (objVar.Any())
+                    {
+                        entity.wwChangeStudent(
+                            Functies.CalculateHashedPassword(txtOldPass.Text, Convert.ToString(Session["User"])),
+                            Functies.CalculateHashedPassword(txtNewPass.Text, Convert.ToString(Session["User"])),
+                            Convert.ToString(Session["User"])
+                            );
+
+                        Session.Abandon();
+
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Wachtwoord is gewijzigd.');", true);
+
+                        Response.Redirect("login.aspx");
+                    }
+                    else
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Het oude wachtwoord was incorrect');", true);
+
+                        txtOldPass.Text = "";
+                        txtOldPass.Focus();
+                    }
                 }
                 else
                 {
