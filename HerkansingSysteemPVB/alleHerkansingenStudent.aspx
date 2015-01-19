@@ -33,12 +33,9 @@
                         <td rowspan="2">
                             <table style="height: 100%; width: 100%;">
                                 <tr>
-                                    <td>Selecteer een Herkansing om voor aan te melden:
+                                    <td>Om een herkansing te selecteren klik je op de desgewenste regel in de tabel.
                                         <br />
-                                        <asp:DropDownList CssClass="inputs" ID="ddlSelecteerdHerkansing" Width="169px" runat="server" AutoPostBack="True">
-                                        </asp:DropDownList>
-                                        <br />
-                                        <asp:Button ID="btnAanmelden" CssClass="fancyButton" runat="server" Text="Aanmelden" OnClick="btnAanmelden_Click" />
+                                        Dan wordt je doorgestuurd en kun je alles nog eens rustig nakijken alvorens je op de bevestigings knop klikt.
                                     </td>
                                 </tr>
                             </table>

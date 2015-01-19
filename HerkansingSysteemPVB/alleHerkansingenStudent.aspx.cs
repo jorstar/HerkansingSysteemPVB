@@ -55,15 +55,6 @@ public partial class _Default : System.Web.UI.Page
         }
         #endregion
 
-        #region voor de dropdownlist
-        if (!IsPostBack)
-        {
-            ddlSelecteerdHerkansing.DataSource = objHerkansing.DisplayHerkansingen(Userid).ToList();
-            ddlSelecteerdHerkansing.DataTextField = "DropdownlistInfo";
-            ddlSelecteerdHerkansing.DataValueField = "HerkansingID";
-            ddlSelecteerdHerkansing.DataBind();
-        }
-        #endregion
     }
 
     protected int SelectRadioButtonValue()
@@ -76,15 +67,6 @@ public partial class _Default : System.Web.UI.Page
             return rdbSelectedValue = 2;
         else
             return rdbSelectedValue = 0;
-    }
-
-    protected void btnAanmelden_Click(object sender, EventArgs e)
-    {
-        ////sessions versturen OF aanmelden voor een herkansing
-        sessHerkansingID = ddlSelecteerdHerkansing.SelectedValue;
-        Session["HerkansingID"] = sessHerkansingID;
-
-        Response.Redirect("aanmeldenHerkansing.aspx");
     }
     protected void dgvStudentenHerkansingsOverzicht_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -112,5 +94,10 @@ public partial class _Default : System.Web.UI.Page
             else
                 row.ToolTip = "selecteren om een toets te kiezen";
         }
+        ////selecter om aan te melden
+        //Response.Redirect("http://www.google.nl");
+        string selectedValueDataGrid = dgvStudentenHerkansingsOverzicht.SelectedRow.Cells[0].Text.ToString();
+        Session["HerkansingID"] = selectedValueDataGrid;
+
     }
 }
