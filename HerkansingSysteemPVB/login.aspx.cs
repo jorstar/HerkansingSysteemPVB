@@ -102,7 +102,17 @@ public partial class _Default : System.Web.UI.Page
                         {
                             tbGebruikersnaam.Text = "";
                             tbWachtwoord.Text = "";
-                            Response.Redirect("~/Home.aspx");
+
+                            string page = Request.QueryString["page"];
+                            if (page == "Bevestigen")
+                            {
+                                string guid = Request.QueryString["ID"];
+                                Response.Redirect("mailbevestigen.aspx?herkansing=" + guid);
+                            }
+                            else
+                            {
+                                Response.Redirect("~/Home.aspx");
+                            }
                         }
                         
                     }
