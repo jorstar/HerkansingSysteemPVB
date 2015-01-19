@@ -10,7 +10,7 @@ using System.Drawing;
 
 public partial class _Default : System.Web.UI.Page
 {
-    public int Userid = 0015180; // verwijderen als de Session dingen zijn geregeld\\
+    public int Userid;
     public string sessHerkansingID = "";
 
     #region important stuffs
@@ -20,8 +20,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        ////Session["userID"] = Userid;
-        ////Sesssion[""] //moet een waarde krijgen voor de geselecteerde herkansing
+        int Userid = (int)Session["user"];
 
         #region voor de radiobuttonlist
         SelectRadioButtonValue();
