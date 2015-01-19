@@ -204,6 +204,23 @@ public partial class GetAllVaks_Result
     public string VakNaam { get; set; }
 }
 
+public partial class GetHerkansingBevestiging_Result
+{
+    public string StudentID { get; set; }
+    public string BevestigingsID { get; set; }
+    public string Lokaal { get; set; }
+    public string VakNaam { get; set; }
+    public string Achternaam { get; set; }
+    public string Datum { get; set; }
+    public string ToetsNaam { get; set; }
+    public string ToetsDescriptie { get; set; }
+    public int Tijdsduur { get; set; }
+    public bool Bevestigd { get; set; }
+    public string BeginTijd { get; set; }
+    public bool Actief { get; set; }
+    public Nullable<int> aantal { get; set; }
+}
+
 public partial class GetHerkansingInfo_Result
 {
     public int HerkansingID { get; set; }
@@ -260,6 +277,19 @@ public partial class getStudentHerkansingen_Result1
 }
 
 public partial class getStudentHerkansingen_Result2
+{
+    public string Toets { get; set; }
+    public string Beschrijving { get; set; }
+    public string VakNaam { get; set; }
+    public string Datum { get; set; }
+    public string begintijd { get; set; }
+    public string Tijdsduur { get; set; }
+    public string Lokaal { get; set; }
+    public string surveillant { get; set; }
+    public string plaatsen { get; set; }
+}
+
+public partial class getStudentHerkansingen_Result3
 {
     public string Toets { get; set; }
     public string Beschrijving { get; set; }

@@ -259,15 +259,6 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<verkrijgHerkansingenGemaaktDoorDocent_Result>("verkrijgHerkansingenGemaaktDoorDocent", docentIDParameter);
     }
 
-    public virtual ObjectResult<getStudentHerkansingen_Result2> getStudentHerkansingen(Nullable<int> herkansingid)
-    {
-        var herkansingidParameter = herkansingid.HasValue ?
-            new ObjectParameter("herkansingid", herkansingid) :
-            new ObjectParameter("herkansingid", typeof(int));
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getStudentHerkansingen_Result2>("getStudentHerkansingen", herkansingidParameter);
-    }
-
     public virtual ObjectResult<VerkrijgAlleStudentenVanEenHerkansing_Result> VerkrijgAlleStudentenVanEenHerkansing(Nullable<int> herkansingID)
     {
         var herkansingIDParameter = herkansingID.HasValue ?
@@ -344,5 +335,27 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("studentID", typeof(int));
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenStudent_Result>("VerkrijgAlleHerkansingenStudent", studentIDParameter);
+    }
+
+    public virtual ObjectResult<GetHerkansingBevestiging_Result> GetHerkansingBevestiging(string uID, string guid)
+    {
+        var uIDParameter = uID != null ?
+            new ObjectParameter("UID", uID) :
+            new ObjectParameter("UID", typeof(string));
+
+        var guidParameter = guid != null ?
+            new ObjectParameter("Guid", guid) :
+            new ObjectParameter("Guid", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetHerkansingBevestiging_Result>("GetHerkansingBevestiging", uIDParameter, guidParameter);
+    }
+
+    public virtual ObjectResult<getStudentHerkansingen_Result3> getStudentHerkansingen(Nullable<int> herkansingid)
+    {
+        var herkansingidParameter = herkansingid.HasValue ?
+            new ObjectParameter("herkansingid", herkansingid) :
+            new ObjectParameter("herkansingid", typeof(int));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getStudentHerkansingen_Result3>("getStudentHerkansingen", herkansingidParameter);
     }
 }
