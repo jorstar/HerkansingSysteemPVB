@@ -10,5 +10,16 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        if (Session["Role"] == null)
+        {
+
+            Response.Redirect("login.aspx");
+
+        }
+        else
+        {
+
+        }
+
     }
 }

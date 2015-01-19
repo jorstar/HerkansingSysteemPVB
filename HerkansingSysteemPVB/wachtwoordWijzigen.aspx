@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="Wachtwoord wijzigen" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="wachtwoordWijzigen.aspx.cs" Inherits="_Default" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="paginaContent" runat="server">
-
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
     <table style="text-align: center; width: 100%;">
         <tr>
             <td>
@@ -31,7 +33,6 @@
                         <td class="herkansingAanmakenRightTableCollumn">
 
                             <asp:TextBox ID="txtNewPass" CssClass="inputs" runat="server" Width="250px" TextMode="Password"></asp:TextBox>
-
                         </td>
                         <td>
                             <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtNewPass" ControlToValidate="txtNewPassCheck" ErrorMessage="Nieuwe wachtwoorden komen niet overeen" ForeColor="Red">*</asp:CompareValidator>
@@ -66,7 +67,9 @@
                     </tr>
                     <tr>
                         <td colspan="2" style="padding: 10px 0; text-align:center;">
-                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+                            <div style="margin: 0 auto; width: 400px; text-align:left">
+                                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+                            </div>
                         </td>
                     </tr>
 
