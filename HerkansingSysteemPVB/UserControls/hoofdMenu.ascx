@@ -5,13 +5,13 @@
             <asp:MenuItem NavigateUrl="~/home.aspx" Text="Home" Value="Home"></asp:MenuItem>
             <asp:MenuItem NavigateUrl="~/wachtwoordWijzigen.aspx" Text="Wachtwoord Wijzigen" Value="WachtwoordWijzigen"></asp:MenuItem>
             <asp:MenuItem Text="Aanmaken" Value="AanmakenDocent" Selectable="False">
-                <asp:MenuItem Text="Vak" Value="VakDocent" NavigateUrl="~/vakAanmaken.aspx"></asp:MenuItem>
                 <asp:MenuItem Text="Toets" Value="ToetsDocent" NavigateUrl="~/toetsAanmaken.aspx"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/herkansingAanmaken.aspx" Text="Herkansing" Value="HerkansingDocent"></asp:MenuItem>
             </asp:MenuItem>
 <asp:MenuItem Text="Aanmaken" Value="AanmakenBeheer" Selectable="False">
     <asp:MenuItem NavigateUrl="~/docentAanmaken.aspx" Text="Leraar" Value="LeraarBeheer"></asp:MenuItem>
     <asp:MenuItem NavigateUrl="~/lokaalToevoegen.aspx" Text="Lokaal" Value="LokaalBeheer"></asp:MenuItem>
+            <asp:MenuItem NavigateUrl="~/vakAanmaken.aspx" Text="Vak" Value="VakDocent"></asp:MenuItem>
             </asp:MenuItem>
             <asp:MenuItem Text="Herkansing overzicht" Value="HerkansingOverzichtStudent" NavigateUrl="~/alleHerkansingenDocent.aspx"></asp:MenuItem>
             <asp:MenuItem Text="Aanmelden voor een herkansing" Value="AanmeldenHerkansing" NavigateUrl="~/alleHerkansingenStudent.aspx"></asp:MenuItem>

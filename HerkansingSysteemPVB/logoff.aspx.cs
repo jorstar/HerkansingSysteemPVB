@@ -9,7 +9,7 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Convert.ToString(Session["Role"]) != "B" | Convert.ToString(Session["Role"]) != "D" | Convert.ToString(Session["Role"]) != "S")
+        if (Convert.ToString(Session["Role"]) == null)
         {
             Response.Redirect("Home.aspx");
         }

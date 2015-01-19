@@ -11,7 +11,7 @@
             <td>
                 Gebruikersnaam:
             </td>
-            <td>
+            <td class="herkansingAanmakenRightTableCollumn">
                 <asp:TextBox ID="tbGebruikersnaam" placeholder="Gebruikersnaam" runat="server" CssClass="inputs"></asp:TextBox>
             </td>
         </tr>
@@ -19,7 +19,7 @@
             <td>
                 Wachtwoord:
             </td>
-            <td>
+            <td class="herkansingAanmakenRightTableCollumn">
                 <asp:TextBox ID="tbWachtwoord" placeholder="Wachtwoord" runat="server" TextMode="Password" CssClass="inputs"></asp:TextBox>
             </td>
         </tr>
