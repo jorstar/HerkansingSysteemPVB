@@ -15,6 +15,12 @@ public partial class _Default : System.Web.UI.Page
     string studID;
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        if (Session["Role"] != "S")
+        {
+            Response.Redirect("login.aspx");
+        }
+
         Session["User"] = "0178460";
         Session["HerkansingID"] = 11004;
 

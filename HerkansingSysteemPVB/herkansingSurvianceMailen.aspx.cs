@@ -25,6 +25,12 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        if (Session["Role"] != "B")
+        {
+            Response.Redirect("login.aspx");
+        }
+
         herkansingDBEntities ef = new herkansingDBEntities();
         //herkansing id
         int herkansingID = 11004;
