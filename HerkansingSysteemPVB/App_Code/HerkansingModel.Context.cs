@@ -285,40 +285,6 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeBeheer", oldWachtWoordParameter, nieuwWachtWoordParameter, gebruikersnaamParameter);
     }
 
-    public virtual int wwChangeDocent(string oldWachtWoord, string nieuwWachtWoord, string docentID)
-    {
-        var oldWachtWoordParameter = oldWachtWoord != null ?
-            new ObjectParameter("oldWachtWoord", oldWachtWoord) :
-            new ObjectParameter("oldWachtWoord", typeof(string));
-
-        var nieuwWachtWoordParameter = nieuwWachtWoord != null ?
-            new ObjectParameter("NieuwWachtWoord", nieuwWachtWoord) :
-            new ObjectParameter("NieuwWachtWoord", typeof(string));
-
-        var docentIDParameter = docentID != null ?
-            new ObjectParameter("DocentID", docentID) :
-            new ObjectParameter("DocentID", typeof(string));
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeDocent", oldWachtWoordParameter, nieuwWachtWoordParameter, docentIDParameter);
-    }
-
-    public virtual int wwChangeStudent(string oldWachtWoord, string nieuwWachtWoord, string lRL_NR)
-    {
-        var oldWachtWoordParameter = oldWachtWoord != null ?
-            new ObjectParameter("oldWachtWoord", oldWachtWoord) :
-            new ObjectParameter("oldWachtWoord", typeof(string));
-
-        var nieuwWachtWoordParameter = nieuwWachtWoord != null ?
-            new ObjectParameter("NieuwWachtWoord", nieuwWachtWoord) :
-            new ObjectParameter("NieuwWachtWoord", typeof(string));
-
-        var lRL_NRParameter = lRL_NR != null ?
-            new ObjectParameter("LRL_NR", lRL_NR) :
-            new ObjectParameter("LRL_NR", typeof(string));
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeStudent", oldWachtWoordParameter, nieuwWachtWoordParameter, lRL_NRParameter);
-    }
-
     public virtual ObjectResult<DisplayHerkansingen_Result> DisplayHerkansingen(Nullable<int> studentID)
     {
         var studentIDParameter = studentID.HasValue ?
@@ -357,5 +323,39 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("herkansingid", typeof(int));
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getStudentHerkansingen_Result3>("getStudentHerkansingen", herkansingidParameter);
+    }
+
+    public virtual int wwChangeDocent(string oldWachtWoord, string nieuwWachtWoord, string docentID)
+    {
+        var oldWachtWoordParameter = oldWachtWoord != null ?
+            new ObjectParameter("oldWachtWoord", oldWachtWoord) :
+            new ObjectParameter("oldWachtWoord", typeof(string));
+
+        var nieuwWachtWoordParameter = nieuwWachtWoord != null ?
+            new ObjectParameter("NieuwWachtWoord", nieuwWachtWoord) :
+            new ObjectParameter("NieuwWachtWoord", typeof(string));
+
+        var docentIDParameter = docentID != null ?
+            new ObjectParameter("DocentID", docentID) :
+            new ObjectParameter("DocentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeDocent", oldWachtWoordParameter, nieuwWachtWoordParameter, docentIDParameter);
+    }
+
+    public virtual int wwChangeStudent(string oldWachtWoord, string nieuwWachtWoord, string lRL_NR)
+    {
+        var oldWachtWoordParameter = oldWachtWoord != null ?
+            new ObjectParameter("oldWachtWoord", oldWachtWoord) :
+            new ObjectParameter("oldWachtWoord", typeof(string));
+
+        var nieuwWachtWoordParameter = nieuwWachtWoord != null ?
+            new ObjectParameter("NieuwWachtWoord", nieuwWachtWoord) :
+            new ObjectParameter("NieuwWachtWoord", typeof(string));
+
+        var lRL_NRParameter = lRL_NR != null ?
+            new ObjectParameter("LRL_NR", lRL_NR) :
+            new ObjectParameter("LRL_NR", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeStudent", oldWachtWoordParameter, nieuwWachtWoordParameter, lRL_NRParameter);
     }
 }

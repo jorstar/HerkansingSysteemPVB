@@ -14,6 +14,7 @@
           <Property Name="Tussenvoegsel" Type="nvarchar" MaxLength="30" />
           <Property Name="Achternaam" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Wachtwoord" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FirstLogin" Type="bit" />
         </EntityType>
         <EntityType Name="Docent">
           <Key>
@@ -25,6 +26,7 @@
           <Property Name="Achternaam" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Wachtwoord" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FirstLogin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Herkansing">
           <Key>
@@ -420,16 +422,6 @@
             <Parameter Name="NieuwWachtWoord" Mode="In" Type="String" />
             <Parameter Name="Gebruikersnaam" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="wwChangeDocent">
-            <Parameter Name="oldWachtWoord" Mode="In" Type="String" />
-            <Parameter Name="NieuwWachtWoord" Mode="In" Type="String" />
-            <Parameter Name="DocentID" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="wwChangeStudent">
-            <Parameter Name="oldWachtWoord" Mode="In" Type="String" />
-            <Parameter Name="NieuwWachtWoord" Mode="In" Type="String" />
-            <Parameter Name="LRL_NR" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="DisplayHerkansingen" ReturnType="Collection(herkansingDBModel.DisplayHerkansingen_Result)">
           <Parameter Name="studentID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -443,6 +435,16 @@
           <FunctionImport Name="getStudentHerkansingen" ReturnType="Collection(herkansingDBModel.getStudentHerkansingen_Result3)">
           <Parameter Name="herkansingid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="wwChangeDocent">
+            <Parameter Name="oldWachtWoord" Mode="In" Type="String" />
+            <Parameter Name="NieuwWachtWoord" Mode="In" Type="String" />
+            <Parameter Name="DocentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="wwChangeStudent">
+            <Parameter Name="oldWachtWoord" Mode="In" Type="String" />
+            <Parameter Name="NieuwWachtWoord" Mode="In" Type="String" />
+            <Parameter Name="LRL_NR" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
           <Key>
@@ -453,6 +455,7 @@
           <Property Name="Tussenvoegsel" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Achternaam" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Wachtwoord" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FirstLogin" Type="Boolean" />
         </EntityType>
         <EntityType Name="Docent">
           <Key>
@@ -466,6 +469,7 @@
           <Property Name="Wachtwoord" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Herkansing" Relationship="herkansingDBModel.FK_Herkansing_Docent" FromRole="Docent" ToRole="Herkansing" />
           <NavigationProperty Name="Herkansing1" Relationship="herkansingDBModel.FK_Herkansing_Docent1" FromRole="Docent" ToRole="Herkansing" />
+          <Property Name="FirstLogin" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Herkansing">
           <Key>
@@ -860,6 +864,7 @@
           <EntitySetMapping Name="Beheerder">
             <EntityTypeMapping TypeName="herkansingDBModel.Beheerder">
               <MappingFragment StoreEntitySet="Beheerder">
+                <ScalarProperty Name="FirstLogin" ColumnName="FirstLogin" />
                 <ScalarProperty Name="Wachtwoord" ColumnName="Wachtwoord" />
                 <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
                 <ScalarProperty Name="Tussenvoegsel" ColumnName="Tussenvoegsel" />
@@ -871,6 +876,7 @@
           <EntitySetMapping Name="Docent">
             <EntityTypeMapping TypeName="herkansingDBModel.Docent">
               <MappingFragment StoreEntitySet="Docent">
+                <ScalarProperty Name="FirstLogin" ColumnName="FirstLogin" />
                 <ScalarProperty Name="Wachtwoord" ColumnName="Wachtwoord" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
@@ -1169,8 +1175,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="wwChangeBeheer" FunctionName="herkansingDBModel.Store.wwChangeBeheer" />
-          <FunctionImportMapping FunctionImportName="wwChangeDocent" FunctionName="herkansingDBModel.Store.wwChangeDocent" />
-          <FunctionImportMapping FunctionImportName="wwChangeStudent" FunctionName="herkansingDBModel.Store.wwChangeStudent" />
           <FunctionImportMapping FunctionImportName="DisplayHerkansingen" FunctionName="herkansingDBModel.Store.DisplayHerkansingen">
             <ResultMapping>
               <ComplexTypeMapping TypeName="herkansingDBModel.DisplayHerkansingen_Result">
@@ -1230,6 +1234,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="wwChangeDocent" FunctionName="herkansingDBModel.Store.wwChangeDocent" />
+          <FunctionImportMapping FunctionImportName="wwChangeStudent" FunctionName="herkansingDBModel.Store.wwChangeStudent" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
