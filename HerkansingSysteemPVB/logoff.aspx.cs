@@ -9,6 +9,10 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Convert.ToString(Session["Role"]) != "B" | Convert.ToString(Session["Role"]) != "D" | Convert.ToString(Session["Role"]) != "S")
+        {
+            Response.Redirect("Home.aspx");
+        }
 
     }
     protected void btnBevestig_Click(object sender, EventArgs e)

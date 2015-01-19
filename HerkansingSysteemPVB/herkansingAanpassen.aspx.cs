@@ -10,6 +10,11 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        if (Convert.ToString(Session["Role"]) != "B")
+        {
+            Response.Redirect("Home.aspx");
+        }
+
         if (!Page.IsPostBack)
         {
             herkansingDBEntities entity = new herkansingDBEntities();
