@@ -13,11 +13,11 @@ public partial class _Default : System.Web.UI.Page
     public int rdbSelectedValue;
     public string HerkansingsIDString = "";
 
-    public string DocentID = "WGS01";
+    string DocentID;
     protected void Page_Load(object sender, EventArgs e)
     {
-        ////Session["userID"] = Userid;
-        ////Sesssion[""] //moet een waarde krijgen voor de geselecteerde herkansing
+        string DocentID = (string)Session["User"];
+
         #region voor de radiobuttonlist
         SelectRadioButtonValue();
         rdbSelectedValue = rdbVeranderDisplay.SelectedIndex;
