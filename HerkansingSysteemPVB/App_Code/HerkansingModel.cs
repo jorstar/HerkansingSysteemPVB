@@ -105,6 +105,7 @@ public partial class Student
     public string EMAIL { get; set; }
     public System.DateTime GEBOORTEDATUM { get; set; }
     public string WACHTWOORD { get; set; }
+    public Nullable<bool> FirstLogin { get; set; }
 
     public virtual ICollection<Inschrijving> Inschrijving { get; set; }
 }

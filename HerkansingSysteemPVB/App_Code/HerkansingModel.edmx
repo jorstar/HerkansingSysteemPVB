@@ -73,6 +73,7 @@
           <Property Name="EMAIL" Type="nvarchar(max)" Nullable="false" />
           <Property Name="GEBOORTEDATUM" Type="date" Nullable="false" />
           <Property Name="WACHTWOORD" Type="nvarchar(max)" />
+          <Property Name="FirstLogin" Type="bit" />
         </EntityType>
         <EntityType Name="Toets">
           <Key>
@@ -440,7 +441,7 @@
             <Parameter Name="Guid" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="getStudentHerkansingen" ReturnType="Collection(herkansingDBModel.getStudentHerkansingen_Result3)">
-            <Parameter Name="herkansingid" Mode="In" Type="Int32" />
+          <Parameter Name="herkansingid" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -522,6 +523,7 @@
           <Property Name="GEBOORTEDATUM" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="WACHTWOORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Inschrijving" Relationship="herkansingDBModel.FK_Inschrijving_Sudent" FromRole="Student" ToRole="Inschrijving" />
+          <Property Name="FirstLogin" Type="Boolean" />
         </EntityType>
         <EntityType Name="Toets">
           <Key>
@@ -917,6 +919,7 @@
           <EntitySetMapping Name="Student">
             <EntityTypeMapping TypeName="herkansingDBModel.Student">
               <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="FirstLogin" ColumnName="FirstLogin" />
                 <ScalarProperty Name="WACHTWOORD" ColumnName="WACHTWOORD" />
                 <ScalarProperty Name="GEBOORTEDATUM" ColumnName="GEBOORTEDATUM" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
