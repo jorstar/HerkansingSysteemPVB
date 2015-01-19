@@ -90,7 +90,7 @@ public partial class _Default : System.Web.UI.Page
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
             e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(dgvDocentenHerkansingOverzicht, "Select$" + e.Row.RowIndex);
-            e.Row.ToolTip = "selecteer een toets kiezen";
+            e.Row.ToolTip = "selecteer een toets.";
         }
     }
     protected void dgvDocentenHerkansingOverzicht_SelectedIndexChanged(object sender, EventArgs e)

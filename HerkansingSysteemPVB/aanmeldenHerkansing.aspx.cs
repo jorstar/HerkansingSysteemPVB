@@ -16,13 +16,15 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        if (Session["Role"] != "S")
+        if ((string)Session["Role"] != "S")
         {
             Response.Redirect("login.aspx");
         }
 
-        Session["User"] = "0178460";
-        Session["HerkansingID"] = 11004;
+        //Session["User"] = "0178460";
+        //Session["HerkansingID"] = 11004;
+
+        string HerkansingIDString = (string)Session["HerkansingID"];
 
         studID = Session["User"].ToString();
         HerkID = Convert.ToInt32(Session["HerkansingID"]);
@@ -50,7 +52,6 @@ public partial class _Default : System.Web.UI.Page
             objinsch.Bevestigd = false;
             ent.Inschrijving.Add(objinsch);
             ent.SaveChanges();
-            
 
             // send mail
             string studentEmail = student.EMAIL;
@@ -63,10 +64,10 @@ public partial class _Default : System.Web.UI.Page
 
             Message.Body += "<html><body style=\"padding: 0;margin: 0;font-family: Arial;\"><div style=\"height: 10px;\"></div><div style=\"width:80%;background-color: none;height: auto;margin: 50px auto;border: 2px #0072bc solid;\"><div style=\"text-align: center;padding: 10px 0;font-size: 25px;font-weight: bold;background-color: #A8B326;\">Herkansing bevestigen</div>"
             + "<div style=\"border-top: 2px dashed #0072bc;padding: 50px 35px 15px 35px;\"><div style=\"padding: 0 0 25px 35px;\">Herkansing informatie"
-            + "</div><table><tr><td>Vak:</td><td>"+herk.VakNaam+"</td></tr><tr><td>Toets:</td><td>"+herk.Toets+"</td></tr>"
-            + "<tr><td>Beschrijving:</td><td>"+ herk.Beschrijving + "</td></tr><tr><td>Datum:</td><td>"+herk.Datum + " om " + herk.begintijd +"</td></tr>"
-            + "<tr><td>Tijdsduur:</td><td>"+ herk.Tijdsduur+ "</td></tr><tr><td>Lokaal:</td><td>"+herk.Lokaal+"</td></tr>"
-            + "<tr><td>Surveillant:</td><td>"+herk.surveillant+"</td></tr></table></div>"
+            + "</div><table><tr><td>Vak:</td><td>" + herk.VakNaam + "</td></tr><tr><td>Toets:</td><td>" + herk.Toets + "</td></tr>"
+            + "<tr><td>Beschrijving:</td><td>" + herk.Beschrijving + "</td></tr><tr><td>Datum:</td><td>" + herk.Datum + " om " + herk.begintijd + "</td></tr>"
+            + "<tr><td>Tijdsduur:</td><td>" + herk.Tijdsduur + "</td></tr><tr><td>Lokaal:</td><td>" + herk.Lokaal + "</td></tr>"
+            + "<tr><td>Surveillant:</td><td>" + herk.surveillant + "</td></tr></table></div>"
             + "<div style=\"text-align: center;padding: 35px 0;font-style:oblique;\">Bevestigings link (Zo snel mogelijk: <a href=\"http://127.0.0.1:8085/login.aspx\" target=\"_blank\">http://127.0.0.1:8085/login.aspx</a></div></div></body></html>";
             Message.IsBodyHtml = true;
             Message.BodyEncoding = Encoding.UTF8;
@@ -79,9 +80,8 @@ public partial class _Default : System.Web.UI.Page
             smtp.EnableSsl = true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(Message);
-
         }
-        catch (UpdateException ex) 
+        catch (UpdateException ex)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
         }

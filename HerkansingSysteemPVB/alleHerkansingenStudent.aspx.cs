@@ -23,35 +23,36 @@ public partial class _Default : System.Web.UI.Page
         ////Session["userID"] = Userid;
         ////Sesssion[""] //moet een waarde krijgen voor de geselecteerde herkansing
 
-        #region selecteren van row in de datagrid
-
-        if (!this.IsPostBack)
-        {
-
-        }
-
-        #endregion
-
         #region voor de radiobuttonlist
         SelectRadioButtonValue();
         rdbSelectedValue = rdbVeranderDisplay.SelectedIndex;
 
         if (rdbVeranderDisplay.SelectedIndex == 0)
         {
+            dgvStudentenHerkansingsOverzicht.Visible = true;
+            dgvStudentHerkansingOverzichtAlternatief.Visible = false;
+
+
             dgvStudentenHerkansingsOverzicht.DataSource = objHerkansing.VerkrijgBeschikbareHerkansingStudent(Userid).ToList();
             dgvStudentenHerkansingsOverzicht.DataBind();
         }
 
         if (rdbVeranderDisplay.SelectedIndex == 1)
         {
-            dgvStudentenHerkansingsOverzicht.DataSource = objHerkansing.VerkrijgAlleHerkansingenStudent(Userid).ToList();
-            dgvStudentenHerkansingsOverzicht.DataBind();
+            dgvStudentenHerkansingsOverzicht.Visible = false;
+            dgvStudentHerkansingOverzichtAlternatief.Visible = true;
+
+            dgvStudentHerkansingOverzichtAlternatief.DataSource = objHerkansing.VerkrijgAlleHerkansingenStudent(Userid).ToList();
+            dgvStudentHerkansingOverzichtAlternatief.DataBind();
         }
 
         if (rdbVeranderDisplay.SelectedIndex == 2)
         {
-            dgvStudentenHerkansingsOverzicht.DataSource = objHerkansing.VerkrijgHistorieHerkansingenStudent(Userid).ToList();
-            dgvStudentenHerkansingsOverzicht.DataBind();
+            dgvStudentenHerkansingsOverzicht.Visible = false;
+            dgvStudentHerkansingOverzichtAlternatief.Visible = true;
+
+            dgvStudentHerkansingOverzichtAlternatief.DataSource = objHerkansing.VerkrijgHistorieHerkansingenStudent(Userid).ToList();
+            dgvStudentHerkansingOverzichtAlternatief.DataBind();
         }
         #endregion
 
@@ -79,7 +80,7 @@ public partial class _Default : System.Web.UI.Page
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
             e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(dgvStudentenHerkansingsOverzicht, "Select$" + e.Row.RowIndex);
-            e.Row.ToolTip = "selecteren om een toets te kiezen";
+            e.Row.ToolTip = "selecteer een toets.";
         }
     }
     protected void dgvStudentenHerkansingsOverzicht_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,12 +93,12 @@ public partial class _Default : System.Web.UI.Page
                 row.ToolTip = string.Empty;
             }
             else
-                row.ToolTip = "selecteren om een toets te kiezen";
+                row.ToolTip = "selecteer een toets.";
         }
         ////selecter om aan te melden
-        //Response.Redirect("http://www.google.nl");
         string selectedValueDataGrid = dgvStudentenHerkansingsOverzicht.SelectedRow.Cells[0].Text.ToString();
         Session["HerkansingID"] = selectedValueDataGrid;
 
+        Response.Redirect("aanmeldenHerkansing.aspx");
     }
 }
