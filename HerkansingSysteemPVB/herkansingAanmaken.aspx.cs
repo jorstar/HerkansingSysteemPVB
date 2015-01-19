@@ -47,8 +47,6 @@ public partial class _Default : System.Web.UI.Page
         {
             herkansingDBEntities entity = new herkansingDBEntities();
             ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllklassen();
-            ddlKlasOfOpleidingSelecteren.DataTextField = "KLAS";
-            ddlKlasOfOpleidingSelecteren.DataValueField = "KLAS";
             ddlKlasOfOpleidingSelecteren.DataBind();
 
         }
@@ -56,8 +54,6 @@ public partial class _Default : System.Web.UI.Page
         {
             herkansingDBEntities entity = new herkansingDBEntities();
             ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllopleidingen();
-            ddlKlasOfOpleidingSelecteren.DataValueField = "OPLEIDING";
-            ddlKlasOfOpleidingSelecteren.DataTextField = "OPLEIDING";
             ddlKlasOfOpleidingSelecteren.DataBind();
         }
 
