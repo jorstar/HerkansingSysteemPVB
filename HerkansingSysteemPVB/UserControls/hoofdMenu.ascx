@@ -12,6 +12,7 @@
     <asp:MenuItem NavigateUrl="~/docentAanmaken.aspx" Text="Leraar" Value="LeraarBeheer"></asp:MenuItem>
     <asp:MenuItem NavigateUrl="~/lokaalToevoegen.aspx" Text="Lokaal" Value="LokaalBeheer"></asp:MenuItem>
             <asp:MenuItem NavigateUrl="~/vakAanmaken.aspx" Text="Vak" Value="VakDocent"></asp:MenuItem>
+    <asp:MenuItem NavigateUrl="~/herkansingAanpassen.aspx" Text="Herkansing Aanpassen" Value="HerkansingAanpassen"></asp:MenuItem>
             </asp:MenuItem>
             <asp:MenuItem Text="Herkansing overzicht" Value="HerkansingOverzichtStudent" NavigateUrl="~/alleHerkansingenDocent.aspx"></asp:MenuItem>
             <asp:MenuItem Text="Aanmelden voor een herkansing" Value="AanmeldenHerkansing" NavigateUrl="~/alleHerkansingenStudent.aspx"></asp:MenuItem>
