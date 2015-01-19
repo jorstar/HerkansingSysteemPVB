@@ -33,6 +33,8 @@ public partial class UserControlls_Menu : System.Web.UI.UserControl
             Hoofdmenu.Items.Remove(AanmakenDocent);
             MenuItem AanmakenBeheer = Hoofdmenu.FindItem("AanmakenBeheer");
             Hoofdmenu.Items.Remove(AanmakenBeheer);
+            MenuItem HerkansingOverzichtDocent = Hoofdmenu.FindItem("HerkansingOverzichtDocent");
+            Hoofdmenu.Items.Remove(HerkansingOverzichtDocent);
         }
         else
         {
@@ -42,8 +44,8 @@ public partial class UserControlls_Menu : System.Web.UI.UserControl
             Hoofdmenu.Items.Remove(AanmakenBeheer);
             MenuItem AanmeldenHerkansing = Hoofdmenu.FindItem("AanmeldenHerkansing");
             Hoofdmenu.Items.Remove(AanmeldenHerkansing);
-            MenuItem HerkansingOverzichtStudent = Hoofdmenu.FindItem("HerkansingOverzichtStudent");
-            Hoofdmenu.Items.Remove(HerkansingOverzichtStudent);
+            MenuItem HerkansingOverzichtDocent = Hoofdmenu.FindItem("HerkansingOverzichtDocent");
+            Hoofdmenu.Items.Remove(HerkansingOverzichtDocent);
             MenuItem Home = Hoofdmenu.FindItem("Home");
             Hoofdmenu.Items.Remove(Home);
             MenuItem WachtwoordWijzigen = Hoofdmenu.FindItem("WachtwoordWijzigen");
