@@ -16,11 +16,14 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        if ((string)Session["Role"] != "S")
+        if ((string)Session["Role"] == "S")
+        {
+
+        }
+        else
         {
             Response.Redirect("login.aspx");
         }
-
         //Session["User"] = "0178460";
         //Session["HerkansingID"] = 11004;
 
@@ -29,7 +32,6 @@ public partial class _Default : System.Web.UI.Page
         studID = Session["User"].ToString();
         HerkID = Convert.ToInt32(Session["HerkansingID"]);
         filllabels(studID, HerkID);
-        Session["HerkansingID"] = null;
     }
     protected void btnAanmelden_Click(object sender, EventArgs e)
     {
@@ -68,7 +70,7 @@ public partial class _Default : System.Web.UI.Page
             + "<tr><td>Beschrijving:</td><td>" + herk.Beschrijving + "</td></tr><tr><td>Datum:</td><td>" + herk.Datum + " om " + herk.begintijd + "</td></tr>"
             + "<tr><td>Tijdsduur:</td><td>" + herk.Tijdsduur + "</td></tr><tr><td>Lokaal:</td><td>" + herk.Lokaal + "</td></tr>"
             + "<tr><td>Surveillant:</td><td>" + herk.surveillant + "</td></tr></table></div>"
-            + "<div style=\"text-align: center;padding: 35px 0;font-style:oblique;\">Bevestigings link (Zo snel mogelijk: <a href=\"http://127.0.0.1:8085/login.aspx\" target=\"_blank\">http://127.0.0.1:8085/login.aspx</a></div></div></body></html>";
+            + "<div style=\"text-align: center;padding: 35px 0;font-style:oblique;\">Bevestigings link (Zo snel mogelijk: <a href=\"http://herkansingroc.ddns.net/mailbevestigen.aspx?herkansing=" + objGuid + "\" target=\"_blank\">http://herkansingroc.ddns.net/mailbevestigen.aspx?herkansing=" + objGuid + "</a></div></div></body></html>";
             Message.IsBodyHtml = true;
             Message.BodyEncoding = Encoding.UTF8;
             NetworkCredential nc = new NetworkCredential();
@@ -80,6 +82,7 @@ public partial class _Default : System.Web.UI.Page
             smtp.EnableSsl = true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(Message);
+            Session["HerkansingID"] = null;
         }
         catch (UpdateException ex)
         {

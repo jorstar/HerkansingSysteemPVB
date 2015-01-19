@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,6 +12,11 @@ public partial class _Default : System.Web.UI.Page
     string Guid;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Convert.ToString(Session["Role"]) != "S")
+        {
+            Response.Redirect("Home.aspx");
+        }
+
         Guid = Request.QueryString["herkansing"];
         if (Session["User"] == null)
         {
@@ -29,28 +35,41 @@ public partial class _Default : System.Web.UI.Page
             
             
             herkansingDBEntities ef = new herkansingDBEntities();
-
-            var temp = ef.GetHerkansingBevestiging(userid, Guid);
-            if (temp.Any())
+            try
             {
-                var info = temp.First();
+                var temp = ef.GetHerkansingBevestiging(userid, Guid).First();
+                if (temp != null)
+                {
+                    var info = temp;
 
-                if (info.aantal == 0)
-                {
-                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Er zijn geen plaatsen meer beschikbaar voor deze herkansing.');", true);
-                    Response.Redirect("home.aspx");
-                }
-                else
-                {
-                    lblbeschrijving.Text = info.ToetsDescriptie;
-                    lbldatum.Text = info.Datum + " om " + info.BeginTijd;
-                    lbllokaal.Text = info.Lokaal;
-                    lblsurveillant.Text = info.Achternaam;
-                    lbltijd.Text = info.Tijdsduur.ToString();
-                    lbltoets.Text = info.ToetsNaam;
-                    lblvak.Text = info.VakNaam;
+                    if (info.aantal == 0)
+                    {
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Er zijn geen plaatsen meer beschikbaar voor deze herkansing.');", true);
+                        Response.Redirect("home.aspx");
+                    }
+                    else
+                    {
+                        lblbeschrijving.Text = info.ToetsDescriptie;
+                        lbldatum.Text = info.Datum + " om " + info.BeginTijd;
+                        lbllokaal.Text = info.Lokaal;
+                        lblsurveillant.Text = info.Achternaam;
+                        lbltijd.Text = info.Tijdsduur.ToString();
+                        lbltoets.Text = info.ToetsNaam;
+                        lblvak.Text = info.VakNaam;
+                    }
                 }
             }
+            catch (EntityException ex)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('"+ ex.Message +"');", true);
+            }
+            catch (Exception)
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Je bent al geregistreerd voor die toets');", true);
+
+                Response.Redirect("home.aspx");
+            }
+            
         }
     }
     protected void btnBevestigen_Click(object sender, EventArgs e)
