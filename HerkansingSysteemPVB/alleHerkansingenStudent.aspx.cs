@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Drawing;
+
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -14,10 +17,21 @@ public partial class _Default : System.Web.UI.Page
     public herkansingDBEntities objHerkansing = new herkansingDBEntities();
     public int rdbSelectedValue;
     #endregion
+
     protected void Page_Load(object sender, EventArgs e)
     {
         ////Session["userID"] = Userid;
         ////Sesssion[""] //moet een waarde krijgen voor de geselecteerde herkansing
+
+        #region selecteren van row in de datagrid
+
+        if (!this.IsPostBack)
+        {
+
+        }
+
+        #endregion
+
         #region voor de radiobuttonlist
         SelectRadioButtonValue();
         rdbSelectedValue = rdbVeranderDisplay.SelectedIndex;
@@ -48,7 +62,6 @@ public partial class _Default : System.Web.UI.Page
             ddlSelecteerdHerkansing.DataTextField = "DropdownlistInfo";
             ddlSelecteerdHerkansing.DataValueField = "HerkansingID";
             ddlSelecteerdHerkansing.DataBind();
-
         }
         #endregion
     }
@@ -71,5 +84,33 @@ public partial class _Default : System.Web.UI.Page
         sessHerkansingID = ddlSelecteerdHerkansing.SelectedValue;
         Session["HerkansingID"] = sessHerkansingID;
 
+        Response.Redirect("aanmeldenHerkansing.aspx");
+    }
+    protected void dgvStudentenHerkansingsOverzicht_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        dgvStudentenHerkansingsOverzicht.PageIndex = e.NewPageIndex;
+        dgvStudentenHerkansingsOverzicht.DataBind();
+
+    }
+    protected void dgvStudentenHerkansingsOverzicht_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(dgvStudentenHerkansingsOverzicht, "Select$" + e.Row.RowIndex);
+            e.Row.ToolTip = "selecteren om een toets te kiezen";
+        }
+    }
+    protected void dgvStudentenHerkansingsOverzicht_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        foreach (GridViewRow row in dgvStudentenHerkansingsOverzicht.Rows)
+        {
+            if (row.RowIndex == dgvStudentenHerkansingsOverzicht.SelectedIndex)
+            {
+                row.BackColor = ColorTranslator.FromHtml("#B7C6D6");
+                row.ToolTip = string.Empty;
+            }
+            else
+                row.ToolTip = "selecteren om een toets te kiezen";
+        }
     }
 }

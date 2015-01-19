@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Overzicht herkansingen" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="alleHerkansingenStudent.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="Overzicht herkansingen" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="alleHerkansingenStudent.aspx.cs" Inherits="_Default" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -11,7 +11,7 @@
                 <table class="fancyTable" style="width: 900px; margin: 50px auto 50px auto;">
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="dgvStudentenHerkansingsOverzicht" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                            <asp:GridView ID="dgvStudentenHerkansingsOverzicht" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AllowCustomPaging="false" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvStudentenHerkansingsOverzicht_PageIndexChanging" OnRowDataBound="dgvStudentenHerkansingsOverzicht_RowDataBound" OnSelectedIndexChanged="dgvStudentenHerkansingsOverzicht_SelectedIndexChanged">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -33,7 +33,7 @@
                         <td rowspan="2">
                             <table style="height: 100%; width: 100%;">
                                 <tr>
-                                    <td>Selecteer een HerkansingID om voor aan te melden:
+                                    <td>Selecteer een Herkansing om voor aan te melden:
                                         <br />
                                         <asp:DropDownList CssClass="inputs" ID="ddlSelecteerdHerkansing" Width="169px" runat="server" AutoPostBack="True">
                                         </asp:DropDownList>
