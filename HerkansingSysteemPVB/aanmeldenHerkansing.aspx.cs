@@ -67,7 +67,7 @@ public partial class _Default : System.Web.UI.Page
             + "<tr><td>Beschrijving:</td><td>" + herk.Beschrijving + "</td></tr><tr><td>Datum:</td><td>" + herk.Datum + " om " + herk.begintijd + "</td></tr>"
             + "<tr><td>Tijdsduur:</td><td>" + herk.Tijdsduur + "</td></tr><tr><td>Lokaal:</td><td>" + herk.Lokaal + "</td></tr>"
             + "<tr><td>Surveillant:</td><td>" + herk.surveillant + "</td></tr></table></div>"
-            + "<div style=\"text-align: center;padding: 35px 0;font-style:oblique;\">Bevestigings link (Zo snel mogelijk: <a href=\"http://127.0.0.1:8085mailbevestigen.aspx?herkansing=" + objGuid + "\" target=\"_blank\">http://127.0.0.1:8085/mailbevestigen.aspx?herkansing=" + objGuid + "</a></div></div></body></html>";
+            + "<div style=\"text-align: center;padding: 35px 0;font-style:oblique;\">Bevestigings link (Zo snel mogelijk: <a href=\"http://http://herkansingroc.ddns.net/mailbevestigen.aspx?herkansing=" + objGuid + "\" target=\"_blank\">http://http://herkansingroc.ddns.net/mailbevestigen.aspx?herkansing=" + objGuid + "</a></div></div></body></html>";
             Message.IsBodyHtml = true;
             Message.BodyEncoding = Encoding.UTF8;
             NetworkCredential nc = new NetworkCredential();
