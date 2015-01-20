@@ -10,7 +10,7 @@
         <tr>
             <td>
 
-                <table style="width: 600px; margin: 50px auto 50px auto">
+                <table style="width: 600px; margin: 50px auto 50px auto" class="fancyTable">
                     <tr>
                         <td style="float:left;">
 
