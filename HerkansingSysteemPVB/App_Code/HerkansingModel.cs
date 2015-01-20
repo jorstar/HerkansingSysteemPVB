@@ -181,14 +181,6 @@ public partial class GetAllStudentenHerk_Result
     public string OPLEIDING { get; set; }
 }
 
-public partial class GetAllStudentenHerk_Result1
-{
-    public string Studentcode { get; set; }
-    public string Naam { get; set; }
-    public string KLAS { get; set; }
-    public string OPLEIDING { get; set; }
-}
-
 public partial class GetAllSurveillance_Result
 {
     public string DocentID { get; set; }

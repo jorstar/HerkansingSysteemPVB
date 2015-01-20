@@ -26,15 +26,23 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        if (Session["Role"].ToString() != "B")
+        //MOET WEG ALS APPLICATIE KLAAR IS
+        Session["HerkansingID"] = 11004;
+        //MOET WEG ALS APPLICATIE KLAAR IS
+
+        if (Session["Role"].ToString() != "D")
         {
-            Response.Redirect("login.aspx");
+            Response.Redirect("home.aspx");
+        }
+        else
+        {
+
         }
         try
         {
             herkansingDBEntities ef = new herkansingDBEntities();
             //herkansing id
-            int herkansingID = 11004;
+            int herkansingID = (int)Session["HerkansingID"];
             var herkinfo = ef.GetHerkansingInfoHerk(herkansingID).First();
 
 

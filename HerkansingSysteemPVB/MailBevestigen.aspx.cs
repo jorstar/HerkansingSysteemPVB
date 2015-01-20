@@ -18,8 +18,7 @@ public partial class _Default : System.Web.UI.Page
         Guid = Request.QueryString["herkansing"];
         if (Session["User"] == null)
         {
-            if (Session["Role"].ToString() == "S")
-            {
+            
                 if (Guid != null)
                 {
                     Response.Redirect("login.aspx?page=Bevestigen&ID=" + Guid);
@@ -29,11 +28,7 @@ public partial class _Default : System.Web.UI.Page
                 {
                     Response.Redirect("home.aspx");
                 }
-            }
-            else
-            {
-                Response.Redirect("Home.aspx");
-            }
+            
         }
         else
         {

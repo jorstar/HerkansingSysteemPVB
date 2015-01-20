@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="herkansingDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Beheerder">
           <Key>
             <PropertyRef Name="Gebruikersnaam" />
@@ -388,9 +388,6 @@
           <FunctionImport Name="GetSurveillantEmail" ReturnType="Collection(String)">
           <Parameter Name="SurveillantID" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetAllStudentenHerk" ReturnType="Collection(herkansingDBModel.GetAllStudentenHerk_Result1)">
-          <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="UpdateHerkansing">
             <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
             <Parameter Name="Lokaal" Mode="In" Type="String" />
@@ -446,10 +443,13 @@
           <Parameter Name="studentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="VerkrijgBeschikbareHerkansingStudent" ReturnType="Collection(herkansingDBModel.VerkrijgBeschikbareHerkansingStudent_Result)">
-            <Parameter Name="studentID" Mode="In" Type="String" />
+          <Parameter Name="studentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="VerkrijgHistorieHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgHistorieHerkansingenStudent_Result)">
-            <Parameter Name="studentID" Mode="In" Type="String" />
+          <Parameter Name="studentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllStudentenHerk" ReturnType="Collection(herkansingDBModel.GetAllStudentenHerk_Result)">
+            <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -690,12 +690,6 @@
           <Property Type="Int32" Name="Plaatsen" Nullable="true" />
           <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
         </ComplexType>
-        <ComplexType Name="GetAllStudentenHerk_Result">
-          <Property Type="String" Name="Studentcode" Nullable="false" MaxLength="7" />
-          <Property Type="String" Name="Naam" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="KLAS" Nullable="false" MaxLength="5" />
-          <Property Type="String" Name="OPLEIDING" Nullable="false" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="GetHerkansingInfoHerk_Result">
           <Property Type="String" Name="Toetsnaam" Nullable="false" MaxLength="200" />
           <Property Type="Int32" Name="ToetsID" Nullable="false" />
@@ -707,12 +701,6 @@
           <Property Type="String" Name="KlasIDofOpleidingsID" Nullable="false" />
           <Property Type="String" Name="Lokaal" Nullable="false" MaxLength="8" />
           <Property Type="String" Name="Surveillant" Nullable="false" MaxLength="5" />
-        </ComplexType>
-        <ComplexType Name="GetAllStudentenHerk_Result1">
-          <Property Type="String" Name="Studentcode" Nullable="false" MaxLength="7" />
-          <Property Type="String" Name="Naam" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="KLAS" Nullable="false" MaxLength="5" />
-          <Property Type="String" Name="OPLEIDING" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="VerkrijgAlleHerkansingenDocent_Result">
           <Property Type="String" Name="LRL_NR" Nullable="false" MaxLength="7" />
@@ -860,6 +848,12 @@
           <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
           <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
           <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="GetAllStudentenHerk_Result">
+          <Property Type="String" Name="Studentcode" Nullable="false" MaxLength="7" />
+          <Property Type="String" Name="Naam" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="KLAS" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="OPLEIDING" Nullable="false" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1065,16 +1059,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetDocentEmail" FunctionName="herkansingDBModel.Store.GetDocentEmail" />
           <FunctionImportMapping FunctionImportName="GetSurveillantEmail" FunctionName="herkansingDBModel.Store.GetSurveillantEmail" />
-          <FunctionImportMapping FunctionImportName="GetAllStudentenHerk" FunctionName="herkansingDBModel.Store.GetAllStudentenHerk">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.GetAllStudentenHerk_Result1">
-                <ScalarProperty Name="Studentcode" ColumnName="Studentcode" />
-                <ScalarProperty Name="Naam" ColumnName="Naam" />
-                <ScalarProperty Name="KLAS" ColumnName="KLAS" />
-                <ScalarProperty Name="OPLEIDING" ColumnName="OPLEIDING" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UpdateHerkansing" FunctionName="herkansingDBModel.Store.UpdateHerkansing" />
           <FunctionImportMapping FunctionImportName="VerkrijgAlleHerkansingenDocent" FunctionName="herkansingDBModel.Store.VerkrijgAlleHerkansingenDocent">
             <ResultMapping>
@@ -1240,6 +1224,16 @@
                 <ScalarProperty Name="Starttijd" ColumnName="Starttijd" />
                 <ScalarProperty Name="Vak" ColumnName="Vak" />
                 <ScalarProperty Name="Toets" ColumnName="Toets" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllStudentenHerk" FunctionName="herkansingDBModel.Store.GetAllStudentenHerk">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.GetAllStudentenHerk_Result">
+                <ScalarProperty Name="Studentcode" ColumnName="Studentcode" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="KLAS" ColumnName="KLAS" />
+                <ScalarProperty Name="OPLEIDING" ColumnName="OPLEIDING" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
