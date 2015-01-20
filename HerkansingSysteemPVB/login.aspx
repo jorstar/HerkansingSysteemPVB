@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="paginaContent" runat="server">
     <div id="login">
-    <table id="tablelogin" class="fancyTable">
+    <table id="tablelogin" class="fancyTable" style="margin-top: 50px;">
         <tr>
             <td>
                 Gebruikersnaam:
