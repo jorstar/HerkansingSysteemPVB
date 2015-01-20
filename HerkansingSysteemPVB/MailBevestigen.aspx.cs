@@ -14,21 +14,25 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Convert.ToString(Session["Role"]) != "S")
-        {
-            Response.Redirect("Home.aspx");
-        }
-
+        
         Guid = Request.QueryString["herkansing"];
         if (Session["User"] == null)
         {
-            if (Guid != null)
+            if (Session["Role"].ToString() == "S")
             {
-                Response.Redirect("login.aspx?page=Bevestigen&ID=" + Guid);
+                if (Guid != null)
+                {
+                    Response.Redirect("login.aspx?page=Bevestigen&ID=" + Guid);
+                }
+
+                else
+                {
+                    Response.Redirect("home.aspx");
+                }
             }
             else
             {
-                Response.Redirect("home.aspx");
+                Response.Redirect("Home.aspx");
             }
         }
         else
