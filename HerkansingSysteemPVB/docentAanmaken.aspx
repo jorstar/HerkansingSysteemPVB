@@ -48,6 +48,7 @@
                         <td class="herkansingAanmakenRightTableCollumn">
                             <asp:TextBox ID="txtEMail" CssClass="inputs" runat="server" Width="250px"></asp:TextBox></td>
                         <td>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEMail" ErrorMessage="Het opgegeven e-mail adres is ongelding" ForeColor="Red" ValidationExpression="^((?&gt;[a-zA-Z\d!#$%&amp;'*+\-/=?^_`{|}~]+\x20*|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;\x20*)*(?&lt;angle&gt;&lt;))?((?!\.)(?&gt;\.?[a-zA-Z\d!#$%&amp;'*+\-/=?^_`{|}~]+)+|&quot;((?=[\x01-\x7f])[^&quot;\\]|\\[\x01-\x7f])*&quot;)@(((?!-)[a-zA-Z\d\-]+(?&lt;!-)\.)+[a-zA-Z]{2,}|\[(((?(?&lt;!\[)\.)(25[0-5]|2[0-4]\d|[01]?\d?\d)){4}|[a-zA-Z\d\-]*[a-zA-Z\d]:((?=[\x01-\x7f])[^\\\[\]]|\\[\x01-\x7f])+)\])(?(angle)&gt;)$">*</asp:RegularExpressionValidator>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Het veld e-mail is verplicht" ControlToValidate="txtEMail" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
