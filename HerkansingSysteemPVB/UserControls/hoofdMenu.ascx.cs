@@ -14,10 +14,10 @@ public partial class UserControlls_Menu : System.Web.UI.UserControl
         {
             MenuItem AanmakenDocent = Hoofdmenu.FindItem("AanmakenDocent");
             Hoofdmenu.Items.Remove(AanmakenDocent);
-            MenuItem HerkansingOverzichtStudent = Hoofdmenu.FindItem("HerkansingOverzichtStudent");
-            Hoofdmenu.Items.Remove(HerkansingOverzichtStudent);
             MenuItem AanmeldenHerkansing = Hoofdmenu.FindItem("AanmeldenHerkansing");
             Hoofdmenu.Items.Remove(AanmeldenHerkansing);
+            MenuItem HerkansingOverzichtDocent = Hoofdmenu.FindItem("HerkansingOverzichtDocent");
+            Hoofdmenu.Items.Remove(HerkansingOverzichtDocent);
 
         }
         else if(Convert.ToString(Session["Role"]) == "D")

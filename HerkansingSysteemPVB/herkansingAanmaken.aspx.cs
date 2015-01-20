@@ -41,20 +41,7 @@ public partial class _Default : System.Web.UI.Page
             ddlLokaal.DataSource = entity.GetAllLokalen();
             ddlLokaal.DataBind();
 
-        }
-
-        if (rblKlasOfOpleiding.SelectedIndex == 0)
-        {
-            herkansingDBEntities entity = new herkansingDBEntities();
-            ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllklassen();
-            ddlKlasOfOpleidingSelecteren.DataBind();
-
-        }
-        else
-        {
-            herkansingDBEntities entity = new herkansingDBEntities();
-            ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllopleidingen();
-            ddlKlasOfOpleidingSelecteren.DataBind();
+            rblKlasOfOpleiding_SelectedIndexChanged(sender, e);
         }
 
         if (ddlToetsen.SelectedIndex != -1)
@@ -139,5 +126,23 @@ public partial class _Default : System.Web.UI.Page
         {
             txtMinuten.Text = "0" + txtMinuten.Text;
         }
+    }
+    protected void rblKlasOfOpleiding_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+        if (rblKlasOfOpleiding.SelectedIndex == 0)
+        {
+            herkansingDBEntities entity = new herkansingDBEntities();
+            ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllklassen();
+            ddlKlasOfOpleidingSelecteren.DataBind();
+
+        }
+        else
+        {
+            herkansingDBEntities entity = new herkansingDBEntities();
+            ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllopleidingen();
+            ddlKlasOfOpleidingSelecteren.DataBind();
+        }
+
     }
 }

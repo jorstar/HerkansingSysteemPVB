@@ -60,7 +60,7 @@
                                     </p>
                                 </td>
                                 <td class="herkansingAanmakenRightTableCollumn">
-                                    <asp:DropDownList ID="ddlSureillance" Width="202px" runat="server" CssClass="inputs">
+                                    <asp:DropDownList ID="ddlSureillance" Width="202px" runat="server" CssClass="inputs" AutoPostBack="True">
                                     </asp:DropDownList>
                                 </td>
                                 <td></td>
@@ -69,7 +69,7 @@
                                 <td>Klas of opleiding:</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
                                     <div style="width: 125px; margin: 0px auto 0px auto; text-align: left;">
-                                        <asp:RadioButtonList ID="rblKlasOfOpleiding" runat="server" Width="125px" AutoPostBack="True">
+                                        <asp:RadioButtonList ID="rblKlasOfOpleiding" runat="server" Width="125px" AutoPostBack="True" OnSelectedIndexChanged="rblKlasOfOpleiding_SelectedIndexChanged">
                                             <asp:ListItem>Klas</asp:ListItem>
                                             <asp:ListItem>Opleiding</asp:ListItem>
                                         </asp:RadioButtonList>
@@ -80,7 +80,7 @@
                             <tr>
                                 <td>Selecteer klas/opleiding</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
-                                    <asp:DropDownList ID="ddlKlasOfOpleidingSelecteren" Width="200px" runat="server" CssClass="inputs">
+                                    <asp:DropDownList ID="ddlKlasOfOpleidingSelecteren" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True">
                                     </asp:DropDownList>
                                 </td>
                                 <td></td>
@@ -98,7 +98,7 @@
                             <tr>
                                 <td>Lokaal selecteren</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
-                                    <asp:DropDownList ID="ddlLokaal" Width="200px" runat="server" CssClass="inputs"></asp:DropDownList></td>
+                                    <asp:DropDownList ID="ddlLokaal" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True"></asp:DropDownList></td>
                                 <td></td>
                             </tr>
                             <tr>
