@@ -126,8 +126,9 @@ public partial class _Default : System.Web.UI.Page
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(Message);
 
-            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Mail is verzonden naar de Surveillant.');", true);
-            Response.Redirect("alleHerkansingenDocent.aspx");
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('Mail is verzonden naar de Surveillant.');window.location.href='alleHerkansingenDocent.aspx'</script>");
+            
+
         }
         catch (SmtpFailedRecipientsException ex)
         {

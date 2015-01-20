@@ -45,8 +45,7 @@ public partial class _Default : System.Web.UI.Page
 
                     if (info.aantal == 0)
                     {
-                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Er zijn geen plaatsen meer beschikbaar voor deze herkansing.');", true);
-                        Response.Redirect("home.aspx");
+                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('Er zijn geen plaatsen meer beschikbaar voor deze herkansing.');window.location.href='home.aspx'</script>");
                     }
                     else
                     {
@@ -66,9 +65,7 @@ public partial class _Default : System.Web.UI.Page
             }
             catch (Exception)
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Je bent al geregistreerd voor die toets');", true);
-
-                Response.Redirect("home.aspx");
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('Je bent al geregistreerd voor die toets.');window.location.href='home.aspx'</script>");
             }
             
         }
@@ -87,8 +84,7 @@ public partial class _Default : System.Web.UI.Page
                 ins.Bevestigd = true;
                 ef.SaveChanges();
 
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('U bent Successvol aangemeld voor de herkansing.');", true);
-                Response.Redirect("home.aspx");
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('U bent Successvol aangemeld voor de herkansing.');window.location.href='home.aspx'</script>");
             }
         }
         catch (EntityCommandCompilationException ex)
