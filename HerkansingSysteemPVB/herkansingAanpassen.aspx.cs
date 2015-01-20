@@ -17,6 +17,7 @@ public partial class _Default : System.Web.UI.Page
 
         if (!Page.IsPostBack)
         {
+            //Toets DropDropList Vullen
             herkansingDBEntities entity = new herkansingDBEntities();
             ddlHerkansingen.DataSource = entity.GetAllAankomendeHerkansingenPlusInfo();
             ddlHerkansingen.DataValueField = "HerkansingID";
@@ -24,7 +25,6 @@ public partial class _Default : System.Web.UI.Page
             ddlHerkansingen.DataBind();
             ddlHerkansingen.SelectedIndex = 0;
 
-            //Toets DropDropList Vullen
             ddlToetsen.DataSource = entity.GetAllToets();
             ddlToetsen.DataValueField = "toetsID";
             ddlToetsen.DataTextField = "toetsNaam";
@@ -38,11 +38,8 @@ public partial class _Default : System.Web.UI.Page
             ddlLokaal.DataSource = entity.GetAllLokalen();
             ddlLokaal.DataBind();
 
-            lblToetsNaam.Text = entity.GetToetsInfo(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Toets).First().ToetsNaam;
-            lblToetsVak.Text = entity.GetToetsInfo(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Toets).First().VakNaam;
-            lblToetsBeschrijving.Text = entity.GetToetsInfo(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Toets).First().ToetsDescriptie;
-            lblToetsID.Text = Convert.ToString(entity.GetToetsInfo(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Toets).First().ToetsID);
-           
+
+
             ddlKlasOfOpleidingSelecteren.SelectedValue = Convert.ToString(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().KlasIDofOpleidingsID);
 
             if (entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().IsHetEenKlas)
@@ -54,46 +51,13 @@ public partial class _Default : System.Web.UI.Page
                 rblKlasOfOpleiding.SelectedIndex = 1;
             }
 
+            //eventen af vuren
+            ddlHerkansingen_SelectedIndexChanged(sender, e);
+            rblKlasOfOpleiding_SelectedIndexChanged(sender, e);
         }
 
-        if (ddlHerkansingen.SelectedIndex != -1)
-        {
-            herkansingDBEntities Entity = new herkansingDBEntities();
 
-            ddlToetsen.SelectedValue = Convert.ToString(Entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Toets);
-        }
 
-        if (rblKlasOfOpleiding.SelectedIndex == 0)
-        {
-            herkansingDBEntities entity = new herkansingDBEntities();
-            ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllklassen();
-            ddlKlasOfOpleidingSelecteren.DataBind();
-        }
-        else if (rblKlasOfOpleiding.SelectedIndex == 1)
-        {
-            herkansingDBEntities entity = new herkansingDBEntities();
-            ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllopleidingen();
-            ddlKlasOfOpleidingSelecteren.DataBind();
-
-            ddlKlasOfOpleidingSelecteren.SelectedIndex = 0;
-        }
-        else
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Iets ging ergens fout.');", true);
-        }
-
-        if (ddlSureillance.SelectedIndex != -1)
-        {
-            herkansingDBEntities entity = new herkansingDBEntities();
-
-            ddlSureillance.SelectedValue = Convert.ToString(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Surveillant);
-            ddlLokaal.SelectedValue = Convert.ToString(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Lokaal);
-            FullTextboxen(Convert.ToInt32(ddlHerkansingen.SelectedValue));
-            txtDatum.Text = entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Datum.ToShortDateString();
-            cbActief.Checked = entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Actief; 
-        }
-        
-        
 
     }
 
@@ -116,8 +80,6 @@ public partial class _Default : System.Web.UI.Page
             rblKlasOfOpleiding.SelectedIndex = 1;
         }
 
-
-
     }
 
     protected void btnBevestig_Click(object sender, EventArgs e)
@@ -125,29 +87,75 @@ public partial class _Default : System.Web.UI.Page
         herkansingDBEntities entity = new herkansingDBEntities();
 
         bool objBool;
-            if(rblKlasOfOpleiding.SelectedIndex == 0)
-            {
-                objBool = true;
-            }
-            else{
-                objBool = false;
-            }
+        if (rblKlasOfOpleiding.SelectedIndex == 0)
+        {
+            objBool = true;
+        }
+        else
+        {
+            objBool = false;
+        }
 
         entity.UpdateHerkansing(
-            Convert.ToInt32(ddlHerkansingen.SelectedValue), 
-            ddlLokaal.SelectedValue, 
-            Convert.ToDateTime(txtDatum.Text), 
-            ddlSureillance.SelectedValue, 
-            Convert.ToInt32(ddlToetsen.SelectedValue), 
-            Convert.ToInt32(txtLengteHerkansing.Text), 
-            Convert.ToInt32(txtMaxPlaatsen.Text), 
-            cbActief.Checked, objBool, 
-            ddlKlasOfOpleidingSelecteren.SelectedValue, 
+            Convert.ToInt32(ddlHerkansingen.SelectedValue),
+            ddlLokaal.SelectedValue,
+            Convert.ToDateTime(txtDatum.Text),
+            ddlSureillance.SelectedValue,
+            Convert.ToInt32(ddlToetsen.SelectedValue),
+            Convert.ToInt32(txtLengteHerkansing.Text),
+            Convert.ToInt32(txtMaxPlaatsen.Text),
+            cbActief.Checked, objBool,
+            ddlKlasOfOpleidingSelecteren.SelectedValue,
             txtUur.Text + ":" + txtMinuten.Text
             );
 
         entity.SaveChanges();
 
         Response.Redirect("herkansingAanpassen.aspx");
+    }
+    protected void ddlHerkansingen_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlSureillance.SelectedIndex != -1)
+        {
+            herkansingDBEntities entity = new herkansingDBEntities();
+
+            ddlSureillance.SelectedValue = Convert.ToString(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Surveillant);
+            ddlLokaal.SelectedValue = Convert.ToString(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Lokaal);
+            FullTextboxen(Convert.ToInt32(ddlHerkansingen.SelectedValue));
+            txtDatum.Text = entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Datum.ToString();
+            cbActief.Checked = entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Actief;
+            ddlToetsen.SelectedValue = Convert.ToString(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().Toets);
+            ddlToetsen_SelectedIndexChanged(sender, e);
+            rblKlasOfOpleiding_SelectedIndexChanged(sender, e);
+        }
+    }
+    protected void ddlToetsen_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        herkansingDBEntities entity = new herkansingDBEntities();
+        lblToetsNaam.Text = entity.GetToetsInfo(Convert.ToInt32(ddlToetsen.SelectedValue)).First().ToetsNaam;
+        lblToetsVak.Text = entity.GetToetsInfo(Convert.ToInt32(ddlToetsen.SelectedValue)).First().VakNaam;
+        lblToetsBeschrijving.Text = entity.GetToetsInfo(Convert.ToInt32(ddlToetsen.SelectedValue)).First().ToetsDescriptie;
+        lblToetsID.Text = Convert.ToString(entity.GetToetsInfo(Convert.ToInt32(ddlToetsen.SelectedValue)).First().ToetsID);
+    }
+    protected void rblKlasOfOpleiding_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (rblKlasOfOpleiding.SelectedIndex == 0)
+        {
+            herkansingDBEntities entity = new herkansingDBEntities();
+            ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllklassen();
+            ddlKlasOfOpleidingSelecteren.DataBind();
+        }
+        else if (rblKlasOfOpleiding.SelectedIndex == 1)
+        {
+            herkansingDBEntities entity = new herkansingDBEntities();
+            ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllopleidingen();
+            ddlKlasOfOpleidingSelecteren.DataBind();
+
+            ddlKlasOfOpleidingSelecteren.SelectedIndex = 0;
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Iets ging ergens fout.');", true);
+        }
     }
 }

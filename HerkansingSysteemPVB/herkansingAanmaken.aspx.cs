@@ -20,8 +20,6 @@ public partial class _Default : System.Web.UI.Page
             Response.Redirect("Home.aspx");
         }
 
-        Session["User"] = "WGS01";
-
         if (!Page.IsPostBack)
         {
             herkansingDBEntities entity = new herkansingDBEntities();

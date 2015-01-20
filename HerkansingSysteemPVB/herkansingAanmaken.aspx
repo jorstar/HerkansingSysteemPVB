@@ -26,7 +26,8 @@
                                 <td>Datum:</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
                                     <div>
-                                        <asp:TextBox ID="txtDatum" placeholder="Klik hier" runat="server" CssClass="inputs" Width="169px" TextMode="date"></asp:TextBox>
+                                        <asp:TextBox ID="txtDatum" placeholder="Klik hier" runat="server" CssClass="inputs" Width="169px"></asp:TextBox>
+                                        <asp:CalendarExtender ID="CalendarExtender1" runat="server" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" TargetControlID="txtDatum"></asp:CalendarExtender>
                                     </div>
 
                                 </td>

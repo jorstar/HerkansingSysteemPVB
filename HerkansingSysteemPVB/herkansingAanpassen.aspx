@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="Toets aanpassen" Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="herkansingAanpassen.aspx.cs" Inherits="_Default" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="paginaContent" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <table style="text-align: center; width: 100%;">
@@ -16,12 +18,12 @@
                             <tr>
                                 <td style="border-bottom: 2px solid black; padding: 10px 0px 10px 0px;">Selecteer herkansing</td>
                                 <td style="border-bottom: 2px solid black;" class="herkansingAanmakenRightTableCollumn">
-                                    <asp:DropDownList ID="ddlHerkansingen" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True"></asp:DropDownList></td>
+                                    <asp:DropDownList ID="ddlHerkansingen" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlHerkansingen_SelectedIndexChanged"></asp:DropDownList></td>
                             </tr>
                             <tr>
                                 <td>Toets:</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
-                                    <asp:DropDownList ID="ddlToetsen" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlToetsen" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True" OnSelectedIndexChanged="ddlToetsen_SelectedIndexChanged"></asp:DropDownList>
                                 </td>
                                 <td></td>
                             </tr>
@@ -29,7 +31,8 @@
                                 <td>Datum:</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
                                     <div>
-                                        <asp:TextBox ID="txtDatum" placeholder="Klik hier" runat="server" CssClass="inputs" Width="169px" TextMode="date"></asp:TextBox>
+                                        <asp:TextBox ID="txtDatum" placeholder="Klik hier" runat="server" CssClass="inputs" Width="169px">txtDatum</asp:TextBox>
+                                        <asp:CalendarExtender ID="CalendarExtender1" runat="server" TodaysDateFormat="dd/MM/YYYY" Format="dd/MM/YYYY" TargetControlID="txtDatum"></asp:CalendarExtender>
                                     </div>
 
                                 </td>
@@ -70,7 +73,7 @@
                                 <td>Klas of opleiding:</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
                                     <div style="width: 125px; margin: 0px auto 0px auto; text-align: left;">
-                                        <asp:RadioButtonList ID="rblKlasOfOpleiding" runat="server" Width="125px" AutoPostBack="True">
+                                        <asp:RadioButtonList ID="rblKlasOfOpleiding" runat="server" Width="125px" AutoPostBack="True" OnSelectedIndexChanged="rblKlasOfOpleiding_SelectedIndexChanged">
                                             <asp:ListItem>Klas</asp:ListItem>
                                             <asp:ListItem>Opleiding</asp:ListItem>
                                         </asp:RadioButtonList>
