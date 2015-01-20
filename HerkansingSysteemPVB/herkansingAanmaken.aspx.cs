@@ -8,6 +8,9 @@ using System.Globalization;
 
 public partial class _Default : System.Web.UI.Page
 {
+
+    public int AantalBeschikbarePlaatsen;
+
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -65,47 +68,69 @@ public partial class _Default : System.Web.UI.Page
         }
         if (txtMinuten.Text == "")
         {
-            txtMinuten.Text = DateTime.Now.Minute.ToString();
+            if (DateTime.Now.Minute.ToString().Length == 2)
+            {
+                txtMinuten.Text = DateTime.Now.Minute.ToString(); 
+            }
+            else
+            {
+                txtMinuten.Text = "0" + DateTime.Now.Minute.ToString();
+            }
+
 
         }
     }
     protected void btnBevestig_Click(object sender, EventArgs e)
     {
-
+        
+        if (ddlLokaal.SelectedIndex != -1)
+        {
+            herkansingDBEntities entity = new herkansingDBEntities();
+            AantalBeschikbarePlaatsen = Convert.ToInt32(entity.GetAantalPlaatsenLokaal(ddlLokaal.SelectedValue.ToString()).First());    
+        }
+        
         if (Page.IsValid)
         {
-            
-            bool objBool;
-            if(rblKlasOfOpleiding.SelectedIndex == 0)
+
+            if (Convert.ToInt32(txtMaxPlaatsen.Text) <= AantalBeschikbarePlaatsen)
             {
-                objBool = true;
-            }
-            else{
-                objBool = false;
-            }
+                bool objBool;
+                if (rblKlasOfOpleiding.SelectedIndex == 0)
+                {
+                    objBool = true;
+                }
+                else
+                {
+                    objBool = false;
+                }
 
-            herkansingDBEntities entity = new herkansingDBEntities();
+                herkansingDBEntities entity = new herkansingDBEntities();
 
-            entity.Herkansing.Add(new Herkansing
+                entity.Herkansing.Add(new Herkansing
+                {
+                    Actief = true,
+                    Datum = Convert.ToDateTime(txtDatum.Text),
+                    Plaatsen = Convert.ToInt32(txtMaxPlaatsen.Text),
+                    Docent = Convert.ToString(Session["User"]),
+                    Lokaal = ddlLokaal.SelectedValue,
+                    IsHetEenKlas = objBool,
+                    KlasIDofOpleidingsID = ddlKlasOfOpleidingSelecteren.SelectedValue,
+                    Tijdsduur = Convert.ToInt32(txtMaxPlaatsen.Text),
+                    Toets = Convert.ToInt32(ddlToetsen.SelectedValue),
+                    Surveillant = ddlSureillance.SelectedValue,
+                    BeginTijd = txtUur.Text + ":" + txtMinuten.Text
+
+                });
+
+                entity.SaveChanges();
+
+                Response.Redirect("herkansingAanmaken.aspx");
+            }
+            else
             {
-                Actief = true,
-                Datum = Convert.ToDateTime(txtDatum.Text),
-                Plaatsen = Convert.ToInt32(txtMaxPlaatsen.Text),
-                Docent = Convert.ToString(Session["User"]),
-                Lokaal = ddlLokaal.SelectedValue,
-                IsHetEenKlas = objBool,
-                KlasIDofOpleidingsID = ddlKlasOfOpleidingSelecteren.SelectedValue,
-                Tijdsduur = Convert.ToInt32(txtMaxPlaatsen.Text),
-                Toets = Convert.ToInt32(ddlToetsen.SelectedValue),
-                Surveillant = ddlSureillance.SelectedValue,
-                BeginTijd = txtUur.Text + ":" + txtMinuten.Text
-
-            });
-
-            entity.SaveChanges();
-
-            Response.Redirect("herkansingAanmaken.aspx");
-
+                lblMaxAantalPlaatsen.Text = "Het maximum aantal plaatsen voor dat lokaal is " + AantalBeschikbarePlaatsen;
+                lblAstrixAantalPlaatsen.Text = "*";
+            }
         }
 
     }

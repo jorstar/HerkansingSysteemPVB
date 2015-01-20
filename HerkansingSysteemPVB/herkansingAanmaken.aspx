@@ -33,6 +33,8 @@
                                 </td>
                                 <td>
 
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtDatum" ErrorMessage="Datum is een verplicht veld" ForeColor="Red">*</asp:RequiredFieldValidator>
+
                                 </td>
                             </tr>
                             <tr>
@@ -48,7 +50,7 @@
                                 <td>Lengte herkansing (minuten)
                                 </td>
                                 <td class="herkansingAanmakenRightTableCollumn">
-                                    <asp:TextBox ID="txtLengteHerkansing" placeholder="ex. 45" Width="169px" runat="server" min="15" max="480" TextMode="Number" CssClass="inputs"></asp:TextBox>
+                                    <asp:TextBox ID="txtLengteHerkansing" placeholder="ex. 45" Text="60" Width="169px" runat="server" min="15" max="480" TextMode="Number" CssClass="inputs"></asp:TextBox>
                                 </td>
                                 <td>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLengteHerkansing" ErrorMessage="Herkansing lengte is een verplicht veld" ForeColor="Red">*</asp:RequiredFieldValidator>
@@ -89,9 +91,10 @@
                             <tr>
                                 <td>Aantal plaatsen</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
-                                    <asp:TextBox ID="txtMaxPlaatsen" placeholder="Min:1 / Max: 20" Width="169px" runat="server" TextMode="number" max="20" min="1" CssClass="inputs"></asp:TextBox>
+                                    <asp:TextBox ID="txtMaxPlaatsen" placeholder="Min:1 / Max: 20" Text="1" Width="169px" runat="server" TextMode="number" max="20" min="1" CssClass="inputs"></asp:TextBox>
                                 </td>
                                 <td>
+                                    <asp:Label ID="lblAstrixAantalPlaatsen" runat="server" ForeColor="Red"></asp:Label>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtMaxPlaatsen" ErrorMessage="Aantal plaatsen is een verplicht veld" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 </td>
 
@@ -114,7 +117,7 @@
                             <tr>
                                 <td colspan="2">
                                     <div style="margin: 15px auto 15px auto; width: 350px;">
-                                        
+                                        <asp:Label ID="lblMaxAantalPlaatsen" runat="server" ForeColor="Red"></asp:Label>
                                             <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
                                            
                                     </div>
