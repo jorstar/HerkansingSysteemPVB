@@ -10,7 +10,7 @@ using System.Drawing;
 
 public partial class _Default : System.Web.UI.Page
 {
-    public int Userid;
+    public string Userid;
     public string sessHerkansingID = "";
 
     #region important stuffs
@@ -20,7 +20,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        int Userid = (int)Session["user"];
+        Userid = (string)Session["User"];
 
         #region voor de radiobuttonlist
         SelectRadioButtonValue();

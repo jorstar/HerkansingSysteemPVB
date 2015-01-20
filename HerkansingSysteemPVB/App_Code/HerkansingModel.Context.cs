@@ -136,24 +136,6 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetHerkansingInfoHerk_Result>("GetHerkansingInfoHerk", herkansingIDParameter);
     }
 
-    public virtual ObjectResult<VerkrijgBeschikbareHerkansingStudent_Result> VerkrijgBeschikbareHerkansingStudent(Nullable<int> studentID)
-    {
-        var studentIDParameter = studentID.HasValue ?
-            new ObjectParameter("studentID", studentID) :
-            new ObjectParameter("studentID", typeof(int));
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgBeschikbareHerkansingStudent_Result>("VerkrijgBeschikbareHerkansingStudent", studentIDParameter);
-    }
-
-    public virtual ObjectResult<VerkrijgHistorieHerkansingenStudent_Result> VerkrijgHistorieHerkansingenStudent(Nullable<int> studentID)
-    {
-        var studentIDParameter = studentID.HasValue ?
-            new ObjectParameter("studentID", studentID) :
-            new ObjectParameter("studentID", typeof(int));
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenStudent_Result>("VerkrijgHistorieHerkansingenStudent", studentIDParameter);
-    }
-
     public virtual ObjectResult<string> GetDocentEmail(string docentID)
     {
         var docentIDParameter = docentID != null ?
@@ -285,24 +267,6 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeBeheer", oldWachtWoordParameter, nieuwWachtWoordParameter, gebruikersnaamParameter);
     }
 
-    public virtual ObjectResult<DisplayHerkansingen_Result> DisplayHerkansingen(string studentID)
-    {
-        var studentIDParameter = studentID != null ?
-            new ObjectParameter("studentID", studentID) :
-            new ObjectParameter("studentID", typeof(string));
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayHerkansingen_Result>("DisplayHerkansingen", studentIDParameter);
-    }
-
-    public virtual ObjectResult<VerkrijgAlleHerkansingenStudent_Result> VerkrijgAlleHerkansingenStudent(string studentID)
-    {
-        var studentIDParameter = studentID != null ?
-            new ObjectParameter("studentID", studentID) :
-            new ObjectParameter("studentID", typeof(string));
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenStudent_Result>("VerkrijgAlleHerkansingenStudent", studentIDParameter);
-    }
-
     public virtual ObjectResult<GetHerkansingBevestiging_Result> GetHerkansingBevestiging(string uID, string guid)
     {
         var uIDParameter = uID != null ?
@@ -366,5 +330,41 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("studentID", typeof(string));
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetStudentInfo", studentIDParameter);
+    }
+
+    public virtual ObjectResult<DisplayHerkansingen_Result> DisplayHerkansingen(string studentID)
+    {
+        var studentIDParameter = studentID != null ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayHerkansingen_Result>("DisplayHerkansingen", studentIDParameter);
+    }
+
+    public virtual ObjectResult<VerkrijgAlleHerkansingenStudent_Result> VerkrijgAlleHerkansingenStudent(string studentID)
+    {
+        var studentIDParameter = studentID != null ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenStudent_Result>("VerkrijgAlleHerkansingenStudent", studentIDParameter);
+    }
+
+    public virtual ObjectResult<VerkrijgBeschikbareHerkansingStudent_Result> VerkrijgBeschikbareHerkansingStudent(string studentID)
+    {
+        var studentIDParameter = studentID != null ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgBeschikbareHerkansingStudent_Result>("VerkrijgBeschikbareHerkansingStudent", studentIDParameter);
+    }
+
+    public virtual ObjectResult<VerkrijgHistorieHerkansingenStudent_Result> VerkrijgHistorieHerkansingenStudent(string studentID)
+    {
+        var studentIDParameter = studentID != null ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenStudent_Result>("VerkrijgHistorieHerkansingenStudent", studentIDParameter);
     }
 }

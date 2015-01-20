@@ -148,7 +148,7 @@ public partial class DisplayHerkansingen_Result
     public string Vak { get; set; }
     public string Toets { get; set; }
     public string Datum { get; set; }
-    public string DropdownlistInfo { get; set; }
+    public string DropdownListInfo { get; set; }
 }
 
 public partial class DisplayHerkansingenDocent_Result
