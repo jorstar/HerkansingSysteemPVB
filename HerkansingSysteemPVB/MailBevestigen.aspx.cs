@@ -11,7 +11,7 @@ public partial class _Default : System.Web.UI.Page
     string userid;
     string Guid;
     string exception;
-    string messagesucess;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Convert.ToString(Session["Role"]) != "S")
@@ -88,7 +88,8 @@ public partial class _Default : System.Web.UI.Page
                 ins.Bevestigd = true;
                 ef.SaveChanges();
 
-                messagesucess = "U bent Successvol aangemeld voor de herkansing.";
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('U bent Successvol aangemeld voor de herkansing.');", true);
+                Response.Redirect("home.aspx");
             }
         }
         catch (EntityCommandCompilationException ex)
@@ -112,11 +113,6 @@ public partial class _Default : System.Web.UI.Page
             if (exception != null)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + exception + "');", true);
-            }
-            else if(messagesucess != null)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + messagesucess + "');", true);
-                Response.Redirect("home.aspx");
             }
         }
     }
