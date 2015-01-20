@@ -14,6 +14,8 @@
             <td class="herkansingAanmakenRightTableCollumn">
                 <asp:TextBox ID="tbGebruikersnaam" placeholder="Gebruikersnaam" runat="server" CssClass="inputs"></asp:TextBox>
             </td>
+            <td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Gebruikersnaam is verplicht!" ControlToValidate="tbGebruikersnaam" Text="*"></asp:RequiredFieldValidator></td>
         </tr>
         <tr>
             <td>
@@ -22,6 +24,8 @@
             <td class="herkansingAanmakenRightTableCollumn">
                 <asp:TextBox ID="tbWachtwoord" placeholder="Wachtwoord" runat="server" TextMode="Password" CssClass="inputs"></asp:TextBox>
             </td>
+            <td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wachtwoord is verplicht!" Text="*"></asp:RequiredFieldValidator></td>
         </tr>
         <tr>
             <td>
@@ -29,6 +33,11 @@
             </td>
             <td>
                 <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="fancyButton" OnClick="btnLogin_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
             </td>
         </tr>
     </table>

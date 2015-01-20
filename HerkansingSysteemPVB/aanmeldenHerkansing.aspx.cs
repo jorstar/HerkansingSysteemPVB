@@ -18,18 +18,23 @@ public partial class _Default : System.Web.UI.Page
 
         if ((string)Session["Role"] == "S")
         {
+            if (Session["HerkansingID"] != null)
+            {
+                string HerkansingIDString = (string)Session["HerkansingID"];
 
+                studID = Session["User"].ToString();
+                HerkID = Convert.ToInt32(Session["HerkansingID"]);
+                filllabels(studID, HerkID);
+            }
+            else
+            {
+                Response.Redirect("home.aspx");
+            }
         }
         else
         {
-            Response.Redirect("login.aspx");
-        }
-
-        string HerkansingIDString = (string)Session["HerkansingID"];
-
-        studID = Session["User"].ToString();
-        HerkID = Convert.ToInt32(Session["HerkansingID"]);
-        filllabels(studID, HerkID);
+            Response.Redirect("home.aspx");
+        }        
     }
     protected void btnAanmelden_Click(object sender, EventArgs e)
     {
@@ -81,7 +86,10 @@ public partial class _Default : System.Web.UI.Page
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(Message);
             Session["HerkansingID"] = null;
-        }
+
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Aanmelding gelukt, De bevestigings mail is verstuurd');", true);
+            Response.Redirect("alleHerkansingenStudent.aspx");
+        }           
         catch (UpdateException ex)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);

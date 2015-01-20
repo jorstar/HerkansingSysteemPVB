@@ -26,53 +26,63 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        if (Session["Role"] != "B")
+        if (Session["Role"].ToString() != "B")
         {
             Response.Redirect("login.aspx");
         }
-
-        herkansingDBEntities ef = new herkansingDBEntities();
-        //herkansing id
-        int herkansingID = 11004;
-        var herkinfo = ef.GetHerkansingInfoHerk(herkansingID).First();
-
-
-        //datagridview vullen
-        dgvKandidaten.DataSource = ef.GetAllStudentenHerk(herkansingID);
-        dgvKandidaten.DataBind();
+        try
+        {
+            herkansingDBEntities ef = new herkansingDBEntities();
+            //herkansing id
+            int herkansingID = 11004;
+            var herkinfo = ef.GetHerkansingInfoHerk(herkansingID).First();
 
 
-        //variable vullen
-        toetsTitel = herkinfo.Toetsnaam;
-        toetsID = herkinfo.ToetsID.ToString();
-        Beschrijving = herkinfo.ToetsDescriptie;
-        Datum = herkinfo.Datum.ToString();
-        Tijd = herkinfo.BeginTijd.ToString();
-        lengte = herkinfo.Tijdsduur.ToString();
-        studentenvan = herkinfo.KlasIDofOpleidingsID;
-        docentSurveillant = herkinfo.Surveillant;
-        vak = herkinfo.VakNaam;
-        lokaal = herkinfo.Lokaal;
-        
+            //datagridview vullen
+            dgvKandidaten.DataSource = ef.GetAllStudentenHerk(herkansingID);
+            dgvKandidaten.DataBind();
 
-        //labels vullen
-        lblToetsTitel.Text = toetsTitel;
-        lblToetsID.Text = toetsID;
-        lblBeschrijving.Text = Beschrijving;
-        lblDatumTijd.Text = Datum + " om " + Tijd;
-        lblLengte.Text = lengte;
-        lblStudvan.Text = studentenvan;
-        lblSurveillant.Text = docentSurveillant;
-        lblVak.Text = vak;
-        lblLokaal.Text = lokaal;
+
+            //variable vullen
+            toetsTitel = herkinfo.Toetsnaam;
+            toetsID = herkinfo.ToetsID.ToString();
+            Beschrijving = herkinfo.ToetsDescriptie;
+            Datum = herkinfo.Datum.ToString();
+            Tijd = herkinfo.BeginTijd.ToString();
+            lengte = herkinfo.Tijdsduur.ToString();
+            studentenvan = herkinfo.KlasIDofOpleidingsID;
+            docentSurveillant = herkinfo.Surveillant;
+            vak = herkinfo.VakNaam;
+            lokaal = herkinfo.Lokaal;
+
+
+            //labels vullen
+            lblToetsTitel.Text = toetsTitel;
+            lblToetsID.Text = toetsID;
+            lblBeschrijving.Text = Beschrijving;
+            lblDatumTijd.Text = Datum + " om " + Tijd;
+            lblLengte.Text = lengte;
+            lblStudvan.Text = studentenvan;
+            lblSurveillant.Text = docentSurveillant;
+            lblVak.Text = vak;
+            lblLokaal.Text = lokaal;
+        }
+        catch (EntityException ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
+        }
+        catch (Exception ex)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
+        }
     }
     protected void btnMail_Click(object sender, EventArgs e)
     {
         try
         {
 
-            //string docent = Session["User"].ToString();
-            string docent = "KMP01";
+            string docent = Session["User"].ToString();
+            //string docent = "KMP01";
 
             herkansingDBEntities entity = new herkansingDBEntities();
             string surveillantemail = entity.GetSurveillantEmail(docentSurveillant).First();
@@ -107,7 +117,9 @@ public partial class _Default : System.Web.UI.Page
             smtp.EnableSsl = true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(Message);
-      
+
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Mail is verzonden naar de Surveillant.');", true);
+            Response.Redirect("alleHerkansingenDocent.aspx");
         }
         catch (SmtpFailedRecipientsException ex)
         {
