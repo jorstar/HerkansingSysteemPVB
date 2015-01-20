@@ -24,8 +24,6 @@ public partial class _Default : System.Web.UI.Page
         {
             Response.Redirect("login.aspx");
         }
-        //Session["User"] = "0178460";
-        //Session["HerkansingID"] = 11004;
 
         string HerkansingIDString = (string)Session["HerkansingID"];
 
