@@ -10,7 +10,7 @@
         <tr>
             <td>
 
-                <table class="fancyTable">
+                <table class="fancyTable" style="width: 400px; margin: 50px auto 0 auto">
                     <tr>
                         <td>Vak:</td>
                         <td><asp:Label ID="lblvak" runat="server" Text=""></asp:Label></td>
