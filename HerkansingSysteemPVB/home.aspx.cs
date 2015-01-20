@@ -18,9 +18,6 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-            herkansingDBEntities entity = new herkansingDBEntities();
-
-            Page.Title = string.Format("Welkom {0} {1}");
 
         }
 
