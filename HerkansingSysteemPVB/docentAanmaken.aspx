@@ -40,6 +40,7 @@
                         <td class="herkansingAanmakenRightTableCollumn">
                             <asp:TextBox ID="txtAfkorting" CssClass="inputs" runat="server" Width="250px"></asp:TextBox></td>
                         <td>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="txtAfkorting" ErrorMessage="De afkortink more 3 Hoofd tekens and 2 leters zijn." ForeColor="Red" ValidationExpression="[A-Z]{3}\d{2}">*</asp:RegularExpressionValidator>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Het veld afkorting is verplicht" ControlToValidate="txtAfkorting" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
