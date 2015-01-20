@@ -67,7 +67,7 @@
             <PropertyRef Name="LRL_NR" />
           </Key>
           <Property Name="LRL_NR" Type="nchar" MaxLength="7" Nullable="false" />
-          <Property Name="KLAS" Type="nchar" MaxLength="5" Nullable="false" />
+          <Property Name="KLAS" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ROEPNAAM" Type="nvarchar" MaxLength="75" Nullable="false" />
           <Property Name="TUSSENV" Type="nvarchar" MaxLength="25" />
           <Property Name="ACHTERNAM" Type="nvarchar" MaxLength="150" Nullable="false" />
@@ -179,7 +179,7 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="DisplayHerkansingen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="studentID" Type="int" Mode="In" />
+          <Parameter Name="studentID" Type="nchar" Mode="In" />
         </Function>
         <Function Name="DisplayHerkansingenDocent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllAankomendeHerkansingenPlusInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -207,6 +207,9 @@
         </Function>
         <Function Name="getStudentHerkansingen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="herkansingid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetStudentInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentID" Type="nchar" Mode="In" />
         </Function>
         <Function Name="GetSurveillantEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SurveillantID" Type="nvarchar" Mode="In" />
@@ -241,7 +244,7 @@
         </Function>
         <Function Name="VerkrijgAlleHerkansingenDocent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="VerkrijgAlleHerkansingenStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="studentID" Type="int" Mode="In" />
+          <Parameter Name="studentID" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="VerkrijgAlleStudentenVanEenHerkansing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="HerkansingID" Type="int" Mode="In" />
@@ -423,10 +426,10 @@
             <Parameter Name="Gebruikersnaam" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DisplayHerkansingen" ReturnType="Collection(herkansingDBModel.DisplayHerkansingen_Result)">
-          <Parameter Name="studentID" Mode="In" Type="Int32" />
+          <Parameter Name="studentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="VerkrijgAlleHerkansingenStudent" ReturnType="Collection(herkansingDBModel.VerkrijgAlleHerkansingenStudent_Result)">
-          <Parameter Name="studentID" Mode="In" Type="Int32" />
+          <Parameter Name="studentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetHerkansingBevestiging" ReturnType="Collection(herkansingDBModel.GetHerkansingBevestiging_Result)">
             <Parameter Name="UID" Mode="In" Type="String" />
@@ -444,6 +447,9 @@
             <Parameter Name="oldWachtWoord" Mode="In" Type="String" />
             <Parameter Name="NieuwWachtWoord" Mode="In" Type="String" />
             <Parameter Name="LRL_NR" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetStudentInfo" ReturnType="Collection(String)">
+            <Parameter Name="studentID" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -518,7 +524,7 @@
             <PropertyRef Name="LRL_NR" />
           </Key>
           <Property Name="LRL_NR" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="true" />
-          <Property Name="KLAS" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="KLAS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ROEPNAAM" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
           <Property Name="TUSSENV" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="ACHTERNAM" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
@@ -1236,6 +1242,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="wwChangeDocent" FunctionName="herkansingDBModel.Store.wwChangeDocent" />
           <FunctionImportMapping FunctionImportName="wwChangeStudent" FunctionName="herkansingDBModel.Store.wwChangeStudent" />
+          <FunctionImportMapping FunctionImportName="GetStudentInfo" FunctionName="herkansingDBModel.Store.GetStudentInfo" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

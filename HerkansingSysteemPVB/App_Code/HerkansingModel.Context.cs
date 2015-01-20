@@ -285,20 +285,20 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeBeheer", oldWachtWoordParameter, nieuwWachtWoordParameter, gebruikersnaamParameter);
     }
 
-    public virtual ObjectResult<DisplayHerkansingen_Result> DisplayHerkansingen(Nullable<int> studentID)
+    public virtual ObjectResult<DisplayHerkansingen_Result> DisplayHerkansingen(string studentID)
     {
-        var studentIDParameter = studentID.HasValue ?
+        var studentIDParameter = studentID != null ?
             new ObjectParameter("studentID", studentID) :
-            new ObjectParameter("studentID", typeof(int));
+            new ObjectParameter("studentID", typeof(string));
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayHerkansingen_Result>("DisplayHerkansingen", studentIDParameter);
     }
 
-    public virtual ObjectResult<VerkrijgAlleHerkansingenStudent_Result> VerkrijgAlleHerkansingenStudent(Nullable<int> studentID)
+    public virtual ObjectResult<VerkrijgAlleHerkansingenStudent_Result> VerkrijgAlleHerkansingenStudent(string studentID)
     {
-        var studentIDParameter = studentID.HasValue ?
+        var studentIDParameter = studentID != null ?
             new ObjectParameter("studentID", studentID) :
-            new ObjectParameter("studentID", typeof(int));
+            new ObjectParameter("studentID", typeof(string));
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenStudent_Result>("VerkrijgAlleHerkansingenStudent", studentIDParameter);
     }
@@ -357,5 +357,14 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("LRL_NR", typeof(string));
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("wwChangeStudent", oldWachtWoordParameter, nieuwWachtWoordParameter, lRL_NRParameter);
+    }
+
+    public virtual ObjectResult<string> GetStudentInfo(string studentID)
+    {
+        var studentIDParameter = studentID != null ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("GetStudentInfo", studentIDParameter);
     }
 }
