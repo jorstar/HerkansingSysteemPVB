@@ -11,7 +11,7 @@
                 <table class="fancyTable" style="width: 900px; margin: 50px auto 50px auto;">
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="dgvStudentenHerkansingsOverzicht" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AllowCustomPaging="false" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvStudentenHerkansingsOverzicht_PageIndexChanging" OnRowDataBound="dgvStudentenHerkansingsOverzicht_RowDataBound" OnSelectedIndexChanged="dgvStudentenHerkansingsOverzicht_SelectedIndexChanged">
+                            <asp:GridView CssClass="BlackTextGrid" ID="dgvStudentenHerkansingsOverzicht" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AllowCustomPaging="false" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvStudentenHerkansingsOverzicht_PageIndexChanging" OnRowDataBound="dgvStudentenHerkansingsOverzicht_RowDataBound" OnSelectedIndexChanged="dgvStudentenHerkansingsOverzicht_SelectedIndexChanged">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -24,7 +24,8 @@
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
-                            <asp:GridView ID="dgvStudentHerkansingOverzichtAlternatief" Visible="false" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AllowCustomPaging="false" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvStudentenHerkansingsOverzicht_PageIndexChanging" OnRowDataBound="dgvStudentenHerkansingsOverzicht_RowDataBound" OnSelectedIndexChanged="dgvStudentenHerkansingsOverzicht_SelectedIndexChanged">
+                            <br />
+                            <asp:GridView CssClass="BlackTextGrid" ID="dgvStudentHerkansingOverzichtAlternatief" Visible="false" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AllowCustomPaging="false" AllowPaging="true" PageSize="5" OnPageIndexChanging="dgvStudentHerkansingOverzichtAlternatief_PageIndexChanging">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

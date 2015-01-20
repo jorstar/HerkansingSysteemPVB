@@ -25,18 +25,20 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        //MOET WEG ALS APPLICATIE KLAAR IS
-        Session["HerkansingID"] = 11004;
-        //MOET WEG ALS APPLICATIE KLAAR IS
-
-        if (Session["Role"].ToString() != "D")
+        if (Session["User"] != null)
         {
-            Response.Redirect("home.aspx");
+            if (Session["Role"].ToString() != "D")
+            {
+                Response.Redirect("home.aspx");
+            }
+            else
+            {
+
+            }
         }
         else
         {
-
+            Response.Redirect("home.aspx");
         }
         try
         {
@@ -127,7 +129,7 @@ public partial class _Default : System.Web.UI.Page
             smtp.Send(Message);
 
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('Mail is verzonden naar de Surveillant.');window.location.href='alleHerkansingenDocent.aspx'</script>");
-            
+
 
         }
         catch (SmtpFailedRecipientsException ex)

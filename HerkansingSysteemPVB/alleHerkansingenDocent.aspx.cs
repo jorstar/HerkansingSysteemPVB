@@ -9,11 +9,13 @@ using System.Drawing;
 
 public partial class _Default : System.Web.UI.Page
 {
+    #region belangrijke stuff
     public herkansingDBEntities objHerkansing = new herkansingDBEntities();
     public int rdbSelectedValue;
     public string HerkansingsIDString = "";
-
     string DocentID;
+    #endregion
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string DocentID = (string)Session["User"];
@@ -24,23 +26,35 @@ public partial class _Default : System.Web.UI.Page
 
         if (rdbVeranderDisplay.SelectedIndex == 0)
         {
+            dgvDocentenHerkansingOverzicht.Visible = true;
+            dgvDocentenOverzichtAlternatief.Visible = false;
+
             dgvDocentenHerkansingOverzicht.DataSource = objHerkansing.VerkrijgBeschikbareHerkansingDocent().ToList();
             dgvDocentenHerkansingOverzicht.DataBind();
         }
         if (rdbVeranderDisplay.SelectedIndex == 1)
         {
-            dgvDocentenHerkansingOverzicht.DataSource = objHerkansing.VerkrijgAlleHerkansingenDocent().ToList();
-            dgvDocentenHerkansingOverzicht.DataBind();
+            dgvDocentenHerkansingOverzicht.Visible = false;
+            dgvDocentenOverzichtAlternatief.Visible = true;
+
+            dgvDocentenOverzichtAlternatief.DataSource = objHerkansing.VerkrijgAlleHerkansingenDocent().ToList();
+            dgvDocentenOverzichtAlternatief.DataBind();
         }
         if (rdbVeranderDisplay.SelectedIndex == 2)
         {
-            dgvDocentenHerkansingOverzicht.DataSource = objHerkansing.VerkrijgHistorieHerkansingenDocent().ToList();
-            dgvDocentenHerkansingOverzicht.DataBind();
+            dgvDocentenHerkansingOverzicht.Visible = false;
+            dgvDocentenOverzichtAlternatief.Visible = true;
+
+            dgvDocentenOverzichtAlternatief.DataSource = objHerkansing.VerkrijgHistorieHerkansingenDocent().ToList();
+            dgvDocentenOverzichtAlternatief.DataBind();
         }
         if (rdbVeranderDisplay.SelectedIndex == 3)
         {
-            dgvDocentenHerkansingOverzicht.DataSource = objHerkansing.verkrijgHerkansingenGemaaktDoorDocent(DocentID).ToList();
-            dgvDocentenHerkansingOverzicht.DataBind();
+            dgvDocentenHerkansingOverzicht.Visible = false;
+            dgvDocentenOverzichtAlternatief.Visible = true;
+
+            dgvDocentenOverzichtAlternatief.DataSource = objHerkansing.verkrijgHerkansingenGemaaktDoorDocent(DocentID).ToList();
+            dgvDocentenOverzichtAlternatief.DataBind();
         }
         #endregion
 
@@ -85,6 +99,7 @@ public partial class _Default : System.Web.UI.Page
     }
 
     #region voor het selecteren van een row in de datagrid
+
     protected void dgvDocentenHerkansingOverzicht_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
@@ -105,8 +120,10 @@ public partial class _Default : System.Web.UI.Page
             else
                 row.ToolTip = "selecteer een toets.";
         }
-        //dingens doen wanneer iets is geselecteerd
+        string selectedValueDataGrid = dgvDocentenHerkansingOverzicht.SelectedRow.Cells[0].Text.ToString();
+        Session["HerkansingID"] = selectedValueDataGrid;
 
+        Response.Redirect("herkansingSurvianceMailen.aspx");
     }
     #endregion
 }

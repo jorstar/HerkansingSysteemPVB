@@ -10,12 +10,11 @@ using System.Drawing;
 
 public partial class _Default : System.Web.UI.Page
 {
-    public string Userid;
-    public string sessHerkansingID = "";
-
     #region important stuffs
     public herkansingDBEntities objHerkansing = new herkansingDBEntities();
     public int rdbSelectedValue;
+    public string Userid;
+    public string sessHerkansingID = "";
     #endregion
 
     protected void Page_Load(object sender, EventArgs e)
@@ -54,7 +53,6 @@ public partial class _Default : System.Web.UI.Page
             dgvStudentHerkansingOverzichtAlternatief.DataBind();
         }
         #endregion
-
     }
 
     protected int SelectRadioButtonValue()
@@ -99,5 +97,10 @@ public partial class _Default : System.Web.UI.Page
         Session["HerkansingID"] = selectedValueDataGrid;
 
         Response.Redirect("aanmeldenHerkansing.aspx");
+    }
+    protected void dgvStudentHerkansingOverzichtAlternatief_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        dgvStudentHerkansingOverzichtAlternatief.PageIndex = e.NewPageIndex;
+        dgvStudentHerkansingOverzichtAlternatief.DataBind();
     }
 }
