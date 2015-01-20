@@ -2,11 +2,14 @@
     margin: 0px;
     padding: 0px;
     font-family: Arial;
-    color:white;
 }
 
 GridView{
     color:black;
+}
+
+body{
+    color:white;
 }
 
 table.align tr td {
