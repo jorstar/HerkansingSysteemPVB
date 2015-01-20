@@ -15,7 +15,7 @@
                 <asp:TextBox ID="tbGebruikersnaam" placeholder="Gebruikersnaam" runat="server" CssClass="inputs"></asp:TextBox>
             </td>
             <td>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Gebruikersnaam is verplicht!" ControlToValidate="tbGebruikersnaam" Text="*"></asp:RequiredFieldValidator></td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Gebruikersnaam is verplicht!" ControlToValidate="tbGebruikersnaam" Text="*" ForeColor="Red"></asp:RequiredFieldValidator></td>
         </tr>
         <tr>
             <td>
@@ -25,7 +25,7 @@
                 <asp:TextBox ID="tbWachtwoord" placeholder="Wachtwoord" runat="server" TextMode="Password" CssClass="inputs"></asp:TextBox>
             </td>
             <td>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wachtwoord is verplicht!" Text="*"></asp:RequiredFieldValidator></td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wachtwoord is verplicht!" Text="*" ControlToValidate="tbWachtwoord" ForeColor="Red"></asp:RequiredFieldValidator></td>
         </tr>
         <tr>
             <td>
@@ -37,7 +37,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
+                <asp:ValidationSummary ID="ValidationSummary1" ForeColor="Red" Font-Bold="true" runat="server" />
             </td>
         </tr>
     </table>
