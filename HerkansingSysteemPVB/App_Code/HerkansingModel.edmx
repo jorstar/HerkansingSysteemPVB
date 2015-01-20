@@ -182,6 +182,9 @@
           <Parameter Name="studentID" Type="nchar" Mode="In" />
         </Function>
         <Function Name="DisplayHerkansingenDocent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAantalPlaatsenLokaal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="lokaalID" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="GetAllAankomendeHerkansingenPlusInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllklassen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetAllLokalen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
@@ -449,7 +452,10 @@
           <Parameter Name="studentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetAllStudentenHerk" ReturnType="Collection(herkansingDBModel.GetAllStudentenHerk_Result)">
-            <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
+          <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAantalPlaatsenLokaal" ReturnType="Collection(Int32)">
+            <Parameter Name="lokaalID" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -1237,6 +1243,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAantalPlaatsenLokaal" FunctionName="herkansingDBModel.Store.GetAantalPlaatsenLokaal" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

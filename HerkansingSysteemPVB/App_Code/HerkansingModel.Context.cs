@@ -367,4 +367,13 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllStudentenHerk_Result>("GetAllStudentenHerk", herkansingIDParameter);
     }
+
+    public virtual ObjectResult<Nullable<int>> GetAantalPlaatsenLokaal(string lokaalID)
+    {
+        var lokaalIDParameter = lokaalID != null ?
+            new ObjectParameter("lokaalID", lokaalID) :
+            new ObjectParameter("lokaalID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetAantalPlaatsenLokaal", lokaalIDParameter);
+    }
 }
