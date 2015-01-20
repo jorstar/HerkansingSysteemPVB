@@ -29,7 +29,7 @@
                     </tr>
                     <tr>
                         <td >
-                            <asp:GridView ID="dgvKandidaten" runat="server" Width="900px" CellPadding="4" ForeColor="#333333" GridLines="None">
+                            <asp:GridView CssClass="BlackTextGrid" ID="dgvKandidaten" runat="server" Width="900px" CellPadding="4" ForeColor="#333333" GridLines="None">
                                 <AlternatingRowStyle BackColor="White" HorizontalAlign="Center" />
                                 <EditRowStyle BackColor="#2461BF" HorizontalAlign="Center" />
                                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
