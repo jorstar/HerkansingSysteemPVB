@@ -87,8 +87,8 @@ public partial class _Default : System.Web.UI.Page
             smtp.Send(Message);
             Session["HerkansingID"] = null;
 
-            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Aanmelding gelukt, De bevestigings mail is verstuurd');", true);
-            Response.Redirect("alleHerkansingenStudent.aspx");
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('Aanmelding gelukt, De bevestigings mail is verstuurd.');window.location.href='alleHerkansingenStudent.aspx'</script>");
+
         }           
         catch (UpdateException ex)
         {
