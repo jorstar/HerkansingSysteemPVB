@@ -94,6 +94,22 @@
           <Property Name="VakNaam" Type="nvarchar" MaxLength="35" Nullable="false" />
           <Property Name="VakDescriptie" Type="nvarchar(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'herkansingDB.dbo.wachtwoordVergeten' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="wachtwoordVergeten">
+          <Key>
+            <PropertyRef Name="WachtwoordVergetenID" />
+            <PropertyRef Name="GUID" />
+            <PropertyRef Name="IsEenLeraar" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="Gebruikt" />
+          </Key>
+          <Property Name="WachtwoordVergetenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsEenLeraar" Type="bit" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="Gebruikt" Type="bit" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Herkansing_Docent">
           <End Role="Docent" Type="Self.Docent" Multiplicity="1" />
           <End Role="Herkansing" Type="Self.Herkansing" Multiplicity="*" />
@@ -299,6 +315,15 @@
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Toets" EntityType="Self.Toets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vak" EntityType="Self.Vak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wachtwoordVergeten" EntityType="Self.wachtwoordVergeten" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[wachtwoordVergeten].[WachtwoordVergetenID] AS [WachtwoordVergetenID], 
+[wachtwoordVergeten].[GUID] AS [GUID], 
+[wachtwoordVergeten].[IsEenLeraar] AS [IsEenLeraar], 
+[wachtwoordVergeten].[UserID] AS [UserID], 
+[wachtwoordVergeten].[Gebruikt] AS [Gebruikt]
+FROM [dbo].[wachtwoordVergeten] AS [wachtwoordVergeten]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Herkansing_Docent" Association="Self.FK_Herkansing_Docent">
             <End Role="Docent" EntitySet="Docent" />
             <End Role="Herkansing" EntitySet="Herkansing" />
@@ -476,11 +501,12 @@
           <Parameter Name="DocentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="setFirstLoginDocent">
-            <Parameter Name="DocentID" Mode="In" Type="String" />
+          <Parameter Name="DocentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="setFirstLoginStudent">
-            <Parameter Name="studentID" Mode="In" Type="String" />
+          <Parameter Name="studentID" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="wachtwoordVergetens" EntityType="herkansingDBModel.wachtwoordVergeten" />
         </EntityContainer>
         <EntityType Name="Beheerder">
           <Key>
@@ -885,6 +911,20 @@
           <Property Type="String" Name="KLAS" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="OPLEIDING" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <EntityType Name="wachtwoordVergeten">
+          <Key>
+            <PropertyRef Name="WachtwoordVergetenID" />
+            <PropertyRef Name="GUID" />
+            <PropertyRef Name="IsEenLeraar" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="Gebruikt" />
+          </Key>
+          <Property Name="WachtwoordVergetenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsEenLeraar" Type="Boolean" Nullable="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="Gebruikt" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1272,6 +1312,17 @@
           <FunctionImportMapping FunctionImportName="GetDocentFirstLogin" FunctionName="herkansingDBModel.Store.GetDocentFirstLogin" />
           <FunctionImportMapping FunctionImportName="setFirstLoginDocent" FunctionName="herkansingDBModel.Store.setFirstLoginDocent" />
           <FunctionImportMapping FunctionImportName="setFirstLoginStudent" FunctionName="herkansingDBModel.Store.setFirstLoginStudent" />
+          <EntitySetMapping Name="wachtwoordVergetens">
+            <EntityTypeMapping TypeName="herkansingDBModel.wachtwoordVergeten">
+              <MappingFragment StoreEntitySet="wachtwoordVergeten">
+                <ScalarProperty Name="Gebruikt" ColumnName="Gebruikt" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IsEenLeraar" ColumnName="IsEenLeraar" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="WachtwoordVergetenID" ColumnName="WachtwoordVergetenID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -20,6 +20,7 @@
         <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Herkansing" />
         <AssociationConnector Association="herkansingDBModel.FK_Inschrijving_Sudent" />
         <AssociationConnector Association="herkansingDBModel.FK_Toets_Vak" />
+        <EntityTypeShape EntityType="herkansingDBModel.wachtwoordVergeten" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

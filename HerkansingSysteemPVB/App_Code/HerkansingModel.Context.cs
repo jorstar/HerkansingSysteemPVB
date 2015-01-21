@@ -34,6 +34,7 @@ public partial class herkansingDBEntities : DbContext
     public DbSet<Student> Student { get; set; }
     public DbSet<Toets> Toets { get; set; }
     public DbSet<Vak> Vak { get; set; }
+    public DbSet<wachtwoordVergeten> wachtwoordVergetens { get; set; }
 
     public virtual ObjectResult<GetAllSurveillance_Result> GetAllSurveillance()
     {

@@ -142,6 +142,15 @@ public partial class Vak
     public virtual ICollection<Toets> Toets { get; set; }
 }
 
+public partial class wachtwoordVergeten
+{
+    public int WachtwoordVergetenID { get; set; }
+    public string GUID { get; set; }
+    public bool IsEenLeraar { get; set; }
+    public string UserID { get; set; }
+    public bool Gebruikt { get; set; }
+}
+
 public partial class DisplayHerkansingen_Result
 {
     public Nullable<int> HerkansingID { get; set; }
