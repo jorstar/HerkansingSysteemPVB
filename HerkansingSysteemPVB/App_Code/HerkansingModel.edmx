@@ -238,6 +238,12 @@
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
           <Parameter Name="Password" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="setFirstLoginDocent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DocentID" Type="nchar" Mode="In" />
+        </Function>
+        <Function Name="setFirstLoginStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentID" Type="nchar" Mode="In" />
+        </Function>
         <Function Name="UpdateHerkansing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="HerkansingID" Type="int" Mode="In" />
           <Parameter Name="Lokaal" Type="nvarchar" Mode="In" />
@@ -467,7 +473,13 @@
           <Parameter Name="studentID" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDocentFirstLogin" ReturnType="Collection(Boolean)">
+          <Parameter Name="DocentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="setFirstLoginDocent">
             <Parameter Name="DocentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="setFirstLoginStudent">
+            <Parameter Name="studentID" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -1258,6 +1270,8 @@
           <FunctionImportMapping FunctionImportName="GetAantalPlaatsenLokaal" FunctionName="herkansingDBModel.Store.GetAantalPlaatsenLokaal" />
           <FunctionImportMapping FunctionImportName="GetStudentFirstLogin" FunctionName="herkansingDBModel.Store.GetStudentFirstLogin" />
           <FunctionImportMapping FunctionImportName="GetDocentFirstLogin" FunctionName="herkansingDBModel.Store.GetDocentFirstLogin" />
+          <FunctionImportMapping FunctionImportName="setFirstLoginDocent" FunctionName="herkansingDBModel.Store.setFirstLoginDocent" />
+          <FunctionImportMapping FunctionImportName="setFirstLoginStudent" FunctionName="herkansingDBModel.Store.setFirstLoginStudent" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

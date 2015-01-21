@@ -394,4 +394,22 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("GetDocentFirstLogin", docentIDParameter);
     }
+
+    public virtual int setFirstLoginDocent(string docentID)
+    {
+        var docentIDParameter = docentID != null ?
+            new ObjectParameter("DocentID", docentID) :
+            new ObjectParameter("DocentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("setFirstLoginDocent", docentIDParameter);
+    }
+
+    public virtual int setFirstLoginStudent(string studentID)
+    {
+        var studentIDParameter = studentID != null ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("setFirstLoginStudent", studentIDParameter);
+    }
 }
