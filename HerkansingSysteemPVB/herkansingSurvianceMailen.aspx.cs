@@ -42,40 +42,47 @@ public partial class _Default : System.Web.UI.Page
         }
         try
         {
-            herkansingDBEntities ef = new herkansingDBEntities();
-            //herkansing id
-            int herkansingID = Convert.ToInt32(Session["HerkansingID"]);
-            var herkinfo = ef.GetHerkansingInfoHerk(herkansingID).First();
+            if (Session["HerkansingID"] != null)
+            {
+                herkansingDBEntities ef = new herkansingDBEntities();
+                //herkansing id
+                int herkansingID = Convert.ToInt32(Session["HerkansingID"]);
+                var herkinfo = ef.GetHerkansingInfoHerk(herkansingID).First();
 
 
-            //datagridview vullen
-            dgvKandidaten.DataSource = ef.GetAllStudentenHerk(herkansingID);
-            dgvKandidaten.DataBind();
+                //datagridview vullen
+                dgvKandidaten.DataSource = ef.GetAllStudentenHerk(herkansingID);
+                dgvKandidaten.DataBind();
 
 
-            //variable vullen
-            toetsTitel = herkinfo.Toetsnaam;
-            toetsID = herkinfo.ToetsID.ToString();
-            Beschrijving = herkinfo.ToetsDescriptie;
-            Datum = herkinfo.Datum.ToString();
-            Tijd = herkinfo.BeginTijd.ToString();
-            lengte = herkinfo.Tijdsduur.ToString();
-            studentenvan = herkinfo.KlasIDofOpleidingsID;
-            docentSurveillant = herkinfo.Surveillant;
-            vak = herkinfo.VakNaam;
-            lokaal = herkinfo.Lokaal;
+                //variable vullen
+                toetsTitel = herkinfo.Toetsnaam;
+                toetsID = herkinfo.ToetsID.ToString();
+                Beschrijving = herkinfo.ToetsDescriptie;
+                Datum = herkinfo.Datum.ToString();
+                Tijd = herkinfo.BeginTijd.ToString();
+                lengte = herkinfo.Tijdsduur.ToString();
+                studentenvan = herkinfo.KlasIDofOpleidingsID;
+                docentSurveillant = herkinfo.Surveillant;
+                vak = herkinfo.VakNaam;
+                lokaal = herkinfo.Lokaal;
 
 
-            //labels vullen
-            lblToetsTitel.Text = toetsTitel;
-            lblToetsID.Text = toetsID;
-            lblBeschrijving.Text = Beschrijving;
-            lblDatumTijd.Text = Datum + " om " + Tijd;
-            lblLengte.Text = lengte;
-            lblStudvan.Text = studentenvan;
-            lblSurveillant.Text = docentSurveillant;
-            lblVak.Text = vak;
-            lblLokaal.Text = lokaal;
+                //labels vullen
+                lblToetsTitel.Text = toetsTitel;
+                lblToetsID.Text = toetsID;
+                lblBeschrijving.Text = Beschrijving;
+                lblDatumTijd.Text = Datum + " om " + Tijd;
+                lblLengte.Text = lengte;
+                lblStudvan.Text = studentenvan;
+                lblSurveillant.Text = docentSurveillant;
+                lblVak.Text = vak;
+                lblLokaal.Text = lokaal;
+            }
+            else
+            {
+                Response.Redirect("home.aspx");
+            }
         }
         catch (EntityException ex)
         {

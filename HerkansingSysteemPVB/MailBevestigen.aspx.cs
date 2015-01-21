@@ -14,60 +14,70 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
         Guid = Request.QueryString["herkansing"];
         if (Session["User"] == null)
         {
-            
-                if (Guid != null)
-                {
-                    Response.Redirect("login.aspx?page=Bevestigen&ID=" + Guid);
-                }
 
-                else
-                {
-                    Response.Redirect("home.aspx");
-                }
-            
+            if (Guid != null)
+            {
+                Response.Redirect("login.aspx?page=Bevestigen&ID=" + Guid);
+            }
+
+            else
+            {
+                Response.Redirect("home.aspx");
+            }
+
         }
         else
         {
-            userid = Session["User"].ToString();
-            
-            
-            herkansingDBEntities ef = new herkansingDBEntities();
-            try
+            if (Guid != null)
             {
-                var temp = ef.GetHerkansingBevestiging(userid, Guid).First();
-                if (temp != null)
-                {
-                    var info = temp;
+                userid = Session["User"].ToString();
 
-                    if (info.aantal == 0)
+
+                herkansingDBEntities ef = new herkansingDBEntities();
+                try
+                {
+                    var temp = ef.GetHerkansingBevestiging(userid, Guid).First();
+                    if (temp != null)
                     {
-                        ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('Er zijn geen plaatsen meer beschikbaar voor deze herkansing.');window.location.href='home.aspx'</script>");
+                        var info = temp;
+
+                        if (info.aantal == 0)
+                        {
+                            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('Er zijn geen plaatsen meer beschikbaar voor deze herkansing.');window.location.href='home.aspx'</script>");
+                        }
+                        else
+                        {
+                            lblbeschrijving.Text = info.ToetsDescriptie;
+                            lbldatum.Text = info.Datum + " om " + info.BeginTijd;
+                            lbllokaal.Text = info.Lokaal;
+                            lblsurveillant.Text = info.Achternaam;
+                            lbltijd.Text = info.Tijdsduur.ToString();
+                            lbltoets.Text = info.ToetsNaam;
+                            lblvak.Text = info.VakNaam;
+                        }
                     }
-                    else
-                    {
-                        lblbeschrijving.Text = info.ToetsDescriptie;
-                        lbldatum.Text = info.Datum + " om " + info.BeginTijd;
-                        lbllokaal.Text = info.Lokaal;
-                        lblsurveillant.Text = info.Achternaam;
-                        lbltijd.Text = info.Tijdsduur.ToString();
-                        lbltoets.Text = info.ToetsNaam;
-                        lblvak.Text = info.VakNaam;
-                    }
+
+                }
+
+
+                catch (EntityException ex)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
+                }
+                catch (Exception)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('Je bent al geregistreerd voor die toets.');window.location.href='home.aspx'</script>");
                 }
             }
-            catch (EntityException ex)
+            else
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('"+ ex.Message +"');", true);
+                Response.Redirect("home.aspx");
             }
-            catch (Exception)
-            {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('Je bent al geregistreerd voor die toets.');window.location.href='home.aspx'</script>");
-            }
-            
+
         }
     }
     protected void btnBevestigen_Click(object sender, EventArgs e)
