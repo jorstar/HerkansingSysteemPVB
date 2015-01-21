@@ -16,6 +16,8 @@
                     <tr>
                         <td style="width: 50%;">Het oude wachtwoord<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtOldPass" ErrorMessage="Het oude wachtwoord is verplicht" ForeColor="Red">*</asp:RequiredFieldValidator>
 
+                            <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="txtOldPass" ControlToValidate="txtNewPass" ErrorMessage="Het oude wachtwoord en het nieuwe mogen niet overeen komen" ForeColor="Red" Operator="NotEqual">*</asp:CompareValidator>
+
                         </td>
                         <td class="herkansingAanmakenRightTableCollumn">
 
