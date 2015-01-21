@@ -18,6 +18,10 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Convert.ToString(Session["Role"]) != "D")
+        {
+            Response.Redirect("Home.aspx");
+        }
         string DocentID = (string)Session["User"];
 
         #region voor de radiobuttonlist
