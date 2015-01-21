@@ -198,6 +198,9 @@
         <Function Name="GetDocentEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DocentID" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="GetDocentFirstLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DocentID" Type="nchar" Mode="In" />
+        </Function>
         <Function Name="GetHerkansingBevestiging" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UID" Type="nchar" Mode="In" />
           <Parameter Name="Guid" Type="nvarchar(max)" Mode="In" />
@@ -207,6 +210,9 @@
         </Function>
         <Function Name="GetHerkansingInfoHerk" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="HerkansingID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetStudentFirstLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="studentID" Type="nchar" Mode="In" />
         </Function>
         <Function Name="getStudentHerkansingen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="herkansingid" Type="int" Mode="In" />
@@ -455,7 +461,13 @@
           <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetAantalPlaatsenLokaal" ReturnType="Collection(Int32)">
-            <Parameter Name="lokaalID" Mode="In" Type="String" />
+          <Parameter Name="lokaalID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetStudentFirstLogin" ReturnType="Collection(Boolean)">
+          <Parameter Name="studentID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetDocentFirstLogin" ReturnType="Collection(Boolean)">
+            <Parameter Name="DocentID" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
@@ -1244,6 +1256,8 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetAantalPlaatsenLokaal" FunctionName="herkansingDBModel.Store.GetAantalPlaatsenLokaal" />
+          <FunctionImportMapping FunctionImportName="GetStudentFirstLogin" FunctionName="herkansingDBModel.Store.GetStudentFirstLogin" />
+          <FunctionImportMapping FunctionImportName="GetDocentFirstLogin" FunctionName="herkansingDBModel.Store.GetDocentFirstLogin" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

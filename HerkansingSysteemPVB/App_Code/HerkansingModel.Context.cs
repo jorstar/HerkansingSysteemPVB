@@ -376,4 +376,22 @@ public partial class herkansingDBEntities : DbContext
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetAantalPlaatsenLokaal", lokaalIDParameter);
     }
+
+    public virtual ObjectResult<Nullable<bool>> GetStudentFirstLogin(string studentID)
+    {
+        var studentIDParameter = studentID != null ?
+            new ObjectParameter("studentID", studentID) :
+            new ObjectParameter("studentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("GetStudentFirstLogin", studentIDParameter);
+    }
+
+    public virtual ObjectResult<Nullable<bool>> GetDocentFirstLogin(string docentID)
+    {
+        var docentIDParameter = docentID != null ?
+            new ObjectParameter("DocentID", docentID) :
+            new ObjectParameter("DocentID", typeof(string));
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("GetDocentFirstLogin", docentIDParameter);
+    }
 }
