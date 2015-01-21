@@ -33,7 +33,10 @@ public partial class _Default : System.Web.UI.Page
             }
             else
             {
-
+                if (Functies.CheckWWChange(Convert.ToString(Session["User"]), Convert.ToString(Session["Role"])))
+                {
+                    Response.Redirect("wachtwoordWijzigen.aspx");
+                }
             }
         }
         else

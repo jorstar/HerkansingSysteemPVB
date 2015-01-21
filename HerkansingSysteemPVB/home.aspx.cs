@@ -9,7 +9,6 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (Session["Role"] == null)
         {
 
@@ -18,8 +17,10 @@ public partial class _Default : System.Web.UI.Page
         }
         else
         {
-
+            if (Functies.CheckWWChange(Convert.ToString(Session["User"]), Convert.ToString(Session["Role"])))
+            {
+                Response.Redirect("wachtwoordWijzigen.aspx");
+            }
         }
-
     }
 }

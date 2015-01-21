@@ -19,9 +19,23 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Convert.ToString(Session["Role"]) != "S")
+        if (Session["User"] != null)
         {
-            Response.Redirect("Home.aspx");
+            if (Convert.ToString(Session["Role"]) != "S")
+            {
+                Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                if (Functies.CheckWWChange(Convert.ToString(Session["User"]), Convert.ToString(Session["Role"])))
+                {
+                    Response.Redirect("wachtwoordWijzigen.aspx");
+                }
+            }
+        }
+        else
+        {
+            Response.Redirect("home.aspx");
         }
         Userid = (string)Session["User"];
 

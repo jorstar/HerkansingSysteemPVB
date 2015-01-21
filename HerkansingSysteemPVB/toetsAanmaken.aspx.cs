@@ -14,6 +14,13 @@ public partial class _Default : System.Web.UI.Page
         {
             Response.Redirect("Home.aspx");
         }
+        else
+        {
+            if (Functies.CheckWWChange(Convert.ToString(Session["User"]), Convert.ToString(Session["Role"])))
+            {
+                Response.Redirect("wachtwoordWijzigen.aspx");
+            }
+        }
 
         if (!Page.IsPostBack)
         {

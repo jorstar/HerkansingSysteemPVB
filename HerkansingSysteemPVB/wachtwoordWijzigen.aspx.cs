@@ -12,6 +12,12 @@ public partial class _Default : System.Web.UI.Page
 
         if (Convert.ToString(Session["Role"]) == "B" | Convert.ToString(Session["Role"]) == "D" | Convert.ToString(Session["Role"]) == "S")
         {
+
+            if (Functies.CheckWWChange(Convert.ToString(Session["User"]), Convert.ToString(Session["Role"])))
+            {
+                Response.Redirect("wachtwoordWijzigen.aspx");
+            }
+
             if (Convert.ToBoolean(Session["wwChange"]) == true)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Wijzig uw wachtwoord');", true);

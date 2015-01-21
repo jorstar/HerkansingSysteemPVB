@@ -16,7 +16,10 @@ public partial class _Default : System.Web.UI.Page
 
         if (Convert.ToString(Session["Role"]) == "D")
         {
-            
+            if (Functies.CheckWWChange(Convert.ToString(Session["User"]), Convert.ToString(Session["Role"])))
+            {
+                Response.Redirect("wachtwoordWijzigen.aspx");
+            }
         }
         else
         {

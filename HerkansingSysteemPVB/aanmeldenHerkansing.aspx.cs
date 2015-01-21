@@ -20,6 +20,12 @@ public partial class _Default : System.Web.UI.Page
         {
             if (Session["HerkansingID"] != null)
             {
+
+                if (Functies.CheckWWChange(Convert.ToString(Session["User"]), Convert.ToString(Session["Role"])))
+                {
+                    Response.Redirect("wachtwoordWijzigen.aspx");
+                }
+
                 string HerkansingIDString = (string)Session["HerkansingID"];
 
                 studID = Session["User"].ToString();
