@@ -44,7 +44,7 @@ public partial class _Default : System.Web.UI.Page
         {
             herkansingDBEntities ef = new herkansingDBEntities();
             //herkansing id
-            int herkansingID = (int)Session["HerkansingID"];
+            int herkansingID = Convert.ToInt32(Session["HerkansingID"]);
             var herkinfo = ef.GetHerkansingInfoHerk(herkansingID).First();
 
 
