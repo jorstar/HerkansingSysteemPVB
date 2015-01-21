@@ -94,15 +94,9 @@
           <Property Name="VakNaam" Type="nvarchar" MaxLength="35" Nullable="false" />
           <Property Name="VakDescriptie" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'herkansingDB.dbo.wachtwoordVergeten' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="wachtwoordVergeten">
           <Key>
             <PropertyRef Name="WachtwoordVergetenID" />
-            <PropertyRef Name="GUID" />
-            <PropertyRef Name="IsEenLeraar" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="Gebruikt" />
           </Key>
           <Property Name="WachtwoordVergetenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GUID" Type="nvarchar(max)" Nullable="false" />
@@ -315,15 +309,7 @@ warning 6002: The table/view 'herkansingDB.dbo.wachtwoordVergeten' does not have
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Toets" EntityType="Self.Toets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vak" EntityType="Self.Vak" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="wachtwoordVergeten" EntityType="Self.wachtwoordVergeten" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[wachtwoordVergeten].[WachtwoordVergetenID] AS [WachtwoordVergetenID], 
-[wachtwoordVergeten].[GUID] AS [GUID], 
-[wachtwoordVergeten].[IsEenLeraar] AS [IsEenLeraar], 
-[wachtwoordVergeten].[UserID] AS [UserID], 
-[wachtwoordVergeten].[Gebruikt] AS [Gebruikt]
-FROM [dbo].[wachtwoordVergeten] AS [wachtwoordVergeten]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="wachtwoordVergeten" EntityType="Self.wachtwoordVergeten" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Herkansing_Docent" Association="Self.FK_Herkansing_Docent">
             <End Role="Docent" EntitySet="Docent" />
             <End Role="Herkansing" EntitySet="Herkansing" />
@@ -914,10 +900,6 @@ FROM [dbo].[wachtwoordVergeten] AS [wachtwoordVergeten]</DefiningQuery>
         <EntityType Name="wachtwoordVergeten">
           <Key>
             <PropertyRef Name="WachtwoordVergetenID" />
-            <PropertyRef Name="GUID" />
-            <PropertyRef Name="IsEenLeraar" />
-            <PropertyRef Name="UserID" />
-            <PropertyRef Name="Gebruikt" />
           </Key>
           <Property Name="WachtwoordVergetenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GUID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
