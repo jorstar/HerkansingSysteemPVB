@@ -58,7 +58,7 @@
                     <tr>
                         <td colspan="2" style="padding: 10px 0; text-align:center;">
                             <div style="margin: 0 auto; width: 400px; text-align:left">
-                                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+                                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="#FF0202" />
                             </div>
                         </td>
                     </tr>

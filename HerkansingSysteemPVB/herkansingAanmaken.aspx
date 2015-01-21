@@ -100,8 +100,8 @@
                             <tr>
                                 <td colspan="2">
                                     <div style="margin: 15px auto 15px auto; width: 350px;">
-                                        <asp:Label ID="lblMaxAantalPlaatsen" runat="server" ForeColor="Red"></asp:Label>
-                                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
+                                        <asp:Label ID="lblMaxAantalPlaatsen" runat="server" ForeColor="#FF0202"></asp:Label>
+                                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="#FF0202" />
                                            
                                     </div>
                                 </td>
