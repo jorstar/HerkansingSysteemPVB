@@ -68,7 +68,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <table class="align tablewhiteround" style="width: 450px; margin: 0 auto;">
+                            <table class="tablewhiteround" style="width: 450px; margin: 0 auto;">
                                 <tr>
                                     <td>Toets Titel:</td>
                                     <td>

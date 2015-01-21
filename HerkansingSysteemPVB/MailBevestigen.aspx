@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="paginaContent" runat="Server">
     <div style="width: 100%;">
-        <table class="fancyTable" style="margin: 50px auto 0 auto; width: 350px;">
+        <table class="fancyTable"  style="margin: 50px auto 0 auto; width: 350px;">
             <tr>
                 <td class="herkansingAanmakenRightTableCollumn" colspan="2">Bevestig de aanmelding voor de volgende toets:
                 </td>

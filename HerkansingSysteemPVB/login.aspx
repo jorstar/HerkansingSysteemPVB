@@ -8,22 +8,18 @@
     <div id="login">
         <table id="tablelogin" class="fancyTable" style="margin-top: 50px;">
             <tr>
-                <td>Gebruikersnaam:
+                <td>Gebruikersnaam<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Gebruikersnaam is verplicht!" ControlToValidate="tbGebruikersnaam" Text="*" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td class="herkansingAanmakenRightTableCollumn">
                     <asp:TextBox ID="tbGebruikersnaam" placeholder="Gebruikersnaam" runat="server" CssClass="inputs"></asp:TextBox>
                 </td>
-                <td>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Gebruikersnaam is verplicht!" ControlToValidate="tbGebruikersnaam" Text="*" ForeColor="Red"></asp:RequiredFieldValidator></td>
             </tr>
             <tr>
-                <td>Wachtwoord:
+                <td>Wachtwoord<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wachtwoord is verplicht!" Text="*" ControlToValidate="tbWachtwoord" ForeColor="Red"></asp:RequiredFieldValidator>
                 </td>
                 <td class="herkansingAanmakenRightTableCollumn">
                     <asp:TextBox ID="tbWachtwoord" placeholder="Wachtwoord" runat="server" TextMode="Password" CssClass="inputs"></asp:TextBox>
                 </td>
-                <td>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Wachtwoord is verplicht!" Text="*" ControlToValidate="tbWachtwoord" ForeColor="Red"></asp:RequiredFieldValidator></td>
             </tr>
             <tr>
                 <td></td>

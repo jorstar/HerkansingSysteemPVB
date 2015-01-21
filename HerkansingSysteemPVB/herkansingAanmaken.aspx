@@ -20,21 +20,15 @@
                                 <td class="herkansingAanmakenRightTableCollumn">
                                     <asp:DropDownList ID="ddlToetsen" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True"></asp:DropDownList>
                                 </td>
-                                <td></td>
                             </tr>
                             <tr>
-                                <td>Datum:</td>
+                                <td>Datum<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtDatum" ErrorMessage="Datum is een verplicht veld" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                </td>
                                 <td class="herkansingAanmakenRightTableCollumn">
                                     <div>
                                         <asp:TextBox ID="txtDatum" placeholder="Klik hier" runat="server" CssClass="inputs" Width="169px"></asp:TextBox>
                                         <asp:CalendarExtender ID="CalendarExtender1" runat="server" TodaysDateFormat="dd/MM/yyyy" Format="dd/MM/yyyy" TargetControlID="txtDatum"></asp:CalendarExtender>
                                     </div>
-
-                                </td>
-                                <td>
-
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtDatum" ErrorMessage="Datum is een verplicht veld" ForeColor="Red">*</asp:RequiredFieldValidator>
-
                                 </td>
                             </tr>
                             <tr>
@@ -44,16 +38,12 @@
                                     :
                             <asp:TextBox ID="txtMinuten" runat="server" Width="35px" TextMode="Number" max="59" min="0" CssClass="inputs" AutoPostBack="True" OnTextChanged="txtMinuten_TextChanged"></asp:TextBox>
                                 </td>
-                                <td></td>
                             </tr>
                             <tr>
-                                <td>Lengte herkansing (minuten)
+                                <td>Lengte herkansing (minuten)<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLengteHerkansing" ErrorMessage="Herkansing lengte is een verplicht veld" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 </td>
                                 <td class="herkansingAanmakenRightTableCollumn">
                                     <asp:TextBox ID="txtLengteHerkansing" placeholder="ex. 45" Text="60" Width="169px" runat="server" min="15" max="480" TextMode="Number" CssClass="inputs"></asp:TextBox>
-                                </td>
-                                <td>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLengteHerkansing" ErrorMessage="Herkansing lengte is een verplicht veld" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -66,7 +56,6 @@
                                     <asp:DropDownList ID="ddlSureillance" Width="202px" runat="server" CssClass="inputs" AutoPostBack="True">
                                     </asp:DropDownList>
                                 </td>
-                                <td></td>
                             </tr>
                             <tr>
                                 <td>Klas of opleiding:</td>
@@ -78,7 +67,6 @@
                                         </asp:RadioButtonList>
                                     </div>
                                 </td>
-                                <td></td>
                             </tr>
                             <tr>
                                 <td>Selecteer klas/opleiding</td>
@@ -86,16 +74,13 @@
                                     <asp:DropDownList ID="ddlKlasOfOpleidingSelecteren" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True">
                                     </asp:DropDownList>
                                 </td>
-                                <td></td>
                             </tr>
                             <tr>
-                                <td>Aantal plaatsen</td>
+                                <td>Aantal plaatsen<asp:Label ID="lblAstrixAantalPlaatsen" runat="server" ForeColor="Red"></asp:Label>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtMaxPlaatsen" ErrorMessage="Aantal plaatsen is een verplicht veld" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                </td>
                                 <td class="herkansingAanmakenRightTableCollumn">
                                     <asp:TextBox ID="txtMaxPlaatsen" placeholder="Min:1 / Max: 20" Text="1" Width="169px" runat="server" TextMode="number" max="20" min="1" CssClass="inputs"></asp:TextBox>
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblAstrixAantalPlaatsen" runat="server" ForeColor="Red"></asp:Label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtMaxPlaatsen" ErrorMessage="Aantal plaatsen is een verplicht veld" ForeColor="Red">*</asp:RequiredFieldValidator>
                                 </td>
 
                             </tr>
@@ -103,12 +88,10 @@
                                 <td>Lokaal selecteren</td>
                                 <td class="herkansingAanmakenRightTableCollumn">
                                     <asp:DropDownList ID="ddlLokaal" Width="200px" runat="server" CssClass="inputs" AutoPostBack="True"></asp:DropDownList></td>
-                                <td></td>
                             </tr>
                             <tr>
                                 <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td></td>
+                                <td>&nbsp;</td> 
                             </tr>
                             <tr>
                                 <td colspan="3">

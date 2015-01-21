@@ -8,8 +8,17 @@
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
+    color: black;
     
 }
 .BlackTextGrid{
     color: black!important;
+}
+
+.TableTextAlightLeft{
+    text-align:left;
+}
+
+.TableTextAlightRight{
+    text-align:right;
 }

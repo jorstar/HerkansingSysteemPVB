@@ -14,7 +14,7 @@
 
                 <table class="fancyTable" style="width: 600px; margin: 50px auto 50px auto;">
                     <tr>
-                        <td style="width: 50%;">Het oude wachtwoord
+                        <td style="width: 50%;">Het oude wachtwoord<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtOldPass" ErrorMessage="Het oude wachtwoord is verplicht" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                         </td>
                         <td class="herkansingAanmakenRightTableCollumn">
@@ -22,34 +22,24 @@
                             <asp:TextBox ID="txtOldPass" CssClass="inputs" Width="250px" runat="server" TextMode="Password"></asp:TextBox>
 
                         </td>
-                        <td>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtOldPass" ErrorMessage="Het oude wachtwoord is verplicht" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </td>
                     </tr>
                     <tr>
-                        <td>Het nieuwe wachtwoord
-
+                        <td>Het nieuwe wachtwoord<asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtNewPass" ControlToValidate="txtNewPassCheck" ErrorMessage="Nieuwe wachtwoorden komen niet overeen" ForeColor="Red">*</asp:CompareValidator>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNewPass" ErrorMessage="Geen nieuw wachtwoord opgegeven" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </td>
                         <td class="herkansingAanmakenRightTableCollumn">
 
                             <asp:TextBox ID="txtNewPass" CssClass="inputs" runat="server" Width="250px" TextMode="Password"></asp:TextBox>
                         </td>
-                        <td>
-                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtNewPass" ControlToValidate="txtNewPassCheck" ErrorMessage="Nieuwe wachtwoorden komen niet overeen" ForeColor="Red">*</asp:CompareValidator>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNewPass" ErrorMessage="Geen nieuw wachtwoord opgegeven" ForeColor="Red">*</asp:RequiredFieldValidator>
-                        </td>
                     </tr>
                     <tr>
-                        <td>Het nieuwe wachtwoord (check)
+                        <td>Het nieuwe wachtwoord (check)<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtNewPassCheck" ErrorMessage="Geen check voor het nieuwe wachtwoord opgegeven" ForeColor="Red">*</asp:RequiredFieldValidator>
 
                         </td>
                         <td class="herkansingAanmakenRightTableCollumn">
 
                             <asp:TextBox ID="txtNewPassCheck" CssClass="inputs" runat="server" Width="250px" TextMode="Password"></asp:TextBox>
 
-                        </td>
-                        <td>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtNewPassCheck" ErrorMessage="Geen check voor het nieuwe wachtwoord opgegeven" ForeColor="Red">*</asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
