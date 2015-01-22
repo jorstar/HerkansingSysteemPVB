@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -105,19 +106,49 @@ public partial class _Default : System.Web.UI.Page
             //string docent = "KMP01";
 
             herkansingDBEntities entity = new herkansingDBEntities();
-            string surveillantemail = entity.GetSurveillantEmail(docentSurveillant).First();
-            string docentemail = entity.GetDocentEmail(docent).First();
+            
+            #region Mailvariabelen
+            //Mail Variables
+            string sitemode = ConfigurationManager.AppSettings["WebsiteMode"].ToString();
+            string MailTo;
+            string MailFrom;
+            string MailUsername;
+            string MailPassword;
+            string MailServer;
+            int MailPort;
+
+            if (sitemode.ToLower() == "live")
+            {
+                MailTo = entity.GetSurveillantEmail(docentSurveillant).First();
+                MailFrom = entity.GetDocentEmail(docent).First();
+                MailUsername = ConfigurationManager.AppSettings["LiveEmailUsername"].ToString();
+                MailPassword = ConfigurationManager.AppSettings["LiveEmailPassword"].ToString();
+                MailServer = ConfigurationManager.AppSettings["LiveEmailServer"].ToString();
+                MailPort = Convert.ToInt16(ConfigurationManager.AppSettings["LiveEmailPort"]);
+            }
+            else
+            {
+                MailTo = ConfigurationManager.AppSettings["DebugMailTo"].ToString();
+                MailFrom = ConfigurationManager.AppSettings["DebugMailFrom"].ToString();
+                MailUsername = ConfigurationManager.AppSettings["DebugEmailUsername"].ToString();
+                MailPassword = ConfigurationManager.AppSettings["DebugEmailPassword"].ToString();
+                MailServer = ConfigurationManager.AppSettings["DebugEmailServer"].ToString();
+                MailPort = Convert.ToInt16(ConfigurationManager.AppSettings["DebugEmailPort"]);
+            }
+            #endregion
+
+
             MailMessage Message = new MailMessage();
 
-            Message.From = new MailAddress(docentemail);
-            Message.To.Add(new MailAddress(surveillantemail));
+            Message.From = new MailAddress(MailFrom);
+            Message.To.Add(new MailAddress(MailTo));
             Message.Subject = "Herkansing: " + toetsID + " - " + toetsTitel;
             Message.SubjectEncoding = Encoding.UTF8;
 
-            Message.Body += "De volgende studenten hebben zich aangemeld voor de toets <br/> <hr/>";
-            Message.Body += GridViewToHtml(dgvKandidaten);
-            Message.Body += "<br/> <hr/>";
-            Message.Body += "<table><tr><td>Toets Informatie:</td></tr>"
+            Message.Body += "De volgende studenten hebben zich aangemeld voor de toets <br/> <hr/>"
+                + GridViewToHtml(dgvKandidaten)
+                + "<br/> <hr/>"
+                + "<table><tr><td>Toets Informatie:</td></tr>"
                 + "<tr><td>Toets:</td><td>" + toetsTitel + "</td></tr>"
                 + "<tr><td>Beschrijving:</td><td>" + Beschrijving + "</td></tr>"
                 + "<tr><td>Datum:</td><td>" + Datum + "</td></tr>"
@@ -129,10 +160,10 @@ public partial class _Default : System.Web.UI.Page
             Message.IsBodyHtml = true;
             Message.BodyEncoding = Encoding.UTF8;
             NetworkCredential nc = new NetworkCredential();
-            nc.UserName = "rocvantwentepvb@gmail.com";
-            nc.Password = "KJI1337!";
+            nc.UserName = MailUsername;
+            nc.Password = MailPassword;
 
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            SmtpClient smtp = new SmtpClient(MailServer, MailPort);
             smtp.Credentials = nc;
             smtp.EnableSsl = true;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
