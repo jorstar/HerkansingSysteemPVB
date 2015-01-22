@@ -219,11 +219,6 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenDocent_Result>("VerkrijgHistorieHerkansingenDocent");
     }
 
-    public virtual ObjectResult<DisplayHerkansingenDocent_Result> DisplayHerkansingenDocent()
-    {
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayHerkansingenDocent_Result>("DisplayHerkansingenDocent");
-    }
-
     public virtual ObjectResult<verkrijgHerkansingenGemaaktDoorDocent_Result> verkrijgHerkansingenGemaaktDoorDocent(string docentID)
     {
         var docentIDParameter = docentID != null ?
@@ -412,5 +407,10 @@ public partial class herkansingDBEntities : DbContext
             new ObjectParameter("studentID", typeof(string));
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("setFirstLoginStudent", studentIDParameter);
+    }
+
+    public virtual ObjectResult<DisplayHerkansingenDocent_Result> DisplayHerkansingenDocent()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayHerkansingenDocent_Result>("DisplayHerkansingenDocent");
     }
 }
