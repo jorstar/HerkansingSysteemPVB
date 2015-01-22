@@ -38,10 +38,6 @@ public partial class _Default : System.Web.UI.Page
             ddlLokaal.DataSource = entity.GetAllLokalen();
             ddlLokaal.DataBind();
 
-
-
-            ddlKlasOfOpleidingSelecteren.SelectedValue = Convert.ToString(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().KlasIDofOpleidingsID);
-
             if (entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().IsHetEenKlas)
             {
                 rblKlasOfOpleiding.SelectedIndex = 0;
@@ -54,11 +50,9 @@ public partial class _Default : System.Web.UI.Page
             //eventen af vuren
             ddlHerkansingen_SelectedIndexChanged(sender, e);
             rblKlasOfOpleiding_SelectedIndexChanged(sender, e);
+
+            ddlKlasOfOpleidingSelecteren.SelectedValue = Convert.ToString(entity.GetHerkansingInfo(Convert.ToInt32(ddlHerkansingen.SelectedValue)).First().KlasIDofOpleidingsID);
         }
-
-
-
-
     }
 
     public void FullTextboxen(int HerkansingID_)
@@ -79,7 +73,6 @@ public partial class _Default : System.Web.UI.Page
         {
             rblKlasOfOpleiding.SelectedIndex = 1;
         }
-
     }
 
     protected void btnBevestig_Click(object sender, EventArgs e)
@@ -113,6 +106,7 @@ public partial class _Default : System.Web.UI.Page
 
         Response.Redirect("herkansingAanpassen.aspx");
     }
+
     protected void ddlHerkansingen_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlSureillance.SelectedIndex != -1)
@@ -145,17 +139,11 @@ public partial class _Default : System.Web.UI.Page
             ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllklassen();
             ddlKlasOfOpleidingSelecteren.DataBind();
         }
-        else if (rblKlasOfOpleiding.SelectedIndex == 1)
+        else
         {
             herkansingDBEntities entity = new herkansingDBEntities();
             ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllopleidingen();
             ddlKlasOfOpleidingSelecteren.DataBind();
-
-            ddlKlasOfOpleidingSelecteren.SelectedIndex = 0;
-        }
-        else
-        {
-            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Iets ging ergens fout.');", true);
         }
     }
 }

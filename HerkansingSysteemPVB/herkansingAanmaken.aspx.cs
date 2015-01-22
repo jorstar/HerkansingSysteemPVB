@@ -59,7 +59,6 @@ public partial class _Default : System.Web.UI.Page
         }
 
         SetTimeNow();
-
     }
 
     public void SetTimeNow()
@@ -79,8 +78,6 @@ public partial class _Default : System.Web.UI.Page
             {
                 txtMinuten.Text = "0" + DateTime.Now.Minute.ToString();
             }
-
-
         }
     }
     protected void btnBevestig_Click(object sender, EventArgs e)
@@ -135,11 +132,9 @@ public partial class _Default : System.Web.UI.Page
                 lblAstrixAantalPlaatsen.Text = "*";
             }
         }
-
     }
     protected void txtUur_TextChanged(object sender, EventArgs e)
     {
-
         if (txtUur.Text.Length == 1)
         {
             txtUur.Text = "0" + txtUur.Text;
@@ -155,13 +150,11 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void rblKlasOfOpleiding_SelectedIndexChanged(object sender, EventArgs e)
     {
-
         if (rblKlasOfOpleiding.SelectedIndex == 0)
         {
             herkansingDBEntities entity = new herkansingDBEntities();
             ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllklassen();
             ddlKlasOfOpleidingSelecteren.DataBind();
-
         }
         else
         {
@@ -169,6 +162,5 @@ public partial class _Default : System.Web.UI.Page
             ddlKlasOfOpleidingSelecteren.DataSource = entity.GetAllopleidingen();
             ddlKlasOfOpleidingSelecteren.DataBind();
         }
-
     }
 }
