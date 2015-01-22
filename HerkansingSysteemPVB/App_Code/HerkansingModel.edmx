@@ -427,9 +427,6 @@
             <Parameter Name="KlasIDofOpleidingsID" Mode="In" Type="String" />
             <Parameter Name="BeginTijd" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="verkrijgHerkansingenGemaaktDoorDocent" ReturnType="Collection(herkansingDBModel.verkrijgHerkansingenGemaaktDoorDocent_Result)">
-          <Parameter Name="DocentID" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="VerkrijgAlleStudentenVanEenHerkansing" ReturnType="Collection(herkansingDBModel.VerkrijgAlleStudentenVanEenHerkansing_Result)">
           <Parameter Name="HerkansingID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -490,9 +487,12 @@
           </FunctionImport>
           <EntitySet Name="wachtwoordVergetens" EntityType="herkansingDBModel.wachtwoordVergeten" />
           <FunctionImport Name="DisplayHerkansingenDocent" ReturnType="Collection(herkansingDBModel.DisplayHerkansingenDocent_Result)" />
-          <FunctionImport Name="VerkrijgAlleHerkansingenDocent" ReturnType="Collection(herkansingDBModel.VerkrijgAlleHerkansingenDocent_Result)" />
           <FunctionImport Name="VerkrijgBeschikbareHerkansingDocent" ReturnType="Collection(herkansingDBModel.VerkrijgBeschikbareHerkansingDocent_Result)" />
           <FunctionImport Name="VerkrijgHistorieHerkansingenDocent" ReturnType="Collection(herkansingDBModel.VerkrijgHistorieHerkansingenDocent_Result)" />
+          <FunctionImport Name="VerkrijgAlleHerkansingenDocent" ReturnType="Collection(herkansingDBModel.VerkrijgAlleHerkansingenDocent_Result)" />
+          <FunctionImport Name="verkrijgHerkansingenGemaaktDoorDocent" ReturnType="Collection(herkansingDBModel.verkrijgHerkansingenGemaaktDoorDocent_Result)">
+            <Parameter Name="DocentID" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Beheerder">
           <Key>
@@ -744,16 +744,6 @@
           <Property Type="String" Name="Lokaal" Nullable="false" MaxLength="8" />
           <Property Type="String" Name="Surveillant" Nullable="false" MaxLength="5" />
         </ComplexType>
-        <ComplexType Name="verkrijgHerkansingenGemaaktDoorDocent_Result">
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="toetsId" Nullable="true" />
-          <Property Type="Int32" Name="Lengte_van_toets" Nullable="true" />
-          <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="Vak" Nullable="true" MaxLength="35" />
-          <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
-        </ComplexType>
         <ComplexType Name="getStudentHerkansingen_Result">
           <Property Type="String" Name="Toets" Nullable="false" MaxLength="200" />
           <Property Type="String" Name="Beschrijving" Nullable="true" />
@@ -878,17 +868,6 @@
           <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
           <Property Type="String" Name="DropdownlistInfo" Nullable="true" MaxLength="236" />
         </ComplexType>
-        <ComplexType Name="VerkrijgAlleHerkansingenDocent_Result">
-          <Property Type="String" Name="LRL_NR" Nullable="false" MaxLength="7" />
-          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
-          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
-          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
-          <Property Type="Int32" Name="toetsId" Nullable="true" />
-          <Property Type="Int32" Name="Lengte_van_toets" Nullable="true" />
-          <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
-          <Property Type="String" Name="Vak" Nullable="true" MaxLength="35" />
-          <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
-        </ComplexType>
         <ComplexType Name="VerkrijgBeschikbareHerkansingDocent_Result">
           <Property Type="Int32" Name="HerkansingID" Nullable="true" />
           <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
@@ -906,6 +885,27 @@
           <Property Type="Int32" Name="Lengte_van_toets" Nullable="true" />
           <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
           <Property Type="String" Name="Vak" Nullable="false" MaxLength="35" />
+          <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="VerkrijgAlleHerkansingenDocent_Result">
+          <Property Type="String" Name="LRL_NR" Nullable="false" MaxLength="7" />
+          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
+          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
+          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
+          <Property Type="Int32" Name="toetsId" Nullable="true" />
+          <Property Type="Int32" Name="Lengte_van_toets" Nullable="true" />
+          <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="Vak" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="verkrijgHerkansingenGemaaktDoorDocent_Result">
+          <Property Type="Int32" Name="HerkansingID" Nullable="true" />
+          <Property Type="String" Name="Datum" Nullable="true" MaxLength="38" />
+          <Property Type="String" Name="Lokaal" Nullable="true" MaxLength="8" />
+          <Property Type="Int32" Name="toetsId" Nullable="true" />
+          <Property Type="Int32" Name="Lengte_van_toets" Nullable="true" />
+          <Property Type="String" Name="Starttijd" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="Vak" Nullable="true" MaxLength="35" />
           <Property Type="String" Name="Toets" Nullable="true" MaxLength="200" />
         </ComplexType>
       </Schema>
@@ -1113,20 +1113,6 @@
           <FunctionImportMapping FunctionImportName="GetDocentEmail" FunctionName="herkansingDBModel.Store.GetDocentEmail" />
           <FunctionImportMapping FunctionImportName="GetSurveillantEmail" FunctionName="herkansingDBModel.Store.GetSurveillantEmail" />
           <FunctionImportMapping FunctionImportName="UpdateHerkansing" FunctionName="herkansingDBModel.Store.UpdateHerkansing" />
-          <FunctionImportMapping FunctionImportName="verkrijgHerkansingenGemaaktDoorDocent" FunctionName="herkansingDBModel.Store.verkrijgHerkansingenGemaaktDoorDocent">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.verkrijgHerkansingenGemaaktDoorDocent_Result">
-                <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
-                <ScalarProperty Name="Datum" ColumnName="Datum" />
-                <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
-                <ScalarProperty Name="toetsId" ColumnName="toetsId" />
-                <ScalarProperty Name="Lengte_van_toets" ColumnName="Lengte van toets" />
-                <ScalarProperty Name="Starttijd" ColumnName="Starttijd" />
-                <ScalarProperty Name="Vak" ColumnName="Vak" />
-                <ScalarProperty Name="Toets" ColumnName="Toets" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="VerkrijgAlleStudentenVanEenHerkansing" FunctionName="herkansingDBModel.Store.VerkrijgAlleStudentenVanEenHerkansing">
             <ResultMapping>
               <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgAlleStudentenVanEenHerkansing_Result">
@@ -1265,21 +1251,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="VerkrijgAlleHerkansingenDocent" FunctionName="herkansingDBModel.Store.VerkrijgAlleHerkansingenDocent">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgAlleHerkansingenDocent_Result">
-                <ScalarProperty Name="LRL_NR" ColumnName="LRL_NR" />
-                <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
-                <ScalarProperty Name="Datum" ColumnName="Datum" />
-                <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
-                <ScalarProperty Name="toetsId" ColumnName="toetsId" />
-                <ScalarProperty Name="Lengte_van_toets" ColumnName="Lengte van toets" />
-                <ScalarProperty Name="Starttijd" ColumnName="Starttijd" />
-                <ScalarProperty Name="Vak" ColumnName="Vak" />
-                <ScalarProperty Name="Toets" ColumnName="Toets" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="VerkrijgBeschikbareHerkansingDocent" FunctionName="herkansingDBModel.Store.VerkrijgBeschikbareHerkansingDocent">
             <ResultMapping>
               <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgBeschikbareHerkansingDocent_Result">
@@ -1300,6 +1271,35 @@
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
                 <ScalarProperty Name="ToetsID" ColumnName="ToetsID" />
+                <ScalarProperty Name="Lengte_van_toets" ColumnName="Lengte van toets" />
+                <ScalarProperty Name="Starttijd" ColumnName="Starttijd" />
+                <ScalarProperty Name="Vak" ColumnName="Vak" />
+                <ScalarProperty Name="Toets" ColumnName="Toets" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="VerkrijgAlleHerkansingenDocent" FunctionName="herkansingDBModel.Store.VerkrijgAlleHerkansingenDocent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.VerkrijgAlleHerkansingenDocent_Result">
+                <ScalarProperty Name="LRL_NR" ColumnName="LRL_NR" />
+                <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
+                <ScalarProperty Name="toetsId" ColumnName="toetsId" />
+                <ScalarProperty Name="Lengte_van_toets" ColumnName="Lengte van toets" />
+                <ScalarProperty Name="Starttijd" ColumnName="Starttijd" />
+                <ScalarProperty Name="Vak" ColumnName="Vak" />
+                <ScalarProperty Name="Toets" ColumnName="Toets" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="verkrijgHerkansingenGemaaktDoorDocent" FunctionName="herkansingDBModel.Store.verkrijgHerkansingenGemaaktDoorDocent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="herkansingDBModel.verkrijgHerkansingenGemaaktDoorDocent_Result">
+                <ScalarProperty Name="HerkansingID" ColumnName="HerkansingID" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Lokaal" ColumnName="Lokaal" />
+                <ScalarProperty Name="toetsId" ColumnName="toetsId" />
                 <ScalarProperty Name="Lengte_van_toets" ColumnName="Lengte van toets" />
                 <ScalarProperty Name="Starttijd" ColumnName="Starttijd" />
                 <ScalarProperty Name="Vak" ColumnName="Vak" />

@@ -69,11 +69,11 @@ public partial class _Default : System.Web.UI.Page
         }
         if (rdbVeranderDisplay.SelectedIndex == 3)
         {
-            dgvDocentenHerkansingOverzicht.Visible = false;
-            dgvDocentenOverzichtAlternatief.Visible = true;
+            dgvDocentenHerkansingOverzicht.Visible = true;
+            dgvDocentenOverzichtAlternatief.Visible = false;
 
-            dgvDocentenOverzichtAlternatief.DataSource = objHerkansing.verkrijgHerkansingenGemaaktDoorDocent(DocentID).ToList();
-            dgvDocentenOverzichtAlternatief.DataBind();
+            dgvDocentenHerkansingOverzicht.DataSource = objHerkansing.verkrijgHerkansingenGemaaktDoorDocent(DocentID).ToList();
+            dgvDocentenHerkansingOverzicht.DataBind();
         }
         #endregion
 
