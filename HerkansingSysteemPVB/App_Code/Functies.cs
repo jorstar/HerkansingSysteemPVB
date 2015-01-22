@@ -8,6 +8,13 @@ using System.Web;
 /// </summary>
 public class Functies
 {
+    /// <summary>
+    /// Summary description for Functies
+    /// </summary>
+    /// 
+    /// <param name="clearpwd">
+    /// The parameeter needs a password that comes right from the textbox
+    /// </param>
     public static string CalculateHashedPassword(string clearpwd, string loginnaam)
     {
         using (var sha = System.Security.Cryptography.SHA256.Create())

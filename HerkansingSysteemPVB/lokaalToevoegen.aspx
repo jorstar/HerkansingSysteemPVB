@@ -19,6 +19,7 @@
                     </tr>
                     <tr>
                         <td>lokaal naam<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Lokaal naam is een verplicht veld!" ControlToValidate="txtLokaalNaam" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            <asp:Label ID="lblAstrix" runat="server" ForeColor="Red" Text=""></asp:Label>
                         </td>
                         <td>
                             <asp:TextBox placeholder="Lokaal naam" ID="txtLokaalNaam" CssClass="inputs" runat="server" Width="250px"> </asp:TextBox></td>
@@ -51,6 +52,7 @@
                     <tr>
                         <td style="width: 33%"></td>
                         <td style="width: 33%; text-align: left;">
+                            <asp:Label ID="lblErrorMessage" runat="server" ForeColor="#FF0202"></asp:Label>
                             <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="#FF0202" />
                         </td>
                     </tr>
