@@ -81,8 +81,8 @@ public partial class _Default : System.Web.UI.Page
         if (!IsPostBack)
         {
             ddlSelecteerdHerkansing.DataSource = objHerkansing.DisplayHerkansingenDocent();
-            ddlSelecteerdHerkansing.DataValueField = "herkansingID";
-
+            ddlSelecteerdHerkansing.DataValueField = "HerkansingID";
+            ddlSelecteerdHerkansing.DataTextField = "DropdownlistInfo";
             ddlSelecteerdHerkansing.DataBind();
         }
         #endregion
@@ -108,7 +108,9 @@ public partial class _Default : System.Web.UI.Page
     {
         HerkansingsIDString = ddlSelecteerdHerkansing.SelectedValue;
 
-        dgvDocentenHerkansingOverzicht.DataSource = objHerkansing.VerkrijgAlleStudentenVanEenHerkansing(Convert.ToInt32(HerkansingsIDString));
+        //dgvDocentenOverzichtAlternatief.DataSource = objHerkansing.VerkrijgAlleStudentenVanEenHerkansing()
+
+        dgvDocentenHerkansingOverzicht.DataSource = objHerkansing.VerkrijgAlleStudentenVanEenHerkansing(Convert.ToInt32(ddlSelecteerdHerkansing.SelectedValue));
         dgvDocentenHerkansingOverzicht.DataBind();
     }
     protected void dgvDocentenHerkansingOverzicht_PageIndexChanging(object sender, GridViewPageEventArgs e)
