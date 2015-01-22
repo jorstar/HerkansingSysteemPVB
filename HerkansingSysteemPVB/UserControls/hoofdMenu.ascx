@@ -7,6 +7,7 @@
             <asp:MenuItem Text="Aanmaken" Value="AanmakenDocent" Selectable="False">
                 <asp:MenuItem Text="Toets" Value="ToetsDocent" NavigateUrl="~/toetsAanmaken.aspx"></asp:MenuItem>
                 <asp:MenuItem NavigateUrl="~/herkansingAanmaken.aspx" Text="Herkansing" Value="HerkansingDocent"></asp:MenuItem>
+                <asp:MenuItem NavigateUrl="~/herkansingAanpassen.aspx" Text="Herkansing Aanpassen" Value="HerkansingAanpassen"></asp:MenuItem>
             </asp:MenuItem>
 <asp:MenuItem Text="Aanmaken" Value="AanmakenBeheer" Selectable="False">
     <asp:MenuItem NavigateUrl="~/docentAanmaken.aspx" Text="Leraar" Value="LeraarBeheer"></asp:MenuItem>

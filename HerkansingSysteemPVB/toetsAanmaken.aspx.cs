@@ -52,7 +52,7 @@ public partial class _Default : System.Web.UI.Page
 
             entity.SaveChanges();
 
-            Response.Redirect("toetsAanmaken.aspx");
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('De toets is succesvol aangemaakt');window.location.href='toetsAanmaken.aspx'</script>");
         }
 
     }

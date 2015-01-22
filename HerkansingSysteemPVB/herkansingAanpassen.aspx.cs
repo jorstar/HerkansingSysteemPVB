@@ -7,12 +7,18 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
+
+    public int AantalBeschikbarePlaatsen;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        if (Convert.ToString(Session["Role"]) != "B")
+        if (Convert.ToString(Session["Role"]) != "B" | Convert.ToString(Session["Role"]) != "D")
         {
             Response.Redirect("Home.aspx");
+        }
+        else
+        {
+
         }
 
         if (!Page.IsPostBack)
@@ -77,34 +83,50 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnBevestig_Click(object sender, EventArgs e)
     {
-        herkansingDBEntities entity = new herkansingDBEntities();
 
-        bool objBool;
-        if (rblKlasOfOpleiding.SelectedIndex == 0)
+        if (ddlLokaal.SelectedIndex != -1)
         {
-            objBool = true;
+            herkansingDBEntities ent = new herkansingDBEntities();
+            AantalBeschikbarePlaatsen = Convert.ToInt32(ent.GetAantalPlaatsenLokaal(ddlLokaal.SelectedValue.ToString()).First());
+        }
+
+        if (Convert.ToInt32(txtMaxPlaatsen.Text) <= AantalBeschikbarePlaatsen)
+        {
+
+            herkansingDBEntities objHerkansing = new herkansingDBEntities();
+
+            bool objBool;
+            if (rblKlasOfOpleiding.SelectedIndex == 0)
+            {
+                objBool = true;
+            }
+            else
+            {
+                objBool = false;
+            }
+
+            objHerkansing.UpdateHerkansing(
+                Convert.ToInt32(ddlHerkansingen.SelectedValue),
+                ddlLokaal.SelectedValue,
+                Convert.ToDateTime(txtDatum.Text),
+                ddlSureillance.SelectedValue,
+                Convert.ToInt32(ddlToetsen.SelectedValue),
+                Convert.ToInt32(txtLengteHerkansing.Text),
+                Convert.ToInt32(txtMaxPlaatsen.Text),
+                cbActief.Checked, objBool,
+                ddlKlasOfOpleidingSelecteren.SelectedValue,
+                txtUur.Text + ":" + txtMinuten.Text
+                );
+
+            objHerkansing.SaveChanges();
+
+            Response.Redirect("herkansingAanpassen.aspx");
         }
         else
         {
-            objBool = false;
+            lblMaxAantalPlaatsen.Text = "Het maximum aantal plaatsen voor dat lokaal is " + AantalBeschikbarePlaatsen;
+            lblAstrixAantalPlaatsen.Text = "*";
         }
-
-        entity.UpdateHerkansing(
-            Convert.ToInt32(ddlHerkansingen.SelectedValue),
-            ddlLokaal.SelectedValue,
-            Convert.ToDateTime(txtDatum.Text),
-            ddlSureillance.SelectedValue,
-            Convert.ToInt32(ddlToetsen.SelectedValue),
-            Convert.ToInt32(txtLengteHerkansing.Text),
-            Convert.ToInt32(txtMaxPlaatsen.Text),
-            cbActief.Checked, objBool,
-            ddlKlasOfOpleidingSelecteren.SelectedValue,
-            txtUur.Text + ":" + txtMinuten.Text
-            );
-
-        entity.SaveChanges();
-
-        Response.Redirect("herkansingAanpassen.aspx");
     }
 
     protected void ddlHerkansingen_SelectedIndexChanged(object sender, EventArgs e)

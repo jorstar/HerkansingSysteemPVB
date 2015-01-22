@@ -29,12 +29,13 @@ public partial class _Default : System.Web.UI.Page
                 Achternaam = txtAchternaam.Text,
                 Email = txtEMail.Text,
                 DocentID = txtAfkorting.Text,
-                Wachtwoord = Functies.CalculateHashedPassword(txtWachtwoord.Text, txtAfkorting.Text)
+                Wachtwoord = Functies.CalculateHashedPassword(txtWachtwoord.Text, txtAfkorting.Text),
+                FirstLogin = true
             });
 
             entity.SaveChanges();
 
-            Response.Redirect("docentAanmaken.aspx");
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('De docent is succesvol toegevoegd');window.location.href='docentAanmaken.aspx'</script>");
         }
     }
 }

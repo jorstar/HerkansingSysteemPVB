@@ -92,8 +92,12 @@ public partial class _Default : System.Web.UI.Page
         if (Page.IsValid)
         {
 
+            lblMaxAantalPlaatsen.Text = "";
+            lblAstrixAantalPlaatsen.Text = "";
+
             if (Convert.ToInt32(txtMaxPlaatsen.Text) <= AantalBeschikbarePlaatsen)
             {
+
                 bool objBool;
                 if (rblKlasOfOpleiding.SelectedIndex == 0)
                 {
@@ -119,7 +123,6 @@ public partial class _Default : System.Web.UI.Page
                     Toets = Convert.ToInt32(ddlToetsen.SelectedValue),
                     Surveillant = ddlSureillance.SelectedValue,
                     BeginTijd = txtUur.Text + ":" + txtMinuten.Text
-
                 });
 
                 entity.SaveChanges();
