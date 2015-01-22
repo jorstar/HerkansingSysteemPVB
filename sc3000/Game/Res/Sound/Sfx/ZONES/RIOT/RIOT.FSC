@@ -1,0 +1,13 @@
+version 6
+#	vol	pri	min	max	rows	cols	tempo	BPB	SelX	SelY	QuanX	QuanY	DifX	DifY
+	1024	0	2	4	2	4	200	2	3	16	1	1	0	0
+#	vol	rand?	LR	FB	rand?	fin	fout	dly	rand?	loop	loop?	quant	prob	pitchL	pitchH	fast?	groupID	filename		exclusion cells
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	0	0	0	2	riotbng3.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	0	0	0	1	riotbng4.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	0	0	0	1	riotbng5.xa
+	1024	0	512	512	1	0	0	0	0	8	0	0	9	0	0	0	1	gunshot.xa
+	1024	0	512	512	0	0	0	0	0	10	1	0	20	0	0	0	0	riot.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	0	0	0	2	riotbng1.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	0	0	0	2	riotbng2.xa
+	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	NONE
+

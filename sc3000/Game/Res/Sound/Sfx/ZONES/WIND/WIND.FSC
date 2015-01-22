@@ -1,0 +1,30 @@
+version 7
+#	vol	pri	min	max	rows	cols	tempo	BPB	SelX	SelY	QuanX	QuanY	DifX	DifY
+	898	0	1	3	13	2	112	2	0	14	1	1	0	0
+#	vol	rand?	LR	FB	rand?	fin	fout	dly	rand?	loop	loop?	quant	prob	pitchL	pitchH	fast?	groupID	stereo?	filename		exclusion cells
+	956	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm1wind2.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm2wind2.xa
+	997	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm1wind1.xa	(0,12)
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm2wind1.xa
+	929	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm2wind7.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm3wind6.xa
+	970	1	512	512	1	0	0	0	0	8	0	0	6	-2	2	0	0	0	zm2wind6.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm3wind9.xa
+	1010	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm2wind5.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm1wind1.xa
+	902	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm2wind1.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm1wind4.xa
+	997	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm1wind9.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm2wind9.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm1wind8.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm2wind8.xa
+	929	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm1wind7.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm2wind7.xa
+	997	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm1wind6.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm2wind6.xa
+	943	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm1wind5.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm2wind5.xa
+	970	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm1wind4.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm2wind4.xa
+	970	1	512	512	1	0	0	0	0	8	0	0	10	-2	2	0	0	0	zm1wind3.xa
+	916	1	512	512	1	0	0	0	0	8	0	0	10	-2	1	0	0	0	zm2wind3.xa

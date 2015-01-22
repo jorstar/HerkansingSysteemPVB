@@ -1,0 +1,22 @@
+version 7
+#	vol	pri	min	max	rows	cols	tempo	BPB	SelX	SelY	QuanX	QuanY	DifX	DifY
+	1024	0	0	3	18	1	120	8	1	18	-842150451	-842150451	0	0
+#	vol	rand?	LR	FB	rand?	fin	fout	dly	rand?	loop	loop?	quant	prob	pitchL	pitchH	fast?	groupID	stereo?	filename		exclusion cells
+	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	NONE
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes9.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes8.xa
+	768	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes7.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes6.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes5.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes4.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes3.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes2.xa
+	862	1	512	512	1	0	0	0	0	8	0	0	6	-3	2	0	0	0	pipes16.xa
+	835	1	512	512	1	0	0	0	0	8	0	0	7	-3	2	0	0	0	pipes15.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes14.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes13.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes12.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes11.xa
+	1024	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes10.xa
+	889	1	512	512	1	0	0	0	0	8	0	0	10	-3	2	0	0	0	pipes1.xa
+	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	NONE
