@@ -24,7 +24,7 @@
                                 <SortedDescendingCellStyle BackColor="#FFFDF8" />
                                 <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
-                            <asp:GridView CssClass="BlackTextGrid" ID="dgvDocentenOverzichtAlternatief" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AllowCustomPaging="false" AllowPaging="true" PageSize="15">
+                            <asp:GridView CssClass="BlackTextGrid" ID="dgvDocentenOverzichtAlternatief" Width="900px" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AllowCustomPaging="false" AllowPaging="true" PageSize="15" OnPageIndexChanging="dgvDocentenOverzichtAlternatief_PageIndexChanging">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

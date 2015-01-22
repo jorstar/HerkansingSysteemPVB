@@ -204,21 +204,6 @@ public partial class herkansingDBEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateHerkansing", herkansingIDParameter, lokaalParameter, datumParameter, surveillantParameter, toetsParameter, tijdsduurParameter, plaatsenParameter, actiefParameter, isHetEenKlasParameter, klasIDofOpleidingsIDParameter, beginTijdParameter);
     }
 
-    public virtual ObjectResult<VerkrijgAlleHerkansingenDocent_Result> VerkrijgAlleHerkansingenDocent()
-    {
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenDocent_Result>("VerkrijgAlleHerkansingenDocent");
-    }
-
-    public virtual ObjectResult<VerkrijgBeschikbareHerkansingDocent_Result> VerkrijgBeschikbareHerkansingDocent()
-    {
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgBeschikbareHerkansingDocent_Result>("VerkrijgBeschikbareHerkansingDocent");
-    }
-
-    public virtual ObjectResult<VerkrijgHistorieHerkansingenDocent_Result> VerkrijgHistorieHerkansingenDocent()
-    {
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenDocent_Result>("VerkrijgHistorieHerkansingenDocent");
-    }
-
     public virtual ObjectResult<verkrijgHerkansingenGemaaktDoorDocent_Result> verkrijgHerkansingenGemaaktDoorDocent(string docentID)
     {
         var docentIDParameter = docentID != null ?
@@ -412,5 +397,20 @@ public partial class herkansingDBEntities : DbContext
     public virtual ObjectResult<DisplayHerkansingenDocent_Result> DisplayHerkansingenDocent()
     {
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DisplayHerkansingenDocent_Result>("DisplayHerkansingenDocent");
+    }
+
+    public virtual ObjectResult<VerkrijgAlleHerkansingenDocent_Result> VerkrijgAlleHerkansingenDocent()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgAlleHerkansingenDocent_Result>("VerkrijgAlleHerkansingenDocent");
+    }
+
+    public virtual ObjectResult<VerkrijgBeschikbareHerkansingDocent_Result> VerkrijgBeschikbareHerkansingDocent()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgBeschikbareHerkansingDocent_Result>("VerkrijgBeschikbareHerkansingDocent");
+    }
+
+    public virtual ObjectResult<VerkrijgHistorieHerkansingenDocent_Result> VerkrijgHistorieHerkansingenDocent()
+    {
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerkrijgHistorieHerkansingenDocent_Result>("VerkrijgHistorieHerkansingenDocent");
     }
 }

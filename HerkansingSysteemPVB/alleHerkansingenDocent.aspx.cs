@@ -107,11 +107,14 @@ public partial class _Default : System.Web.UI.Page
     protected void btnTonen_Click(object sender, EventArgs e)
     {
         HerkansingsIDString = ddlSelecteerdHerkansing.SelectedValue;
+        if (dgvDocentenHerkansingOverzicht.Visible == true)
+        {
+            dgvDocentenOverzichtAlternatief.Visible = true;
+            dgvDocentenHerkansingOverzicht.Visible = false;
+        }
 
-        //dgvDocentenOverzichtAlternatief.DataSource = objHerkansing.VerkrijgAlleStudentenVanEenHerkansing()
-
-        dgvDocentenHerkansingOverzicht.DataSource = objHerkansing.VerkrijgAlleStudentenVanEenHerkansing(Convert.ToInt32(ddlSelecteerdHerkansing.SelectedValue));
-        dgvDocentenHerkansingOverzicht.DataBind();
+        dgvDocentenOverzichtAlternatief.DataSource = objHerkansing.VerkrijgAlleStudentenVanEenHerkansing(Convert.ToInt32(ddlSelecteerdHerkansing.SelectedValue));
+        dgvDocentenOverzichtAlternatief.DataBind();
     }
     protected void dgvDocentenHerkansingOverzicht_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
@@ -147,4 +150,9 @@ public partial class _Default : System.Web.UI.Page
         Response.Redirect("herkansingSurvianceMailen.aspx");
     }
     #endregion
+    protected void dgvDocentenOverzichtAlternatief_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        dgvDocentenOverzichtAlternatief.PageIndex = e.NewPageIndex;
+        dgvDocentenOverzichtAlternatief.DataBind();
+    }
 }
