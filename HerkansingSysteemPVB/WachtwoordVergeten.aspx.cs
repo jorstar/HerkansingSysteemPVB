@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -46,11 +47,11 @@ public partial class Default2 : System.Web.UI.Page
                 {
                     GUID = objGuid,
                     IsEenLeraar = true,
-                    UserID = tbGebruikersnaam.Text,
+                    UserID = docent.First().DocentID,
                     Gebruikt = false
                 });
 
-                sendmail(objGuid);
+                sendmail(objGuid, docent.First().Email);
 
                 entity.SaveChanges();
 
@@ -65,11 +66,11 @@ public partial class Default2 : System.Web.UI.Page
                 {
                     GUID = objGuid,
                     IsEenLeraar = false,
-                    UserID = tbGebruikersnaam.Text,
+                    UserID = student.First().LRL_NR,
                     Gebruikt = false
                 });
 
-                sendmail(objGuid);
+                sendmail(objGuid, student.First().EMAIL);
 
                 entity.SaveChanges();
 
@@ -77,24 +78,55 @@ public partial class Default2 : System.Web.UI.Page
         }
     }
 
-    public void sendmail(string objGuid)
+    public void sendmail(string objGuid, string email)
     {
+        #region Mailvariabelen
+        //Mail Variables
+        string sitemode = ConfigurationManager.AppSettings["WebsiteMode"].ToString();
+        string MailTo;
+        string MailFrom;
+        string MailUsername;
+        string MailPassword;
+        string MailServer;
+        int MailPort;
+        string Adress;
+        if (sitemode.ToLower() == "live")
+        {
+            MailTo = email;
+            MailFrom = ConfigurationManager.AppSettings["LiveMailEmail"].ToString();
+            MailUsername = ConfigurationManager.AppSettings["LiveEmailUsername"].ToString();
+            MailPassword = ConfigurationManager.AppSettings["LiveEmailPassword"].ToString();
+            MailServer = ConfigurationManager.AppSettings["LiveEmailServer"].ToString();
+            MailPort = Convert.ToInt16(ConfigurationManager.AppSettings["LiveEmailPort"]);
+            Adress = ConfigurationManager.AppSettings["LiveAdres"].ToString();
+        }
+        else
+        {
+            MailTo = ConfigurationManager.AppSettings["DebugMailTo"].ToString();
+            MailFrom = ConfigurationManager.AppSettings["DebugMailFrom"].ToString();
+            MailUsername = ConfigurationManager.AppSettings["DebugEmailUsername"].ToString();
+            MailPassword = ConfigurationManager.AppSettings["DebugEmailPassword"].ToString();
+            MailServer = ConfigurationManager.AppSettings["DebugEmailServer"].ToString();
+            MailPort = Convert.ToInt16(ConfigurationManager.AppSettings["DebugEmailPort"]);
+            Adress = ConfigurationManager.AppSettings["DebugAdres"].ToString();
+        }
+        #endregion
         // send mail
         MailMessage Message = new MailMessage();
 
-        Message.From = new MailAddress("rocvantwentepvb@gmail.com");
-        Message.To.Add(new MailAddress("rocvantwentepvb@gmail.com"));
+        Message.From = new MailAddress(MailFrom);
+        Message.To.Add(new MailAddress(MailTo));
         Message.Subject = "Wachtwoord wijzigen | " + tbGebruikersnaam.Text;
         Message.SubjectEncoding = Encoding.UTF8;
 
-        Message.Body += "Bevestigings link (<html><body>Zo snel mogelijk: <a href=\"http://herkansingroc.ddns.net/wachtwoordWijzigen.aspx?Vergeten=" + objGuid + "\" target=\"_blank\">http://herkansingroc.ddns.net/wachtwoordWijzigen.aspx?Vergeten=" + objGuid + "</a></body></html>";
+        Message.Body += "Bevestigings link (<html><body>Zo snel mogelijk: <a href=\""+ Adress + "wachtwoordWijzigen.aspx?Vergeten=" + objGuid + "\" target=\"_blank\">"+ Adress + "wachtwoordWijzigen.aspx?Vergeten=" + objGuid + "</a></body></html>";
         Message.IsBodyHtml = true;
         Message.BodyEncoding = Encoding.UTF8;
         NetworkCredential nc = new NetworkCredential();
-        nc.UserName = "rocvantwentepvb@gmail.com";
-        nc.Password = "KJI1337!";
+        nc.UserName = MailServer;
+        nc.Password = MailPassword;
 
-        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+        SmtpClient smtp = new SmtpClient(MailServer, MailPort);
         smtp.Credentials = nc;
         smtp.EnableSsl = true;
         smtp.DeliveryMethod = SmtpDeliveryMethod.Network;

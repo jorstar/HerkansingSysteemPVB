@@ -85,7 +85,7 @@ public partial class _Default : System.Web.UI.Page
                 MailPort = Convert.ToInt16(ConfigurationManager.AppSettings["LiveEmailPort"]);
                 Adress = ConfigurationManager.AppSettings["LiveAdres"].ToString();
             }
-            else 
+            else
             {
                 MailTo = ConfigurationManager.AppSettings["DebugMailTo"].ToString();
                 MailFrom = ConfigurationManager.AppSettings["DebugMailFrom"].ToString();
@@ -127,7 +127,11 @@ public partial class _Default : System.Web.UI.Page
 
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "<script>alert('Aanmelding gelukt, De bevestigings mail is verstuurd.');window.location.href='alleHerkansingenStudent.aspx'</script>");
 
-        }           
+        }
+        catch (DuplicateNameException)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('U mag zich niet twee keer voor dezelfde toets aanmelden');", true);
+        }
         catch (UpdateException ex)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + ex.Message + "');", true);
