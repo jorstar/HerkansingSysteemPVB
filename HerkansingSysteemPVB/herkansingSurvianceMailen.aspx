@@ -17,7 +17,7 @@
         <tr>
             <td>
 
-                <table class="fancyTable">
+                <table class="fancyTable" style=" width: 900px; margin: 50px auto 0 auto">
                     <tr>
                         <td style="border-bottom: 2px solid black; padding: 10px 0">
                             De kandidaten</td>
